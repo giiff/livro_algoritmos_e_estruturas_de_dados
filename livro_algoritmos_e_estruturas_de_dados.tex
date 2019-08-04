@@ -1,0 +1,328 @@
+%!TEX program = pdflatex
+%----------------------------------------------------------------------------------------
+% TEMPLATE INFORMATON
+%----------------------------------------------------------------------------------------
+% This template was adapted from "The Legrand Orange Book Version 1.4 (12/4/14) [http://www.LaTeXTemplates.com] Mathias Legrand (legrand.mathias@gmail.com)" License: CC BY-NC-SA 3.0 (http://creativecommons.org/licenses/by-nc-sa/3.0/)
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+% COMPILACAO
+%----------------------------------------------------------------------------------------
+% 0) There is a "compilar.sh"
+% OR
+% 1) pdflatex livro_algoritmos_e_estruturas_de_dados
+% 2) makeindex livro_algoritmos_e_estruturas_de_dados.idx -s StyleInd.ist
+% 3) biber livro_algoritmos_e_estruturas_de_dados
+% 4) pdflatex livro_algoritmos_e_estruturas_de_dados
+% 5) pdflatex livro_algoritmos_e_estruturas_de_dados
+
+%----------------------------------------------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%----------------------------------------------------------------------------------------
+\documentclass[11pt,fleqn]{book} % Default font size and left-justified equations
+
+%encoding
+%--------------------------------------
+\usepackage[T1]{fontenc}
+%--------------------------------------
+\usepackage[utf8]{inputenc}
+\hyphenation{Mi-nis-té-ri-o}
+\usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,a4paper]{geometry} % Page margins
+\usepackage[svgnames]{xcolor} % Required for specifying colors by name
+\definecolor{blue}{rgb}{0.0, 0.18, 0.39}
+% Font Settings
+\usepackage{avant} % Use the Avantgarde font for headings
+%\usepackage{times} % Use the Times font for headings
+\usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+\usepackage{microtype} % Slightly tweak font spacing for aesthetics
+% Index
+\usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
+\usepackage{makeidx} % Required to make an index
+\makeindex % Tells LaTeX to create the files required for indexing
+\usepackage{verbatim}
+% Others
+\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,linecolor=red,backgroundcolor=red!25,bordercolor=red]{todonotes}
+\usepackage{epigraph}
+\renewcommand{\textflush}{flushepinormal}
+\setlength{\epigraphwidth}{0.8\textwidth}
+
+\usepackage{nameref}
+\usepackage{booktabs}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{multirow}
+
+%CODE
+\usepackage{courier}
+\usepackage{listings}
+\lstset{
+	numbers=left,                   % where to put the line-numbers
+	stepnumber=1,                   % the step between two line-numbers. 	
+	frame=tb,                       % draw a frame at the top and bottom of the code block
+	tabsize=4,                      % tab space width
+	showstringspaces=false,         % don't mark spaces in strings
+	numbers=left,                   % display line numbers on the left
+	commentstyle=\color{Gray},      % comment color
+	keywordstyle=\color{DarkBlue},  % keyword color
+	stringstyle=\color{Maroon},     % string color
+	breaklines=true,                % break lines when it's needed
+	basicstyle=\ttfamily\scriptsize % font family and size (need package courier)
+}
+\renewcommand{\lstlistingname}{Programa}
+
+% Bibliography
+%\usepackage[backend=biber,style=authoryear,autocite=inline, citestyle=authoryear]{biblatex}
+\usepackage[style=abnt]{biblatex}
+\addbibresource{bibliography.bib} % BibTeX bibliography file
+\defbibheading{bibempty}{}
+\renewcommand*{\nameyeardelim}{\addcomma\space}
+
+\newcommand{\VER}[1]{\begingroup\color{red}#1\endgroup}
+
+%----------------------------------------------------------------------------------------
+
+\input{structure} % Insert the commands.tex file which contains the majority of the structure behind the template
+
+\begin{document}
+
+\let\cleardoublepage\clearpage
+
+\renewcommand{\chaptername}{Capítulo}
+\renewcommand{\figurename}{Fig.}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+\begingroup
+	\thispagestyle{empty}
+	
+	\AddToShipoutPicture*{\put(0,0){\includegraphics[scale=1]{capa}}} % Image background
+	
+	%\AddToShipoutPicture*{\put(116,650){\includegraphics[scale=.75]{brasao.png}}} % Image background
+	
+	%\AddToShipoutPicture*{\put(244,200){\includegraphics[scale=0.2]{ifgvertical}}} % Image background
+	\AddToShipoutPicture*{\put(244,650){\includegraphics[scale=0.2]{ifgvertical}}} % Image background
+	
+	\vspace*{4.5cm}
+	
+	\centering
+	\par
+	\fontsize{30}{30}
+	\selectfont
+	Algoritmos e Estruturas de Dados \\
+	\vspace*{1.5cm}
+	\par
+	\fontsize{16}{16}
+	\selectfont
+	Tecnólogo em Análise e Desenvolvimento de Sistemas\\
+	\vspace*{1.5cm}
+	Waldeyr Mendes Cordeiro da Silva\\
+	\vspace*{10cm}
+	\par
+	{\Huge 2019}
+	\par
+\endgroup
+\pagebreak
+
+%----------------------------------------------------------------------------------------
+%	PEOPLE PAGE
+%----------------------------------------------------------------------------------------
+\chapterimage{banner3} % Chapter heading image
+\par
+\section*{Material didático para Algoritmos e Estruturas de Dados}
+
+Versão 0.1
+
+\section*{Waldeyr Mendes Cordeiro da Silva}\label{WaldeyrMendes}
+\begin{itemize}
+	\item Formação:
+	\begin{itemize}
+		\item Bacharelado em Sistemas de Informação
+		\item Licenciatura em Ciências Biológicas
+		\item Complementação Pedagógica em Matemática
+		\item Especialização em Engenharia de Software
+		\item Especialização em Segurança da Informação
+		\item Mestrado em Informática
+		\item Doutorado em Ciências Biológicas (Bioinformática)
+	\end{itemize}
+	\item \includegraphics[scale=.03]{Pictures/lattes}~\href{http://lattes.cnpq.br/2391349697609978}{Lattes: http://lattes.cnpq.br/2391349697609978}
+	\item \includegraphics[scale=.15]{Pictures/orcid}~\href{https://orcid.org/0000-0002-8660-6331}{ORCID: https://orcid.org/0000-0002-8660-6331}
+\end{itemize}
+
+\chapterimage{banner3} % Chapter heading image
+\renewcommand\contentsname{Sumário}
+\tableofcontents
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER
+%----------------------------------------------------------------------------------------
+\chapterimage{01.jpg} % Chapter heading image
+\chapter{Prefácio}\label{prefacio}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{Um bonita citação...}}
+\end{flushright}
+\vspace{12em}
+
+\todo[inline]{Em construção...}
+
+Este livro destina-se aos acadêmicos e demais interessados em iniciar os estudos em algoritmos e estruturas de dados.
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER
+%----------------------------------------------------------------------------------------
+\chapterimage{02.jpg} % Chapter heading image
+\chapter{Introdução}\label{introducao}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{Um bonita citação...}}
+\end{flushright}
+\vspace{12em}
+
+
+Um algoritmo é um procedimento computacional bem definido que processa um valor ou um conjunto de dados (entrada) e produz algum valor ou conjunto de dados (saída)~\cite{cormen2009}.
+Os algoritmos existem há muito tempo, mas estão presentes na sociedade moderna de uma forma nunca experimentada na história da humanidade.
+Quase tudo que se produz, sejam produtos ou serviços, tem alguma influência de algoritmos.
+O comércio eletrônico utiliza tanto algoritmos clássicos como ordenações, quanto algoritmos modernos de recomendação de produtos baseado no histórico de visitas.
+A segurança das senhas em qualquer sistema bancário ou \textit{Web} é garantida por algoritmos de criptografia.
+Imagens de satélite, dados genômicos, reconhecimento de faces, previsão do tempo, quase tudo que se possa imaginar atualmente é influenciado direta oou indiretamente por algum algoritmo.
+
+O estudo de algoritmos é uma demanda crescente frente aos novos desafios trazidos pelo grande volume de dados que as tecnologias modernas proporcionaram.
+A análise de algortimos é uma área com questões importantes em aberto, como é o caso dos \textit{Millennium Prize Problems}, com sete problemas matemático-computacionais em aberto e cujo prêmio é de 1 milhão de dólares por cada solução.
+
+O propósito da análise de um algortimo é prever seu comportamento quanto ao tempo de execução ou ao espaço em memória que irá ocupar mesmo antes de ser executado em um computador específico.
+Porém, muitos fatores, como o tamanho e a variedade dos dos dados de entrada, influenciam o algoritmo.
+Portanto, a análise de algoritmos provê uma aproximação, o que em muitos casos é bastante significante.
+
+Tipos abstratos de dados são conjuntos de valores sobre os quais é possível aplicar funções de forma homogênea através de um algortimo.
+Funções e valores em conjunto, consituem um modelo matemático que pode ser empregado em problemas do mundo real~\cite{ascencio2010}.
+Os algortimos são projetados em função de um tipo abstrato de dados.
+A representação computacional de um tipo abstrato de dados com seus tipos e operações permitidas pode ser entendida como uma \textbf{estrutura de dados}.
+Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à sua organização, acesso e modificações~\cite{cormen2009}.
+
+\section{Análise de Algoritmos}\label{sec_analise}
+
+\subsection{Elementos de Notação Assintótica}
+
+
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\chapterimage{04.jpg} % Chapter heading image
+\chapter{Programação}\label{programacao}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{Um bonita citação...}}
+\end{flushright}
+\vspace{12em}
+
+
+
+\newpage
+\section{Primeiros Passos em Programação}\label{disc:primeirospassos}
+
+\lstinputlisting[language=C, caption={Meu primeiro programa em C.}]{Code/Basics/prog001.c}\label{prog001}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER X
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\chapterimage{05.jpg} % Chapter heading image
+\chapter{Estruturas de Dados}\label{estrutura}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{Um bonita citação...}}
+\end{flushright}
+\vspace{12em}
+
+
+\section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
+
+\section{Algoritmos de Ordenação}\label{ordenacao}
+
+\section{Listas}\label{listas}
+
+\section{Pilhas}\label{pilhas}
+
+\section{Filas}\label{filas}
+
+\section{Tabelas Hashing}\label{hashing}
+
+\section{Árvores}\label{arvores}
+
+\section{Grafos}\label{grafos}
+
+\subsection{Busca em Grafos}
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER X
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\chapterimage{06.jpg} % Chapter heading image
+\chapter{Aplicações}\label{aplicacoes}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{Um bonita citação...}}
+\end{flushright}
+\vspace{12em}
+
+
+
+% ----------------------------------------------------------------------------------------
+% 	BIBLIOGRAPHY
+% ----------------------------------------------------------------------------------------
+%----------------------------------------------------------------------------------------
+%	CHAPTER X
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\chapterimage{07.jpg} % Chapter heading image
+%\chapter*{Referências Bibliográficas}
+%\bibliography{bibliography}
+%\renewcommand\bibname{Referências Bibliográficas}
+
+\chapter*{Referências Bibliográficas}\label{referencias}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{Um bonita citação...}}
+\end{flushright}
+\vspace{12em}
+%\addcontentsline{toc}{chapter}{\textcolor{verde}{Bibliography}}
+%\section{Books}
+%\addcontentsline{toc}{section}{Books}
+%\printbibliography[heading=bibempty,type=book]
+%\section{Articles}
+%\addcontentsline{toc}{section}{Articles}
+%\printbibliography[heading=bibempty,type=article]
+\printbibliography[heading=bibempty]
+
+
+%----------------------------------------------------------------------------------------
+
+%----------------------------------------------------------------------------------------
+%	INDEX
+%----------------------------------------------------------------------------------------
+%
+%\cleardoublepage
+%\phantomsection
+%\setlength{\columnsep}{0.75cm}
+%\addcontentsline{toc}{chapter}{\textcolor{verde}{Index}}
+%\printindex
+
+
+%----------------------------------------------------------------------------------------
+%	CHAPTER X
+%----------------------------------------------------------------------------------------
+%------------------------------------------------
+\chapterimage{08.jpg} % Chapter heading image
+\chapter{Apêncice}\label{apendice}
+\vspace{6em}
+\begin{flushright}
+	\textit{\textcolor{white}{}}
+\end{flushright}
+\vspace{12em}
+
+
+\end{document}
