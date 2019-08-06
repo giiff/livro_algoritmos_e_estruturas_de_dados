@@ -226,6 +226,8 @@ Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à
 
 \lstinputlisting[language=C, caption={Meu primeiro programa em C.}]{Code/Basics/prog001.c}\label{prog001}
 
+
+
 %----------------------------------------------------------------------------------------
 %	CHAPTER X
 %----------------------------------------------------------------------------------------
@@ -240,6 +242,24 @@ Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à
 
 
 \section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
+
+\subsection*{Vetor como tipo abstrato de dados}
+
+Primeiro uma revisão sobre vetores.
+Em C uma variável que represente um vetor é um ponteiro.
+Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
+Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
+O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
+
+\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/Revisao/rev001.c}\label{rev001}
+
+
+\subsection*{Strings em C}
+Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
+Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
+Por exemplo, a string "IFG" é um vetor de 4 elementos.
+O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
+\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
 
 \section{Algoritmos de Ordenação}\label{ordenacao}
 
