@@ -240,12 +240,12 @@ Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à
 \end{flushright}
 \vspace{12em}
 
-
+\newpage
 \section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
 
-\subsection*{Vetor como tipo abstrato de dados}
+\subsection*{Vetores}
 
-Primeiro uma revisão sobre vetores.
+Primeiro, uma revisão sobre vetores.
 Em C uma variável que represente um vetor é um ponteiro.
 Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
 Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
@@ -262,7 +262,30 @@ Por exemplo, a string "IFG" é um vetor de 4 elementos.
 O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
 \lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
 
+\newpage
 \section{Algoritmos de Ordenação}\label{ordenacao}
+
+\subsection*{Bubble Sort}
+O algoritmo da bolha (\textit{Bubble Sort}) é um algortimo de ordenação onde cada elemento de uma posição $i$ é comparado com o elemento de posição $i+1$, os quais trocam de posição, se for o caso, para atender à ordenação procurada (crescente ou decrescente).
+O  programa~\ref{BubbleSort} apresenta uma implmentação em C do algoritmo \textit{Bubble Sort} enquanto o Figura~\ref{diaBubleSort} ilustra seu funcionamento para um vetor de tamanho 4.
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/Ordenacao/BubbleSort.c}\label{BubbleSort}
+\begin{figure}
+	\centering
+	\includegraphics[width=.75\textwidth]{Pictures/BubbleSort}
+	\caption[Bubble Sort]{Algoritmo \textit{Bubble Sort} para um vetor de tamanho 4.}
+	\label{diaBubleSort}
+\end{figure}
+
+\subsection*{Exercícios}
+\begin{enumerate}
+	\item Atualizar a implementação do \textit{Bubble Sort} para executar as seguintes tarefas:
+	\begin{itemize}
+		\item tamanho do vetor = 100000;
+		\item criar variáveis contadoras para quantidade de comparações e quantidade de trocas;
+		\item executar o algoritmo em ordenação crescente para o vetor com valores já ordenados, com valores aleatórios e com valores decrescentes;
+	\end{itemize} 
+	\item criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
+\end{enumerate} 
 
 \section{Listas}\label{listas}
 
