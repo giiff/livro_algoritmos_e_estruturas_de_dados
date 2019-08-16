@@ -9,6 +9,7 @@
       </df>
       <df name="Ordenacao">
         <in>BubbleSort.c</in>
+        <in>SelectionSort.c</in>
       </df>
       <df name="Revisao">
         <in>rev001.c</in>
@@ -42,6 +43,8 @@
         <gdb_interceptlist>
           <gdbinterceptoptions gdb_all="false" gdb_unhandled="true" gdb_unexpected="true"/>
         </gdb_interceptlist>
+        <gdb_signals>
+        </gdb_signals>
         <gdb_options>
           <DebugOptions>
           </DebugOptions>

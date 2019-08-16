@@ -9,6 +9,7 @@
       </df>
       <df name="Ordenacao">
         <in>BubbleSort.c</in>
+        <in>SelectionSort.c</in>
       </df>
       <df name="Revisao">
         <in>rev001.c</in>
@@ -43,7 +44,7 @@
           <buildCommandWorkingDir>.</buildCommandWorkingDir>
           <buildCommand>echo build</buildCommand>
           <cleanCommand>echo clean</cleanCommand>
-          <executablePath></executablePath>
+          <executablePath>Ordenacao/SelectionSort</executablePath>
         </makeTool>
         <preBuild>
           <preBuildCommandWorkingDir>.</preBuildCommandWorkingDir>
@@ -57,6 +58,8 @@
       <item path="Basics/prog003.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Ordenacao/BubbleSort.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Ordenacao/SelectionSort.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Revisao/rev001.c" ex="false" tool="0" flavor2="0">
       </item>

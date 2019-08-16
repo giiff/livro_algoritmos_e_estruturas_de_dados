@@ -267,7 +267,7 @@ O programa~\ref{rev002} mostra um exemplo de \textit{string} em C.
 
 \subsection*{Bubble Sort}
 O algoritmo da bolha (\textit{Bubble Sort}) é um algortimo de ordenação onde cada elemento de uma posição $i$ é comparado com o elemento de posição $i+1$, os quais trocam de posição, se for o caso, para atender à ordenação procurada (crescente ou decrescente).
-O  programa~\ref{BubbleSort} apresenta uma implmentação em C do algoritmo \textit{Bubble Sort} enquanto o Figura~\ref{diaBubleSort} ilustra seu funcionamento para um vetor de tamanho 4.
+O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \textit{Bubble Sort}, enquanto a Figura~\ref{diaBubleSort} ilustra seu funcionamento para um vetor de tamanho 4.
 \lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/Ordenacao/BubbleSort.c}\label{BubbleSort}
 \begin{figure}
 	\centering
@@ -284,7 +284,30 @@ O  programa~\ref{BubbleSort} apresenta uma implmentação em C do algoritmo \tex
 		\item criar variáveis contadoras para quantidade de comparações e quantidade de trocas;
 		\item executar o algoritmo em ordenação crescente para o vetor com valores já ordenados, com valores aleatórios e com valores decrescentes;
 	\end{itemize} 
-	\item criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
+	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
+\end{enumerate} 
+
+\newpage
+\subsection*{Bubble Sort}
+No algoritmo de ordenação por seleção (\textit{Selection Sort}) cada número do vetor, a partir do primeiro, é eleito e comparado com o menor número\footnote{Ou maior dependendo da ordenação desejada.} entre aqueles que estão à direita do eleito.
+O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo \textit{Selection Sort}, e a Figura~\ref{diaSelectionSort} ilustra seu funcionamento para um vetor de tamanho 4.
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/Ordenacao/BubbleSort.c}\label{SelectionSort}
+\begin{figure}
+	\centering
+	\includegraphics[width=.75\textwidth]{Pictures/SelectionSort}
+	\caption[Selection Sort]{Algoritmo \textit{Selection Sort} para um vetor de tamanho 4.}
+	\label{diaSelectionSort}
+\end{figure}
+
+\subsection*{Exercícios}
+\begin{enumerate}
+	\item Atualizar a implementação do \textit{Selection Sort} para executar as seguintes tarefas:
+	\begin{itemize}
+		\item tamanho do vetor = 100000;
+		\item criar variáveis contadoras para quantidade de comparações e quantidade de trocas;
+		\item executar o algoritmo em ordenação crescente para o vetor com valores já ordenados, com valores aleatórios e com valores decrescentes;
+	\end{itemize} 
+	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
 \end{enumerate} 
 
 \section{Listas}\label{listas}
