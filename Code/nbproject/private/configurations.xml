@@ -10,6 +10,7 @@
       <df name="Ordenacao">
         <in>BubbleSort.c</in>
         <in>InsertionSort.c</in>
+        <in>MergeSort.c</in>
         <in>SelectionSort.c</in>
       </df>
       <df name="Revisao">

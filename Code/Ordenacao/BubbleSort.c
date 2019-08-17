@@ -5,9 +5,9 @@
 void main() {
     int vetor[TAMANHO]; //vetor com tamanho definido
     int aux = 0; //varivel para ser usada na troca
-    clock_t inicio, fim; //Variaveis para guardar o tempo de execucao
+    clock_t tempoInicial, tempoFinal; //Variaveis para guardar o tempo de execucao
     srand(time(NULL)); //Cria uma semente para numeros aleatorios
-    inicio = clock(); //inicia contagem do tempo
+    tempoInicial = clock(); //inicia contagem do tempo
     for (int i = 0; i < TAMANHO; i++) {
         vetor[i] = rand() % 10; //Atribui um inteiro aleatorio entre 0 e 9
     }
@@ -31,7 +31,7 @@ void main() {
         printf("%d\t", vetor[i]);
     }
     printf("\n");
-    fim = clock(); //finaliza contagem do tempo
+    tempoFinal = clock(); //finaliza contagem do tempo
     //calcula e mostra o tempo total de execucao
-    printf("Tempo: %f s\n", (double) (fim - inicio) / CLOCKS_PER_SEC);
+    printf("Tempo: %f s\n", (double) (tempoFinal - tempoInicial) / CLOCKS_PER_SEC);
 }

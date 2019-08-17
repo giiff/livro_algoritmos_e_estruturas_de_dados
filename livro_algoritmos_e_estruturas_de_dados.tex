@@ -292,12 +292,12 @@ O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \te
 No algoritmo de ordenação por seleção (\textit{Selection Sort}) cada número do vetor, a partir do primeiro, é eleito e comparado com o menor número\footnote{Ou maior dependendo da ordenação desejada.} entre aqueles que estão à direita do eleito.
 O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo \textit{Selection Sort}, e a Figura~\ref{diaSelectionSort} ilustra seu funcionamento para um vetor de tamanho 4.
 \lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Selection.}]{Code/Ordenacao/SelectionSort.c}\label{SelectionSort}
-\begin{figure}
-	\centering
-	\includegraphics[width=.75\textwidth]{Pictures/SelectionSort}
-	\caption[Selection Sort]{Algoritmo \textit{Selection Sort} para um vetor de tamanho 4.}
-	\label{diaSelectionSort}
-\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=.75\textwidth]{Pictures/SelectionSort}
+%	\caption[Selection Sort]{Algoritmo \textit{Selection Sort} para um vetor de tamanho 4.}
+%	\label{diaSelectionSort}
+%\end{figure}
 
 \subsection*{Exercícios}
 \begin{enumerate}
@@ -327,6 +327,33 @@ O programa~\ref{InsertionSort} apresenta uma implementação em C do algoritmo \
 \subsection*{Exercícios}
 \begin{enumerate}
 	\item Atualizar a implementação do \textit{Insertion Sort} para executar as seguintes tarefas:
+	\begin{itemize}
+		\item tamanho do vetor = 100000;
+		\item criar variáveis contadoras para quantidade de comparações e quantidade de trocas;
+		\item executar o algoritmo em ordenação crescente para o vetor com valores já ordenados, com valores aleatórios e com valores decrescentes;
+	\end{itemize} 
+	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
+\end{enumerate} 
+
+\newpage
+\subsection*{Merge Sort}
+O algoritmo de ordenação \textit{Merge Sort} a técnica de divisão e conquista, ou seja, o problema é dividido em subproblemas menores até que a solução para o subproblema seja simples.
+As soluções dos subproblemas são combinadas para prover a solução do problema original.
+
+No \textit{Merge Sort}, o vetor é dividido em partes iguais recursivamente até que haja apenas um elemento. Por exemplo se um vetor tem $n$ elementos, ele é divido em $n/2$, o resultado é novamente dividido por $2$ até que o vetor não seja mais divisível.
+Os pares da última divisão são ordenados entre si assim como na volta recursiva montando o vetor original que estará então ordenado.
+O programa~\ref{MergeSort} apresenta uma implementação em C do algoritmo \textit{Insertion Sort} para um vetor de tamanho 4.
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Merge Sort.}]{Code/Ordenacao/MergeSort.c}\label{MergeSort}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=.75\textwidth]{Pictures/InsertionSort}
+%	\caption[Selection Sort]{Algoritmo \textit{Selection Sort} para um vetor de tamanho 4.}
+%	\label{diaInsertionSort}
+%\end{figure}
+
+\subsection*{Exercícios}
+\begin{enumerate}
+	\item Atualizar a implementação do \textit{Merge Sort} para executar as seguintes tarefas:
 	\begin{itemize}
 		\item tamanho do vetor = 100000;
 		\item criar variáveis contadoras para quantidade de comparações e quantidade de trocas;
