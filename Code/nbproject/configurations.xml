@@ -9,6 +9,7 @@
       </df>
       <df name="Ordenacao">
         <in>BubbleSort.c</in>
+        <in>InsertionSort.c</in>
         <in>SelectionSort.c</in>
       </df>
       <df name="Revisao">
@@ -58,6 +59,8 @@
       <item path="Basics/prog003.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Ordenacao/BubbleSort.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Ordenacao/InsertionSort.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Ordenacao/SelectionSort.c" ex="false" tool="0" flavor2="0">
       </item>

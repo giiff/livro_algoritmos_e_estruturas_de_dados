@@ -1,18 +1,14 @@
 #include <stdio.h>
 #include <time.h>
 #include <stdlib.h>
-
 #define TAMANHO 4
-
 void main() {
-
     int vetor[TAMANHO]; //vetor com tamanho definido
     int aux = 0; //varivel para ser usada na troca
     int eleito, menor, posicaoDoMenor;
     clock_t inicio, fim; //Variaveis para guardar o tempo de execucao
     srand(time(NULL)); //Cria uma semente para numeros aleatorios
     inicio = clock(); //inicia contagem do tempo
-
     for (int i = 0; i < TAMANHO; i++) {
         vetor[i] = rand() % 10; //Atribui um inteiro aleatorio entre 0 e 5
     }
@@ -46,7 +42,4 @@ void main() {
     //calcula e mostra o tempo total de execucao
     printf("Tempo: %f s\n", (double) (fim - inicio) / CLOCKS_PER_SEC);
 }
-//9       7       0       1
-//0       1       9       7
-//Tempo: 0.000318 s
 
