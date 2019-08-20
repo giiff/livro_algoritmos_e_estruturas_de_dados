@@ -17,7 +17,7 @@ void main() {
     }
     printf("\n");
     //Ordena vetor pelo metodo da bolha
-    for (int i = 0; i < TAMANHO; i++) {
+    for (int i = 1; i < TAMANHO; i++) {
         for (int j = 0; j < TAMANHO - 1; j++) {
             if (vetor[j] > vetor[j + 1]) {
                 aux = vetor[j];
