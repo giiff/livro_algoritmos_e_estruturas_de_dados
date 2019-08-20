@@ -10,7 +10,7 @@ void main() {
     srand(time(NULL)); //Cria uma semente para numeros aleatorios
     tempoInicial = clock(); //inicia contagem do tempo
     for (int i = 0; i < TAMANHO; i++) {
-        vetor[i] = rand() % 10; //Atribui um inteiro aleatorio entre 0 e 5
+        vetor[i] = rand() % 10; //Atribui um inteiro aleatorio entre 0 e 9
     }
     //Mostra valores do vetor nao ordenado
     for (int i = 0; i < TAMANHO; i++) {
