@@ -3,47 +3,47 @@
 #include <stdlib.h>
 
 // Define o tipo No contendo
-typedef struct Item {
+typedef struct No{
     int dado;
-    struct Item *prox;
+    struct No *prox;
 } No;
 
-//Define o primeiro No da lista
-No* ponteiroInicio = NULL;
+//Define o ultimo No da lista
+No* ponteiroFinal = NULL;
 
 // Funcao que define a lista como vazia.
 void criarLista() {
-    ponteiroInicio = NULL;
+    ponteiroFinal = NULL;
 }
 
 //Funcao que adiciona dados
 void adicionarDado(int dado) {
     No* ponteiroNo;
     ponteiroNo = (No *) malloc(sizeof (ponteiroNo));
-    if (ponteiroNo == NULL) {
-        printf("Erro de memoria. Voce esta programando o Windows?\n");
-    }
     ponteiroNo->dado = dado;
     ponteiroNo->prox = NULL;
-    if (ponteiroInicio == NULL)
-        ponteiroInicio = ponteiroNo;
+    if (ponteiroFinal == NULL)
+        ponteiroFinal = ponteiroNo;
     else {
-        ponteiroNo->prox = ponteiroInicio;
-        ponteiroInicio = ponteiroNo;
+        ponteiroNo->prox = ponteiroFinal;
+        ponteiroFinal = ponteiroNo;
     }
 }
 
+//Funcao que imprime a lista
 void imprimirLista() {
+    printf("-------------------------\n");
     No* ponteiroNo;
-    if (ponteiroInicio == NULL) {
+    if (ponteiroFinal == NULL) {
         printf("Lista vazia.\n");
         return;
     }
-    ponteiroNo = ponteiroInicio;
+    ponteiroNo = ponteiroFinal;
     while (ponteiroNo != NULL) {
         printf("[%d(%p)|%p]\n", ponteiroNo->dado, ponteiroNo, ponteiroNo->prox);
         ponteiroNo = ponteiroNo->prox;
     }
+    printf("-------------------------\n");
 }
 
 void main() {
