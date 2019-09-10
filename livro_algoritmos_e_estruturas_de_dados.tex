@@ -240,43 +240,6 @@ Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à
 \end{flushright}
 \vspace{12em}
 
-\newpage
-\section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
-
-\subsection*{Vetores}
-
-Primeiro, uma revisão sobre vetores.
-Em C uma variável que represente um vetor é um ponteiro.
-Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
-Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
-O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
-
-\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/Revisao/rev001.c}\label{rev001}
-
-\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/Revisao/rev003.c}\label{rev003}
-
-\subsection*{Strings em C}
-Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
-Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
-Por exemplo, a string "IFG" é um vetor de 4 elementos.
-O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
-\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
-
-
-
-\subsection*{Structs}
-Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
-O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
-
-\newpage
-\lstinputlisting[language=C, caption={Structs em C.}]{Code/Listas/Struct.c}\label{struct01}
-
-\newpage
-O programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C. 
-\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/Listas/Struct2.c}\label{struct02}
-
-
-
 
 \section{Algoritmos de Ordenação}\label{ordenacao}
 
@@ -296,11 +259,11 @@ O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \te
 	\item Atualizar a implementação do \textit{Bubble Sort} para executar as seguinte tarefa:
 	\begin{itemize}
 		\item executar o algoritmo com três vetores de entrada:
-			\begin{enumerate}
-				\item um vetor ordenado crescente de tamanho 100000 (cem mil)
-				\item um vetor com números aleatórios de tamanho 100000 (cem mil)
-				\item um vetor ordenado decrescente de tamanho 100000 (cem mil)
-			\end{enumerate} 
+		\begin{enumerate}
+			\item um vetor ordenado crescente de tamanho 100000 (cem mil)
+			\item um vetor com números aleatórios de tamanho 100000 (cem mil)
+			\item um vetor ordenado decrescente de tamanho 100000 (cem mil)
+		\end{enumerate} 
 		\item criar variáveis para contar a quantidade de comparações e quantidade de trocas;
 	\end{itemize} 
 	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
@@ -409,6 +372,62 @@ O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \text
 	\end{itemize} 
 	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
 \end{enumerate} 
+
+\newpage
+\section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
+
+\subsection*{Vetores}
+
+Primeiro, uma revisão sobre vetores.
+Em C uma variável que represente um vetor é um ponteiro.
+Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
+Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
+O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
+
+\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/Revisao/rev001.c}\label{rev001}
+
+\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/Revisao/rev003.c}\label{rev003}
+
+\subsection*{Strings em C}
+Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
+Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
+Por exemplo, a string "IFG" é um vetor de 4 elementos.
+O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
+\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
+
+
+
+\subsection*{Structs}
+Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
+O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
+
+\newpage
+\lstinputlisting[language=C, caption={Structs em C.}]{Code/Listas/Struct.c}\label{struct01}
+
+\newpage
+O programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C. 
+\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/Listas/Struct2.c}\label{struct02}
+
+
+\section{Listas Encadeadas}
+
+Uma lista encadeada é uma estrutura de dados que permite um crescimento sob demanda, limitado à capacidade de memória disponível no computador.
+Ela é composta de ``nós'' que tem suas posições de memória ligadas através de ponteiros. 
+Cada nó da lista, além de guardar dados em si, aponta o próximo nó.
+Os dados em um nó também podem ser heterogêneos.
+A Figura~\ref{listaEncadeada} ilustra essa ideia. 
+Apesar da figura dar a impressão de que os nós estão distribuídos contiguamente na memória, eles estão na verdade espalhados em endereços aleatórios de memória. 
+Por isso o encadeamento funciona com ponteiros apontando o endereço de memória do próximonó da lista.
+\begin{figure}
+	\centering
+	\includegraphics[width=.7\textwidth]{Pictures/ListaEncadeada01.png}
+	\caption[Lista Encadeada]{Representação de um Lista Encadeada.}
+	\label{listaEncadeada}
+\end{figure}
+O  programa~\ref{ListaEncadeada01} apresenta uma implementação em C de uma lista encadeada.
+\newpage
+\lstinputlisting[language=C, caption={Implementação em C de lista encadeada.}]{Code/Listas/ListaEncadeada01.c}\label{ListaEncadeada01}
+
 \section{Listas}\label{listas}
 
 \section{Pilhas}\label{pilhas}
