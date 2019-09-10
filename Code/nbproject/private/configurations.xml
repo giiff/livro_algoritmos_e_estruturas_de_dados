@@ -7,10 +7,17 @@
         <in>prog002.c</in>
         <in>prog003.c</in>
       </df>
+      <df name="Listas">
+        <in>ListaEncadeada.c</in>
+        <in>ListaEncadeada01.c</in>
+        <in>Struct.c</in>
+        <in>Struct2.c</in>
+      </df>
       <df name="Ordenacao">
         <in>BubbleSort.c</in>
         <in>InsertionSort.c</in>
         <in>MergeSort.c</in>
+        <in>QuickSort.c</in>
         <in>SelectionSort.c</in>
       </df>
       <df name="Revisao">

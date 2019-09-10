@@ -2,7 +2,7 @@
 #include <string.h>
 #include <stdlib.h>
 
-// Define o tipo No com struct
+// Define o tipo No contendo
 typedef struct No{
     int dado;
     struct No *prox;
@@ -10,7 +10,7 @@ typedef struct No{
 
 void printFormat01(No* ponteiroNo);
 void printFormat02(No* ponteiroNo);
-//Variavel global com o no mais recente da lista
+//Define o ultimo No da lista
 No* ponteiroFinal = NULL;
 
 //Funcao que adiciona dados
@@ -26,6 +26,7 @@ void adicionarDado(int dado) {
         ponteiroFinal = ponteiroNo;
     }
 }
+
 
 //Funcao que imprime a lista
 void imprimirLista() {
@@ -61,9 +62,57 @@ void printFormat02(No* ponteiroNo){
     printf("                 NULL\n");
 }
 
+void buscarDado(int dado){
+    No* ponteiroNo;
+    if (ponteiroFinal == NULL) {
+        printf("Lista vazia.\n");
+        return;
+    }
+    ponteiroNo = ponteiroFinal;
+    while (ponteiroNo != NULL) {
+        if (ponteiroNo->dado == dado)
+            printf("[%d(%p)]\n", ponteiroNo->dado, ponteiroNo);
+        ponteiroNo = ponteiroNo->prox;
+    }
+}
+
+void removerDado(int dado) {
+    No *ponteiroNo, *ponteiroAnterior;
+    if (ponteiroFinal == NULL) {// lista vazia
+        return; 
+    } else { // lista NAO vazia
+        ponteiroNo = ponteiroFinal;
+        ponteiroAnterior = ponteiroFinal;
+        while (ponteiroNo != NULL) {
+            if (ponteiroNo->dado == dado){
+                if (ponteiroNo == ponteiroFinal){// removendo o primeiro
+                    ponteiroFinal = ponteiroFinal->prox;
+                    free(ponteiroNo);// libera memoria
+                    return;
+                } 
+                else{ // removendo do meio
+                    ponteiroAnterior->prox = ponteiroNo->prox;//refaz links
+                    free(ponteiroNo);// libera memoria
+                    return;
+                }
+            } 
+            else{ // continua procurando na lista
+                ponteiroAnterior = ponteiroNo;
+                ponteiroNo = ponteiroNo->prox;
+            }
+        }
+        return;
+    }
+}
+
 void main() {
-    // Insere na lista os numeros de 1 a 4
-    for (int i = 1; i <= 4; i++)
+    // Insere na lista os numeros de 1 a 3
+    for (int i = 1; i <= 3; i++)
         adicionarDado(i);
     imprimirLista();
+    
+    removerDado(3);
+    imprimirLista();
+
+    buscarDado(3);
 }

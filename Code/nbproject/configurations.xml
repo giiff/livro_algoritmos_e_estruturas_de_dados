@@ -7,6 +7,11 @@
         <in>prog002.c</in>
         <in>prog003.c</in>
       </df>
+      <df name="Listas">
+        <in>ListaEncadeada.c</in>
+        <in>ListaEncadeada01.c</in>
+        <in>Struct.c</in>
+      </df>
       <df name="Ordenacao">
         <in>BubbleSort.c</in>
         <in>InsertionSort.c</in>
@@ -58,6 +63,12 @@
       <item path="Basics/prog002.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Basics/prog003.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Listas/ListaEncadeada.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Listas/ListaEncadeada01.c" ex="false" tool="0" flavor2="0">
+      </item>
+      <item path="Listas/Struct.c" ex="false" tool="0" flavor2="0">
       </item>
       <item path="Ordenacao/BubbleSort.c" ex="false" tool="0" flavor2="0">
       </item>
