@@ -107,12 +107,11 @@ void removerDado(int dado) {
 
 void main() {
     // Insere na lista os numeros de 1 a 3
-    for (int i = 1; i <= 3; i++)
+    for (int i = 1; i <= 4; i++)
         adicionarDado(i);
     imprimirLista();
-    
-    removerDado(3);
+    removerDado(2);
+    printf("--------------\n");
     imprimirLista();
-
     buscarDado(3);
 }
