@@ -8,54 +8,54 @@ typedef struct No{
     struct No *prox;
 } No;
 
-void printFormat01(No* ponteiroNo);
-void printFormat02(No* ponteiroNo);
+void printFormat01(No* no);
+void printFormat02(No* no);
 //Variavel global com o no mais recente da lista
-No* ponteiroFinal = NULL;
+No* cabeca = NULL;
 
 //Funcao que adiciona dados
-void adicionarDado(int dado) {
-    No* ponteiroNo;
-    ponteiroNo = (No *) malloc(sizeof (ponteiroNo));
-    ponteiroNo->dado = dado;
-    ponteiroNo->prox = NULL;
-    if (ponteiroFinal == NULL)
-        ponteiroFinal = ponteiroNo;
+void inserir(int dado) {
+    No* no;
+    no = (No *) malloc(sizeof (no));
+    no->dado = dado;
+    no->prox = NULL;
+    if (cabeca == NULL)
+        cabeca = no;
     else {
-        ponteiroNo->prox = ponteiroFinal;
-        ponteiroFinal = ponteiroNo;
+        no->prox = cabeca;
+        cabeca = no;
     }
 }
 
 //Funcao que imprime a lista
 void imprimirLista() {
-    No* ponteiroNo;
-    if (ponteiroFinal == NULL) {
+    No* no;
+    if (cabeca == NULL) {
         printf("Lista vazia.\n");
         return;
     }
-    ponteiroNo = ponteiroFinal;
-    while (ponteiroNo != NULL) {
-        if (ponteiroNo->prox !=NULL){
-            printFormat01(ponteiroNo);
+    no = cabeca;
+    while (no != NULL) {
+        if (no->prox !=NULL){
+            printFormat01(no);
         }else{
-            printFormat02(ponteiroNo);
+            printFormat02(no);
         }
-        ponteiroNo = ponteiroNo->prox;
+        no = no->prox;
     }
 
 }
 
-void printFormat01(No* ponteiroNo){
-    printf("[%d(%p)|%p]\n", ponteiroNo->dado, ponteiroNo, ponteiroNo->prox);
+void printFormat01(No* no){
+    printf("[%d(%p)|%p]\n", no->dado, no, no->prox);
     printf("                  |\n");
     printf("                  V\n");
     printf("      -------------\n");
     printf("      |\n");
     printf("      V\n");
 }
-void printFormat02(No* ponteiroNo){
-    printf("[%d(%p)|%p]\n", ponteiroNo->dado, ponteiroNo, ponteiroNo->prox);
+void printFormat02(No* no){
+    printf("[%d(%p)|%p]\n", no->dado, no, no->prox);
     printf("                  |\n");
     printf("                  V\n");
     printf("                 NULL\n");
@@ -64,6 +64,6 @@ void printFormat02(No* ponteiroNo){
 void main() {
     // Insere na lista os numeros de 1 a 4
     for (int i = 1; i <= 4; i++)
-        adicionarDado(i);
+        inserir(i);
     imprimirLista();
 }

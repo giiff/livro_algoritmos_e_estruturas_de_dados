@@ -65,4 +65,4 @@ void main() {
     imprimirLista();
     voltarDiretorio("A2");
     imprimirLista();
-}
+}ww

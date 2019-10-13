@@ -5,100 +5,100 @@
 // Define o tipo No contendo
 typedef struct No{
     int dado;
-    struct No *prox;
+    struct No *link;
 } No;
 
-void printFormat01(No* ponteiroNo);
-void printFormat02(No* ponteiroNo);
+void printFormat01(No* no);
+void printFormat02(No* no);
 //Define o ultimo No da lista
-No* ponteiroFinal = NULL;
+No* cabeca = NULL;
 
 //Funcao que adiciona dados
-void adicionarDado(int dado) {
-    No* ponteiroNo;
-    ponteiroNo = (No *) malloc(sizeof (ponteiroNo));
-    ponteiroNo->dado = dado;
-    ponteiroNo->prox = NULL;
-    if (ponteiroFinal == NULL)
-        ponteiroFinal = ponteiroNo;
+void inserir(int dado) {
+    No* no;
+    no = (No *) malloc(sizeof (no));
+    no->dado = dado;
+    no->link = NULL;
+    if (cabeca == NULL)
+        cabeca = no;
     else {
-        ponteiroNo->prox = ponteiroFinal;
-        ponteiroFinal = ponteiroNo;
+        no->link = cabeca;
+        cabeca = no;
     }
 }
 
 
 //Funcao que imprime a lista
 void imprimirLista() {
-    No* ponteiroNo;
-    if (ponteiroFinal == NULL) {
+    No* no;
+    if (cabeca == NULL) {
         printf("Lista vazia.\n");
         return;
     }
-    ponteiroNo = ponteiroFinal;
-    while (ponteiroNo != NULL) {
-        if (ponteiroNo->prox !=NULL){
-            printFormat01(ponteiroNo);
+    no = cabeca;
+    while (no != NULL) {
+        if (no->link !=NULL){
+            printFormat01(no);
         }else{
-            printFormat02(ponteiroNo);
+            printFormat02(no);
         }
-        ponteiroNo = ponteiroNo->prox;
+        no = no->link;
     }
 
 }
 
-void printFormat01(No* ponteiroNo){
-    printf("[%d(%p)|%p]\n", ponteiroNo->dado, ponteiroNo, ponteiroNo->prox);
+void printFormat01(No* no){
+    printf("[%d(%p)|%p]\n", no->dado, no, no->link);
     printf("                  |\n");
     printf("                  V\n");
     printf("      -------------\n");
     printf("      |\n");
     printf("      V\n");
 }
-void printFormat02(No* ponteiroNo){
-    printf("[%d(%p)|%p]\n", ponteiroNo->dado, ponteiroNo, ponteiroNo->prox);
+void printFormat02(No* no){
+    printf("[%d(%p)|%p]\n", no->dado, no, no->link);
     printf("                  |\n");
     printf("                  V\n");
     printf("                 NULL\n");
 }
 
 void buscarDado(int dado){
-    No* ponteiroNo;
-    if (ponteiroFinal == NULL) {
+    No* no;
+    if (cabeca == NULL) {
         printf("Lista vazia.\n");
         return;
     }
-    ponteiroNo = ponteiroFinal;
-    while (ponteiroNo != NULL) {
-        if (ponteiroNo->dado == dado)
-            printf("[%d(%p)]\n", ponteiroNo->dado, ponteiroNo);
-        ponteiroNo = ponteiroNo->prox;
+    no = cabeca;
+    while (no != NULL) {
+        if (no->dado == dado)
+            printf("[%d(%p)]\n", no->dado, no);
+        no = no->link;
     }
 }
 
 void removerDado(int dado) {
-    No *ponteiroNo, *ponteiroAnterior;
-    if (ponteiroFinal == NULL) {// lista vazia
+    No *no, *anterior;
+    if (cabeca == NULL) {// lista vazia
         return; 
     } else { // lista NAO vazia
-        ponteiroNo = ponteiroFinal;
-        ponteiroAnterior = ponteiroFinal;
-        while (ponteiroNo != NULL) {
-            if (ponteiroNo->dado == dado){
-                if (ponteiroNo == ponteiroFinal){// removendo o primeiro
-                    ponteiroFinal = ponteiroFinal->prox;
-                    free(ponteiroNo);// libera memoria
+        no = cabeca;
+        anterior = cabeca;
+        while (no != NULL) {
+            if (no->dado == dado){
+                if (no == cabeca){// removendo o primeiro
+                    cabeca = cabeca->link;
+                    free(no);// libera memoria
                     return;
                 } 
                 else{ // removendo do meio
-                    ponteiroAnterior->prox = ponteiroNo->prox;//refaz links
-                    free(ponteiroNo);// libera memoria
+                    anterior->link = no->link;//refaz links
+                    free(no);// libera memoria
                     return;
                 }
             } 
             else{ // continua procurando na lista
-                ponteiroAnterior = ponteiroNo;
-                ponteiroNo = ponteiroNo->prox;
+                anterior = no;
+                no = no->link;
             }
         }
         return;
@@ -108,7 +108,7 @@ void removerDado(int dado) {
 void main() {
     // Insere na lista os numeros de 1 a 3
     for (int i = 1; i <= 4; i++)
-        adicionarDado(i);
+        inserir(i);
     imprimirLista();
     removerDado(2);
     printf("--------------\n");

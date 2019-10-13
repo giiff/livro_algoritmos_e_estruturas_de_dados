@@ -10,6 +10,7 @@
       <df name="Listas">
         <in>ListaEncadeada.c</in>
         <in>ListaEncadeada01.c</in>
+        <in>ListaEncadeada02.c</in>
         <in>Struct.c</in>
         <in>Struct2.c</in>
       </df>
