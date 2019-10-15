@@ -14,10 +14,9 @@ No* cabeca = NULL;
 
 //Funcao que adiciona dados
 void inserir(int dado) {
-    No* no;
-    no = (No *) malloc(sizeof (no));
+    No* no = (No *) malloc(sizeof (no));
     no->dado = dado;
-    if (cabeca == NULL){
+    if (cabeca == NULL){//lista vazia
         cabeca = no;
         no->ante = NULL;
         no->prox = NULL;        
@@ -25,6 +24,7 @@ void inserir(int dado) {
     else {
         no->ante = cabeca;
         cabeca->prox = no;
+        no->prox = NULL;
         cabeca = no;
     }
 }
