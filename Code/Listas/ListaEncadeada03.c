@@ -4,7 +4,7 @@
 
 // Define o tipo No contendo
 typedef struct No{
-    struct No *anteriorimo;
+    struct No *anterior;
     struct No *anterior;
     int dado;
 } No;
@@ -18,11 +18,11 @@ void inserir(int dado) {
     no->dado = dado;
     if (cabeca == NULL){//lista vazia
         cabeca = no;
-        no->anteriorimo = NULL;
+        no->anterior = NULL;
         no->anterior = NULL;        
     }
     else {
-        no->anteriorimo = cabeca;
+        no->anterior = cabeca;
         cabeca->anterior = no;
         no->anterior = NULL;
         cabeca = no;
@@ -37,8 +37,8 @@ void imprimirLista() {
     }
     No* no = cabeca;
     while (no != NULL) {
-        printf("|%p|%d(%p)|%p|\t", no->anterior, no->dado, no, no->anteriorimo);
-        no = no->anteriorimo;
+        printf("|%p|%d(%p)|%p|\t", no->anterior, no->dado, no, no->anterior);
+        no = no->anterior;
     }
     printf("\n");return;
 }
