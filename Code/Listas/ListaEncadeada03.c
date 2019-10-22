@@ -37,7 +37,7 @@ void imprimirLista() {
     }
     No* no = cabeca;
     while (no != NULL) {
-        printf("|%p|%d(%p)|%p|\t", no->anterior, no->dado, no, no->proximo);
+        printf("|%p|%d(%p)|%p|\n", no->anterior, no->dado, no, no->proximo);
         no = no->proximo;
     }
     printf("\n");return;
@@ -45,7 +45,7 @@ void imprimirLista() {
 
 void main() {
     // Insere na lista os numeros de 1 a 3
-    for (int i = 1; i <= 3; i++)
+    for (int i = 1; i <= 5; i++)
         inserir(i);
     imprimirLista();
 }
