@@ -7,33 +7,33 @@ typedef struct No{
   struct No* esquerda;
 } No;
 
-No* criarArvore(){
-  return NULL;
-}
+No* criarArvore(){ return NULL; }
 
-int NoVazia(No* raiz){
-  // 1 se a arvore for vazia
-  // 0 caso contrario 
+int NoVazia(No* raiz){ // 1 se a arvore vazia, 0 caso contrario 
   return raiz == NULL;
 }
 
-void exibirNo(No* raiz){
+void mostrarArvore(No* raiz){
   if(!NoVazia(raiz)){ //No nao vazio
     printf("%p<-%d(%p)->%p\n\n", raiz->esquerda, raiz->dado, raiz, raiz->direita);
-    exibirNo(raiz->esquerda);//esquerda (subNo)
-    exibirNo(raiz->direita); //direita (subNo)
+    mostrarArvore(raiz->esquerda);//esquerda (subNo)
+    mostrarArvore(raiz->direita); //direita (subNo)
   }
 }
 
-void buscar(No** raiz, int dado){
+void buscarDado(No** raiz, int dado){
   if(!NoVazia(*raiz)){ //No nao vazio
     if(dado == (*raiz)->dado){
       printf("%d encontrado.\n", dado);
       return;
     }
     else{
-        buscar(&(*raiz)->esquerda, dado);
-        buscar(&(*raiz)->direita, dado);
+      if(dado < (*raiz)->dado){ //dado menor? vai pra esquerda
+        buscarDado(&(*raiz)->esquerda, dado);
+      }
+      if(dado > (*raiz)->dado){ //dado maior? vai pra direita
+        buscarDado(&(*raiz)->direita, dado);
+      }
     }
   }
 }
@@ -58,11 +58,11 @@ void inserirDado(No** raiz, int dado){
 
 void main(){
   No* raiz = criarArvore();
-  for (int i = 0; i < 10; i++) {
-    inserirDado(&raiz, rand() % 20); 
+  for (int i = 0; i < 20; i++) {
+    inserirDado(&raiz, rand() % 21); 
   }
-  exibirNo(raiz); 
-  buscar(&raiz, 10);
+  mostrarArvore(raiz); 
+  buscarDado(&raiz, 7);
   free(raiz);
   //system("echo 'digraph G {a->b; a->c;b->d;}' | dot -Tpng >teste.png");
 }
