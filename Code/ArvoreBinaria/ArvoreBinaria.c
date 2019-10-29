@@ -13,11 +13,39 @@ int NoVazia(No* raiz){ // 1 se a arvore vazia, 0 caso contrario
   return raiz == NULL;
 }
 
+int getValor(No** no){
+  if ((*no) != NULL){
+    return (*no)->dado;
+  }
+}
+
 void mostrarArvore(No* raiz){
   if(!NoVazia(raiz)){ //No nao vazio
     printf("%p<-%d(%p)->%p\n\n", raiz->esquerda, raiz->dado, raiz, raiz->direita);
+    printf("%d", getValor(&raiz->esquerda));
     mostrarArvore(raiz->esquerda);//esquerda (subNo)
     mostrarArvore(raiz->direita); //direita (subNo)
+  }
+}
+
+// Metodo para desenhar a arvore em um arquivo arvore.png
+// Precisa de ter o graphviz instalado
+// Ubuntu: sudo apt install python-pydot python-pydot-ng graphviz
+// Fedora: sudo dnf install graphviz
+void gerarArquivoDot(FILE** arquivoDot, No* raiz){
+  if(raiz != NULL){
+    char s1[20]; 
+    char s2[20];
+    if (getValor(&raiz->esquerda)!=0){
+      sprintf(s1, "%d->%d;\n", raiz->dado, getValor(&raiz->esquerda));
+      fprintf((*arquivoDot), "%s", s1);
+    }
+    if (getValor(&raiz->direita)!=0){
+      sprintf(s2, "%d->%d;\n", raiz->dado, getValor(&raiz->direita));
+      fprintf((*arquivoDot), "%s", s2);
+    }    
+    gerarArquivoDot(arquivoDot,raiz->esquerda);//esquerda (subNo)
+    gerarArquivoDot(arquivoDot,raiz->direita); //direita (subNo)
   }
 }
 
@@ -56,13 +84,22 @@ void inserirDado(No** raiz, int dado){
     }
 }
 
+
+
+
 void main(){
   No* raiz = criarArvore();
-  for (int i = 0; i < 20; i++) {
-    inserirDado(&raiz, rand() % 21); 
+  for (int i = 0; i < 100; i++) {
+    inserirDado(&raiz, rand() % 200); 
   }
-  mostrarArvore(raiz); 
-  buscarDado(&raiz, 7);
+  //mostrarArvore(raiz); 
+  //buscarDado(&raiz, 7);
+  FILE *arquivoDot;
+  arquivoDot = fopen("arvore.dot", "w");
+  fprintf(arquivoDot, "%s", "digraph G {\n");
+  gerarArquivoDot(&arquivoDot, raiz);
+  fprintf(arquivoDot, "%s", "}\n");
+  fclose(arquivoDot);
   free(raiz);
-  //system("echo 'digraph G {a->b; a->c;b->d;}' | dot -Tpng >teste.png");
+  system("dot -Tpng arvore.dot -o arvore.png");
 }
