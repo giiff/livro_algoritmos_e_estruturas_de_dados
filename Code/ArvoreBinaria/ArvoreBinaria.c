@@ -25,6 +25,19 @@ void exibirNo(No* raiz){
   }
 }
 
+void buscar(No** raiz, int dado){
+  if(!NoVazia(*raiz)){ //No nao vazio
+    if(dado == (*raiz)->dado){
+      printf("%d encontrado.\n", dado);
+      return;
+    }
+    else{
+        buscar(&(*raiz)->esquerda, dado);
+        buscar(&(*raiz)->direita, dado);
+    }
+  }
+}
+
 void inserirDado(No** raiz, int dado){
     if(*raiz == NULL){
       *raiz = (No*)malloc(sizeof(No));
@@ -45,12 +58,11 @@ void inserirDado(No** raiz, int dado){
 
 void main(){
   No* raiz = criarArvore();
-  inserirDado(&raiz, 50); 
-  inserirDado(&raiz, 25); 
-  inserirDado(&raiz, 75); 
-  inserirDado(&raiz, 5); 
+  for (int i = 0; i < 10; i++) {
+    inserirDado(&raiz, rand() % 20); 
+  }
   exibirNo(raiz); 
+  buscar(&raiz, 10);
   free(raiz);
-  system("echo 'digraph G {a->b; a->c;b->d;}' | dot -Tpng >teste.png");
-
+  //system("echo 'digraph G {a->b; a->c;b->d;}' | dot -Tpng >teste.png");
 }
