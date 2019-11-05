@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 
 typedef struct No{
   int dado;
@@ -84,13 +85,24 @@ void inserirDado(No** raiz, int dado){
     }
 }
 
+int getAltura(No* raiz) {
+    if (raiz == NULL) return 0;
+    else {
+        int hEsquerda = getAltura(raiz->esquerda);
+        int hDireita = getAltura(raiz->direita);
+        return (hEsquerda < hDireita) ? hDireita + 1 : hEsquerda + 1;
+    }
+}
+
 void main(){
   No* raiz = criarArvore();
+  srand(time(0)); 
   for (int i = 0; i < 5; i++) {
     inserirDado(&raiz, rand() % 100); 
   }
   //mostrarArvore(raiz); 
   //buscarDado(&raiz, 7);
+  printf("Altura: %d", getAltura(raiz));
   FILE *arquivoDot;
   arquivoDot = fopen("arvore.dot", "w");
   fprintf(arquivoDot, "%s", "digraph G {\n");
