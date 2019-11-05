@@ -84,13 +84,10 @@ void inserirDado(No** raiz, int dado){
     }
 }
 
-
-
-
 void main(){
   No* raiz = criarArvore();
-  for (int i = 0; i < 100; i++) {
-    inserirDado(&raiz, rand() % 200); 
+  for (int i = 0; i < 5; i++) {
+    inserirDado(&raiz, rand() % 100); 
   }
   //mostrarArvore(raiz); 
   //buscarDado(&raiz, 7);
