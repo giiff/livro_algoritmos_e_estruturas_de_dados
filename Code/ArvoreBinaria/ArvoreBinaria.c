@@ -86,7 +86,7 @@ void inserirDado(No** raiz, int dado){
 }
 
 int getAltura(No* raiz) {
-    if (raiz == NULL) return 0;
+    if (raiz == NULL) return -1;
     else {
         int hEsquerda = getAltura(raiz->esquerda);
         int hDireita = getAltura(raiz->direita);
@@ -97,13 +97,13 @@ int getAltura(No* raiz) {
 void main(){
   No* raiz = criarArvore();
   srand(time(0)); 
-  for (int i = 0; i < 5; i++) {
+  for (int i = 0; i < 38; i++) {
     inserirDado(&raiz, rand() % 100); 
   }
   //mostrarArvore(raiz); 
   //buscarDado(&raiz, 7);
-  printf("Altura: %d", getAltura(raiz));
-  FILE *arquivoDot;
+  printf("Altura: %d\n", getAltura(raiz));
+  FILE* arquivoDot;
   arquivoDot = fopen("arvore.dot", "w");
   fprintf(arquivoDot, "%s", "digraph G {\n");
   gerarArquivoDot(&arquivoDot, raiz);
