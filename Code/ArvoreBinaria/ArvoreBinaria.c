@@ -38,11 +38,11 @@ void gerarArquivoDot(FILE** arquivoDot, No* raiz){
     char s1[20]; 
     char s2[20];
     if (getValor(&raiz->esquerda)!=0){
-      sprintf(s1, "%d->%d;\n", raiz->dado, getValor(&raiz->esquerda));
+      sprintf(s1, "%d:sw->%d [ label=\"esq\"];\n", raiz->dado, getValor(&raiz->esquerda));
       fprintf((*arquivoDot), "%s", s1);
     }
     if (getValor(&raiz->direita)!=0){
-      sprintf(s2, "%d->%d;\n", raiz->dado, getValor(&raiz->direita));
+      sprintf(s2, "%d:se->%d [ label=\"dir\"];\n", raiz->dado, getValor(&raiz->direita));
       fprintf((*arquivoDot), "%s", s2);
     }    
     gerarArquivoDot(arquivoDot,raiz->esquerda);//esquerda (subNo)
@@ -97,15 +97,15 @@ int getAltura(No* raiz) {
 void main(){
   No* raiz = criarArvore();
   srand(time(0)); 
-  for (int i = 0; i < 38; i++) {
+  for (int i = 0; i < 50; i++) {
     inserirDado(&raiz, rand() % 100); 
   }
   //mostrarArvore(raiz); 
-  //buscarDado(&raiz, 7);
+  buscarDado(&raiz, 7);
   printf("Altura: %d\n", getAltura(raiz));
   FILE* arquivoDot;
   arquivoDot = fopen("arvore.dot", "w");
-  fprintf(arquivoDot, "%s", "digraph G {\n");
+  fprintf(arquivoDot, "%s", "digraph G {\nsplines=line;\n");
   gerarArquivoDot(&arquivoDot, raiz);
   fprintf(arquivoDot, "%s", "}\n");
   fclose(arquivoDot);
