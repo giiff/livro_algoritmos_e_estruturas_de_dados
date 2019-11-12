@@ -10,7 +10,7 @@ typedef struct No{
 
 No* criarArvore(){ return NULL; }
 
-int NoVazia(No* raiz){ // 1 se a arvore vazia, 0 caso contrario 
+int ArvoreVazia(No* raiz){ // 1 se a arvore vazia, 0 caso contrario 
   return raiz == NULL;
 }
 
@@ -21,7 +21,7 @@ int getValor(No** no){
 }
 
 void mostrarArvore(No* raiz){
-  if(!NoVazia(raiz)){ //No nao vazio
+  if(!ArvoreVazia(raiz)){ //No nao vazio
     printf("%p<-%d(%p)->%p\n\n", raiz->esquerda, raiz->dado, raiz, raiz->direita);
     printf("%d", getValor(&raiz->esquerda));
     mostrarArvore(raiz->esquerda);//esquerda (subNo)
@@ -51,7 +51,7 @@ void gerarArquivoDot(FILE** arquivoDot, No* raiz){
 }
 
 void buscarDado(No** raiz, int dado){
-  if(!NoVazia(*raiz)){ //No nao vazio
+  if(!ArvoreVazia(*raiz)){ //No nao vazio
     if(dado == (*raiz)->dado){
       printf("%d encontrado.\n", dado);
       return;
@@ -100,7 +100,6 @@ void main(){
   for (int i = 0; i < 50; i++) {
     inserirDado(&raiz, rand() % 100); 
   }
-  //mostrarArvore(raiz); 
   buscarDado(&raiz, 7);
   printf("Altura: %d\n", getAltura(raiz));
   FILE* arquivoDot;
