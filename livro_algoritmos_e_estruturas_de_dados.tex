@@ -41,7 +41,15 @@
 \makeindex % Tells LaTeX to create the files required for indexing
 \usepackage{verbatim}
 % Others
-\usepackage[colorinlistoftodos,prependcaption,textsize=tiny,linecolor=red,backgroundcolor=red!25,bordercolor=red]{todonotes}
+\definecolor{lightGray}{gray}{0.95}
+\usepackage[
+colorinlistoftodos, 
+prependcaption, 
+color=green,
+textsize=small, 
+linecolor=red, 
+backgroundcolor=lightGray, 
+bordercolor=black]{todonotes}
 \usepackage{epigraph}
 \renewcommand{\textflush}{flushepinormal}
 \setlength{\epigraphwidth}{0.8\textwidth}
@@ -55,6 +63,7 @@
 %CODE
 \usepackage{courier}
 \usepackage{listings}
+\usepackage{courier}
 \lstset{
 	numbers=left,                   % where to put the line-numbers
 	stepnumber=1,                   % the step between two line-numbers. 	
@@ -78,6 +87,7 @@
 \renewcommand*{\nameyeardelim}{\addcomma\space}
 
 \newcommand{\VER}[1]{\begingroup\color{red}#1\endgroup}
+\newcommand{\terminal}[1]{\todo[inline]{\ttfamily{#1}}}
 
 %----------------------------------------------------------------------------------------
 
@@ -179,7 +189,6 @@ Este livro destina-se aos acadêmicos e demais interessados em iniciar os estudo
 \end{flushright}
 \vspace{12em}
 
-
 Um algoritmo é um procedimento computacional bem definido que processa um valor ou um conjunto de dados (entrada) e produz algum valor ou conjunto de dados (saída)~\cite{cormen2009}.
 Os algoritmos existem há muito tempo, mas estão presentes na sociedade moderna de uma forma nunca experimentada na história da humanidade.
 Quase tudo que se produz, sejam produtos ou serviços, tem alguma influência de algoritmos.
@@ -224,8 +233,54 @@ Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à
 \newpage
 \section{Primeiros Passos em Programação}\label{disc:primeirospassos}
 
-\lstinputlisting[language=C, caption={Meu primeiro programa em C.}]{Code/Basics/prog001.c}\label{prog001}
+Dennis Ritchie criou a linguagem ``C'' em 1972 quando trabalhava nos laboratórios da Bell Telephone.
+A linguagem C foi criada para desenvolver uma nova versão do sistema operacional Unix que utilizava Assembly até então.
+Inicialmente, a cada nova implementação de Unix para um tipo de máquina, um novo compilador C devia ser desenvolvido para essa máquina.
+Nos anos 80, C tornou-se popular fora do ambiente Unix, criando a demanda por compiladores comerciais.
+Desde então, C é considerada uma linguagem de propósito geral, com instruções de alto nível e capaz de gerar programas rápidos em tempo de execução.
+Além disso, C influenciou de forma direta a sintaxe e estruturas de linguagens modernas como C++, Java, C\#, Objective C, e muitas outras.
 
+A linguagem C começou a ser padronizada pela \textit{American National Standards Institute} (ANSI) para garantir a compatibilidade e a portabilidade da linguagem.
+Este padrão foi atualizado ao longo do tempo e posteriormente reconhecido pela ISO, dando origem ao padrão ANSI/ISO.
+
+Um código escrito em linguagem C funciona com comandos, que são normalmente palavras em inglês (sintaxe) e são organizados em determinadas estruturas.
+Uma vez escritos em um arquivo, os comandos são então lidos pelos compiladores e convertidos para a linguagem de máquina que corresponde a ação pretendida.
+O Programa~\ref{prog001} mostra um exemplo de programa em C.
+
+\lstinputlisting[label={prog001},language=C, caption={Meu primeiro programa em C.}]{Code/Basics/prog001.c}
+
+Após escrito, o programa precisa ser compilado. 
+Se o programa tiver sido escrito corretamente (sintaxe e estrutura), o compilador gera um executável.
+É importante peceber, que compiladores não verificam erros lógicos, ou seja de concepção do código.
+É justamente aí que reside o valor do trabalho humano como programador: combinar sintaxe e estruturas de forma que solucionem um dado problema do mundo real.
+Caso o compilador encontre algum erro no código dois tipos de mensagens podem ser emitidas:
+\begin{enumerate}
+	\item Erro (\textit{error}): Quando o código tem um problema que impede o compilador de gerar um executável
+	\item Aviso (\textit{warnning}): Quando o problema no código não impede de gerar um executável, mas requer algum tipo de atenção.
+\end{enumerate}
+
+Para compilar o Programa~\ref{prog001} em Linux com o compilador C (Veja aqui como instalar) basta o seguinte comando no terminal: 
+\terminal{gcc prog001.c -o prog001.sh}
+
+Após esta ação, será gerado o arquivo executável \texttt{prog001.sh}, o qual poderá ser executado com o comando: 
+\terminal{./prog001.sh}
+
+No Programa~\ref{prog001} é impressa uma mensagem na tela. 
+O catacter especial representado por ``$\backslash$n'' identifica uma quebra de linha.
+Essa mensagem é representada como uma cadeira de caracteres (\textit{string}) limitada pelas aspas.
+Se for necessário representar as aspas em uma \textit{string}, será necessário escapá-las usando a barra ``$\backslash$''.
+O Programa~\ref{prog002} mostra como fazer isso.
+
+\lstinputlisting[label={prog002},language=C, caption={Escapando aspas.}]{Code/Basics/prog002.c}
+
+\section{Trabalhando com Variáveis}
+
+Uma variável é um objeto capaz de guardar e representar um valor ou expressão em memória. 
+Às variáveis são associadas a nomes ou identificadores e sua existência é limitada por um espaço e um tempo na memória do computador, o qual frequentemente é igual ao tempo de execução do programa em que elas foram criadas.
+O Programa~\ref{prog003} mostra um exemplo de variável representando o valor inteiro 10 e em seguida a impressão de uma mensagem com seu valor.
+Na impressão, é importante notar que a mensagem é formatada para que em um dterminado ponto ($\backslash$d) apareçam os dígitos correspondentes ao valor de \texttt{a} que é a variável abrigando o valor 10.
+
+\lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog003.c}
 
 
 %----------------------------------------------------------------------------------------

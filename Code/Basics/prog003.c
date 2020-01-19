@@ -3,5 +3,5 @@
 
 void main() {
     int a = 10;
-    printf("O valor de a é\t%d\n",a);
+    printf("O valor de a = \t%d\n", a);
 }

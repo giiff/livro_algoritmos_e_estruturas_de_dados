@@ -2,5 +2,5 @@
 #include <stdlib.h>
 
 void main() {
-    printf("Hoje é \"Quinta-Feira\"\n");
+    printf("Que lindo dia para aprender \"C\"\n");
 }
