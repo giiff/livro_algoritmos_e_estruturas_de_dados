@@ -22,6 +22,10 @@
 \usepackage{eso-pic} % Required for specifying an image background in the title page
 %--------------------------------------
 
+\renewcommand\tablename{Tabela}
+
+
+
 %----------------------------------------------------------------------------------------
 %	MAIN TABLE OF CONTENTS
 %----------------------------------------------------------------------------------------
@@ -291,7 +295,21 @@ innerbottommargin=5pt]{cBox}
 
 % For an unclear reason, the package should be loaded now and not later
 \usepackage{hyperref}
-\hypersetup{hidelinks,backref=true,pagebackref=true,hyperindex=true,colorlinks=true,breaklinks=true,urlcolor= DarkBlue,linkcolor=DarkBlue,bookmarks=true,bookmarksopen=false,pdftitle={Title},pdfauthor={Author}}
+\hypersetup{
+	hidelinks,
+	backref=true,
+	pagebackref=true,
+	hyperindex=true,
+	colorlinks=true,
+	breaklinks=true,
+	urlcolor= DarkBlue,
+	citecolor=DarkBlue,
+	linkcolor=DarkBlue,
+	bookmarks=true,
+	bookmarksopen=false,
+	pdftitle={Title},
+	pdfauthor={Author}
+}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER HEADINGS

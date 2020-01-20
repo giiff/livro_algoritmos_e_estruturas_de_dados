@@ -45,7 +45,7 @@
 \usepackage[
 colorinlistoftodos, 
 prependcaption, 
-color=green,
+%color=green,
 textsize=small, 
 linecolor=red, 
 backgroundcolor=lightGray, 
@@ -77,14 +77,16 @@ bordercolor=black]{todonotes}
 	breaklines=true,                % break lines when it's needed
 	basicstyle=\ttfamily\scriptsize % font family and size (need package courier)
 }
-\renewcommand{\lstlistingname}{Programa}
+
 
 % Bibliography
 %\usepackage[backend=biber,style=authoryear,autocite=inline, citestyle=authoryear]{biblatex}
 \usepackage[style=abnt]{biblatex}
 \addbibresource{bibliography.bib} % BibTeX bibliography file
 \defbibheading{bibempty}{}
+
 \renewcommand*{\nameyeardelim}{\addcomma\space}
+\renewcommand{\lstlistingname}{Programa}
 
 \newcommand{\VER}[1]{\begingroup\color{red}#1\endgroup}
 \newcommand{\terminal}[1]{\todo[inline]{\ttfamily{#1}}}
@@ -126,7 +128,7 @@ bordercolor=black]{todonotes}
 	\selectfont
 	Tecnólogo em Análise e Desenvolvimento de Sistemas\\
 	\vspace*{1.5cm}
-	Waldeyr Mendes Cordeiro da Silva\\
+	Prof. Dr. Waldeyr Mendes Cordeiro da Silva\\
 	\vspace*{10cm}
 	\par
 	{\Huge 2019}
@@ -143,10 +145,11 @@ bordercolor=black]{todonotes}
 
 Versão 0.1
 
-\section*{Waldeyr Mendes Cordeiro da Silva}\label{WaldeyrMendes}
+\section*{Autor: Waldeyr Mendes Cordeiro da Silva}\label{WaldeyrMendes}
 \begin{itemize}
 	\item Formação:
 	\begin{itemize}
+		\item Técnico em Processamento de Dados
 		\item Bacharelado em Sistemas de Informação
 		\item Licenciatura em Ciências Biológicas
 		\item Complementação Pedagógica em Matemática
@@ -155,8 +158,10 @@ Versão 0.1
 		\item Mestrado em Informática
 		\item Doutorado em Ciências Biológicas (Bioinformática)
 	\end{itemize}
-	\item \includegraphics[scale=.03]{Pictures/lattes}~\href{http://lattes.cnpq.br/2391349697609978}{Lattes: http://lattes.cnpq.br/2391349697609978}
-	\item \includegraphics[scale=.15]{Pictures/orcid}~\href{https://orcid.org/0000-0002-8660-6331}{ORCID: https://orcid.org/0000-0002-8660-6331}
+	\item~~\includegraphics[scale=.03]{Pictures/lattes}~~~\href{http://lattes.cnpq.br/2391349697609978}{Lattes: http://lattes.cnpq.br/2391349697609978}
+	\item~~\includegraphics[scale=.15]{Pictures/orcid}~~~\href{https://orcid.org/0000-0002-8660-6331}{ORCID: https://orcid.org/0000-0002-8660-6331}
+	\item~\includegraphics[scale=.05]{Pictures/scopus}~~~\href{https://www.scopus.com/authid/detail.uri?authorId=57190660358}{Scopus: https://www.scopus.com/authid/detail.uri?authorId=57190660358}
+	\item \includegraphics[scale=.03]{Pictures/google}~\href{https://scholar.google.com.br/citations?user=5gh-liIAAAAJ}{Google Acadêmico: https://scholar.google.com.br/citations?user=5gh-liIAAAAJ}
 \end{itemize}
 
 \chapterimage{banner3} % Chapter heading image
@@ -174,7 +179,7 @@ Versão 0.1
 \end{flushright}
 \vspace{12em}
 
-\todo[inline]{Em construção...}
+%\todo[inline]{Em construção...}
 
 Este livro destina-se aos acadêmicos e demais interessados em iniciar os estudos em algoritmos e estruturas de dados.
 
@@ -281,6 +286,56 @@ O Programa~\ref{prog003} mostra um exemplo de variável representando o valor in
 Na impressão, é importante notar que a mensagem é formatada para que em um dterminado ponto ($\backslash$d) apareçam os dígitos correspondentes ao valor de \texttt{a} que é a variável abrigando o valor 10.
 
 \lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog003.c}
+
+Nas linguagen de programação é comum existirem tipos de dados pré-definidos, chamados tipo primitivos.
+Em C, os tipo primitivos são:
+
+\begin{itemize}
+	\item char: caracter
+	\item int; inteiro
+	\item float: real de precisão simples
+	\item double: real de alta precisão
+	\item void: vazio ou sem valor
+\end{itemize}
+
+Há ainda os modificadores que alteram o tamanho, e consequentemente sua capacidade, dos tipos em memória. São eles:
+
+\begin{itemize}
+	\item signed
+	\item unsigned
+	\item long
+	\item short
+\end{itemize}
+
+Combinando os tipo e os modificadores temos:
+
+\begin{table}[htb]
+	\centering
+	\caption{}
+	\label{tab:tipos_modificadores}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{@{}llcr@{}}
+			\toprule
+			\multicolumn{1}{c}{Palavra chave} & \multicolumn{1}{c}{Tipo}                 & Tamanho & \multicolumn{1}{c}{Intervalo}  \\ \midrule
+			char                              & Caracter                                 & 1       & -128 a 127                     \\
+			signed char                       & Caractere com sinal                      & 1       & -128 a 127                     \\
+			unsigned char                     & Caractere sem sinal                      & 1       & 0 a 255                        \\
+			Int                               & Inteiro                                  & 2       & -32.768 a 32.767               \\
+			signed int                        & Inteiro com sinal                        & 2       & -32.768 a 32.767               \\
+			unsigned int                      & Inteiro sem sinal                        & 2       & 0 a 65.535                     \\
+			short int                         & Inteiro curto                            & 2       & -32.768 a 32 767               \\
+			signed short int                  & Inteiro curto com sinal                  & 2       & -32.768 a 32.767               \\
+			unsigned short int                & Inteiro curto sem sinal                  & 2       & 0 a 65.535                     \\
+			long int                          & Inteiro long                             & 4       & -2.147.483.648 a 2.147.483.647 \\
+			signed long int                   & Inteiro longo com sinal                  & 4       & -2.147.483.648 a 2.147.483.647 \\
+			unsigned long int                 & Inteiro longo sem sinal                  & 4       & 0 a 4.294.967.295              \\
+			float                             & Ponto flutuante com precisão simples     & 4       & 3.4 E-38 a 3.4E+38             \\
+			double                            & Ponto flutuante com precisão simples     & 8       & 1.7 E-308 a 1.7E+308           \\
+			long double                       & Ponto flutuante com precisão dupla longo & 16      & 3.4E-4932 a 1.1E+4932          \\ \bottomrule
+		\end{tabular}%
+	}
+\end{table}
+
 
 
 %----------------------------------------------------------------------------------------
