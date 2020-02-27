@@ -37,7 +37,7 @@
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
 % Index
 \usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
-\usepackage{makeidx} % Required to make an index
+\usepackage{makeidx} % Required to make an indexs
 \makeindex % Tells LaTeX to create the files required for indexing
 \usepackage{verbatim}
 % Others
@@ -45,7 +45,7 @@
 \usepackage[
 colorinlistoftodos, 
 prependcaption, 
-%color=green,
+color=green,
 textsize=small, 
 linecolor=red, 
 backgroundcolor=lightGray, 
@@ -282,10 +282,6 @@ O Programa~\ref{prog002} mostra como fazer isso.
 
 Uma variável é um objeto capaz de guardar e representar um valor ou expressão em memória. 
 Às variáveis são associadas a nomes ou identificadores e sua existência é limitada por um espaço e um tempo na memória do computador, o qual frequentemente é igual ao tempo de execução do programa em que elas foram criadas.
-O Programa~\ref{prog003} mostra um exemplo de variável representando o valor inteiro 10 e em seguida a impressão de uma mensagem com seu valor.
-Na impressão, é importante notar que a mensagem é formatada para que em um dterminado ponto ($\backslash$d) apareçam os dígitos correspondentes ao valor de \texttt{a} que é a variável abrigando o valor 10.
-
-\lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog003.c}
 
 Nas linguagen de programação é comum existirem tipos de dados pré-definidos, chamados tipo primitivos.
 Em C, os tipo primitivos são:
@@ -309,32 +305,76 @@ Há ainda os modificadores que alteram o tamanho, e consequentemente sua capacid
 
 Combinando os tipo e os modificadores temos:
 
-\begin{table}[htb]
+\begin{table}[htbp]
 	\centering
 	\caption{}
 	\label{tab:tipos_modificadores}
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{@{}llcr@{}}
 			\toprule
-			\multicolumn{1}{c}{Palavra chave} & \multicolumn{1}{c}{Tipo}                 & Tamanho & \multicolumn{1}{c}{Intervalo}  \\ \midrule
+			\multicolumn{1}{c}{Palavra chave} & \multicolumn{1}{c}{Tipo}                 & Tamanho (Bytes) & \multicolumn{1}{c}{Intervalo}  \\ \midrule
 			char                              & Caracter                                 & 1       & -128 a 127                     \\
 			signed char                       & Caractere com sinal                      & 1       & -128 a 127                     \\
 			unsigned char                     & Caractere sem sinal                      & 1       & 0 a 255                        \\
-			Int                               & Inteiro                                  & 2       & -32.768 a 32.767               \\
-			signed int                        & Inteiro com sinal                        & 2       & -32.768 a 32.767               \\
-			unsigned int                      & Inteiro sem sinal                        & 2       & 0 a 65.535                     \\
+			int                               & Inteiro                                  & 4       & -32.768 a 32.767               \\
+			signed int                        & Inteiro com sinal                        & 4       & -32.768 a 32.767               \\
+			unsigned int                      & Inteiro sem sinal                        & 4       & 0 a 65.535                     \\
 			short int                         & Inteiro curto                            & 2       & -32.768 a 32 767               \\
 			signed short int                  & Inteiro curto com sinal                  & 2       & -32.768 a 32.767               \\
 			unsigned short int                & Inteiro curto sem sinal                  & 2       & 0 a 65.535                     \\
-			long int                          & Inteiro long                             & 4       & -2.147.483.648 a 2.147.483.647 \\
-			signed long int                   & Inteiro longo com sinal                  & 4       & -2.147.483.648 a 2.147.483.647 \\
-			unsigned long int                 & Inteiro longo sem sinal                  & 4       & 0 a 4.294.967.295              \\
+			long int                          & Inteiro long                             & 8       & -2.147.483.648 a 2.147.483.647 \\
+			signed long int                   & Inteiro longo com sinal                  & 8       & -2.147.483.648 a 2.147.483.647 \\
+			unsigned long int                 & Inteiro longo sem sinal                  & 8       & 0 a 4.294.967.295              \\
 			float                             & Ponto flutuante com precisão simples     & 4       & 3.4 E-38 a 3.4E+38             \\
 			double                            & Ponto flutuante com precisão simples     & 8       & 1.7 E-308 a 1.7E+308           \\
 			long double                       & Ponto flutuante com precisão dupla longo & 16      & 3.4E-4932 a 1.1E+4932          \\ \bottomrule
 		\end{tabular}%
 	}
 \end{table}
+
+O Programa~\ref{prog003} mostra um exemplo de variável representando o valor inteiro 10 e em seguida a impressão de uma mensagem com seu valor.
+Na impressão, é importante notar que a mensagem é formatada para que em um dterminado ponto ($\backslash$d) apareçam os dígitos correspondentes ao valor de \texttt{a} que é a variável abrigando o valor 10.
+
+\lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog003.c}
+
+As formas de declarrar variáveis podem ser diversas. O Programa~\ref{prog004} mostra a delaração de variáveis $n1$ e $n2$ atribuindo imediatamente os valores, enquanto a vairiável $soma$ é criada sem que seu valor seja atribuído imediatamente. No Programa~\ref{prog005}, as variáveis $n1$ e $n2$ são declaradas na mesma linha, separadas por vírgula, uma vez que são do mesmo tipo $int$.
+
+\lstinputlisting[label={prog004},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog004.c}
+
+\lstinputlisting[label={prog005},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog005.c}
+
+Quanto à atribuição de valores à uma variável, ela pode ser direta ou indireta, ou seja, um valor pode ser diretamente atribuído à uma variável ou o valor de uma variável pode ser atribuído a outra, como no exemplo do Programa~\ref{prog006}, onde $n1$ recebe o valor de $n2$ que recebe o valore de $n3$ que recebe $10$. Nesse caso, $n1$, $n2$ e $n3$ terão valor = $10$.
+
+\lstinputlisting[label={prog006},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog006.c}
+
+Dependendo do tipo primitivo de dados da variável, diferentes formatações podem ser usadas paara a função printf() conforme pode ser visto na Tabela~\ref{tab:printf}. O Programa~\ref{prog007} ilustra um exemplo de impressão de um float com 2 casa decimais.
+
+\lstinputlisting[label={prog007},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog007.c}
+
+
+\begin{table}[ht]
+	\centering
+	\caption{Formatação da saída de dados com a função printf().}
+	\label{tab:printf}
+		\begin{tabular}{@{}ll@{}}
+			\toprule
+			Formatação & Significado                        \\ \midrule
+			\%c        & caracter                           \\
+			\%d        & inteiro  base 10                   \\
+			\%e        & exponencial ponto flutuante        \\
+			\%f        & ponto flutuante                    \\
+			\%i        & integer (base 10)                  \\
+			\%o        & octal (base 8)                     \\
+			\%s        & \textit{string}                    \\
+			\%u        & \textit{unsigned} inteiro          \\
+			\%x        & hexadecimal (base 16)              \\
+			\%\%       & caracter de porcentagem            \\ \bottomrule
+		\end{tabular}%
+\end{table}
+
+O Programa~\ref{prog008}  mostra algumas variáveis e seus respectivos tamanhos em \textit{Bytes} com sua saída formatada.
+
+\lstinputlisting[label={prog008},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog008.c}
 
 
 
