@@ -87,6 +87,7 @@ bordercolor=black]{todonotes}
 
 \renewcommand*{\nameyeardelim}{\addcomma\space}
 \renewcommand{\lstlistingname}{Programa}
+\renewcommand{\tablename}{Tabela}
 
 \newcommand{\VER}[1]{\begingroup\color{red}#1\endgroup}
 \newcommand{\terminal}[1]{\todo[inline]{\ttfamily{#1}}}
@@ -199,22 +200,17 @@ Os algoritmos existem há muito tempo, mas estão presentes na sociedade moderna
 Quase tudo que se produz, sejam produtos ou serviços, tem alguma influência de algoritmos.
 O comércio eletrônico utiliza tanto algoritmos clássicos como ordenações, quanto algoritmos modernos de recomendação de produtos baseado no histórico de visitas.
 A segurança das senhas em qualquer sistema bancário ou \textit{Web} é garantida por algoritmos de criptografia.
-Imagens de satélite, dados genômicos, reconhecimento de faces, previsão do tempo, quase tudo que se possa imaginar atualmente é influenciado direta oou indiretamente por algum algoritmo.
+Imagens de satélite, dados genômicos, reconhecimento de faces, previsão do tempo, quase tudo que se possa imaginar atualmente é influenciado direta ou indiretamente por algum algoritmo.
 
 O estudo de algoritmos é uma demanda crescente frente aos novos desafios trazidos pelo grande volume de dados que as tecnologias modernas proporcionaram.
-A análise de algortimos é uma área com questões importantes em aberto, como é o caso dos \textit{Millennium Prize Problems}, com sete problemas matemático-computacionais em aberto e cujo prêmio é de 1 milhão de dólares por cada solução.
+A análise de algortimos é uma área com questões importantes em aberto, como é o caso dos \textit{Millennium Prize Problems}, com sete problemas matemático-computacionais, cujo prêmio é de 1 milhão de dólares pela solução de cada problema.
+
+\section{Análise de Algoritmos}\label{sec_analise}
 
 O propósito da análise de um algortimo é prever seu comportamento quanto ao tempo de execução ou ao espaço em memória que irá ocupar mesmo antes de ser executado em um computador específico.
 Porém, muitos fatores, como o tamanho e a variedade dos dos dados de entrada, influenciam o algoritmo.
 Portanto, a análise de algoritmos provê uma aproximação, o que em muitos casos é bastante significante.
 
-Tipos abstratos de dados são conjuntos de valores sobre os quais é possível aplicar funções de forma homogênea através de um algortimo.
-Funções e valores em conjunto, consituem um modelo matemático que pode ser empregado em problemas do mundo real~\cite{ascencio2010}.
-Os algortimos são projetados em função de um tipo abstrato de dados.
-A representação computacional de um tipo abstrato de dados com seus tipos e operações permitidas pode ser entendida como uma \textbf{estrutura de dados}.
-Uma estrutura de dados é um meio para aramzenar e processar dados com vistas à sua organização, acesso e modificações~\cite{cormen2009}.
-
-\section{Análise de Algoritmos}\label{sec_analise}
 
 \subsection{Elementos de Notação Assintótica}
 
@@ -288,7 +284,7 @@ Em C, os tipo primitivos são:
 
 \begin{itemize}
 	\item char: caracter
-	\item int; inteiro
+	\item int: inteiro
 	\item float: real de precisão simples
 	\item double: real de alta precisão
 	\item void: vazio ou sem valor
@@ -376,6 +372,54 @@ O Programa~\ref{prog008}  mostra algumas variáveis e seus respectivos tamanhos 
 
 \lstinputlisting[label={prog008},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog008.c}
 
+\subsubsection{Operadores Aritméticos}
+
+Os operadores aritméticos usados em C são mostrados na Tabela~\ref{tab:opareadores_aritmeticos}.
+\begin{table}[htbp]
+	\centering
+	\caption{Operadores aritméticos.}
+	\label{tab:opareadores_aritmeticos}
+		\begin{tabular}{@{}ll@{}}
+			\toprule
+			\textbf{Operador}             & \textbf{Sintaxe} \\ \midrule
+			Adição unária                 & +a               \\
+			Adição                        & a + b            \\
+			Incremento pré-fixado         & ++a              \\
+			Incremento pós-fixado         & a++              \\
+			Atribuição por adição         & a += b           \\
+			Subtração unária              & -a               \\
+			Subtração                     & a - b            \\
+			Decremento pré-fixado         & --a              \\
+			Decremento pós-fixado         & a--              \\
+			Atribuição por subtração      & a -= b           \\
+			Multiplicação                 & a * b            \\
+			Atribuição por multiplicação  & a *= b           \\
+			Divisão                       & a / b            \\
+			Atribuição por divisão        & a /= b           \\
+			Módulo (resto)                & a \% b           \\
+			Atribuição por módulo (resto) & a \%= b          \\ \bottomrule
+		\end{tabular}%
+\end{table}
+\begin{table}[htb]
+	\centering
+	\caption{Precedência de operadores.}
+	\label{tab:prioridade_operadores}
+		\begin{tabular}{@{}ll@{}}
+			\toprule
+			\textbf{Prioridade} & \textbf{Operadores}                                                                \\ \midrule
+			1º                  & Parênteses internos                                                                \\
+			2º                  & potência (\textasciicircum{}) e raiz (quando a linguagem oferece esses operadores) \\
+			3º                  & * / div e mod                                                                      \\
+			4º                  & + e -                                                                              \\ \bottomrule
+		\end{tabular}%
+\end{table}
+O Programa~\ref{prog009} ilustra o uso do operador \textit{mod}, que retorna o resto da divisão inteira.
+\lstinputlisting[label={prog009},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog009.c}
+
+\subsubsection{Entrada de Dados}
+
+A maneira mais clássica de um programa em C obter dados digitados pelo o usuário através do \textit{prompt} é usando a função \textit{scanf()}. O Programa~\ref{prog010} mostra um exemplo onde os valores das variáveis $a$ e $b$ são informados pelo usuário e depois somados.
+\lstinputlisting[label={prog010},language=C, caption={Trabalhando com a função \textit{scanf()} para entrada de dados em C.}]{Code/Basics/prog010.c}
 
 
 %----------------------------------------------------------------------------------------
@@ -390,6 +434,11 @@ O Programa~\ref{prog008}  mostra algumas variáveis e seus respectivos tamanhos 
 \end{flushright}
 \vspace{12em}
 
+Tipos abstratos de dados são conjuntos de valores sobre os quais é possível aplicar funções de forma homogênea através de um algortimo.
+Funções e valores em conjunto, consituem um modelo matemático que pode ser empregado em problemas do mundo real~\cite{ascencio2010}.
+Os algortimos são projetados em função de um tipo abstrato de dados.
+A representação computacional de um tipo abstrato de dados com seus tipos e operações permitidas pode ser entendida como uma \textbf{estrutura de dados}.
+Uma estrutura de dados é um meio para armazenar e processar dados com vistas à sua organização, acesso e modificações~\cite{cormen2009}.
 
 \section{Algoritmos de Ordenação}\label{ordenacao}
 
