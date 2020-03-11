@@ -418,9 +418,28 @@ O Programa~\ref{prog009} ilustra o uso do operador \textit{mod}, que retorna o r
 
 \subsubsection{Entrada de Dados}
 
-A maneira mais clássica de um programa em C obter dados digitados pelo o usuário através do \textit{prompt} é usando a função \textit{scanf()}. O Programa~\ref{prog010} mostra um exemplo onde os valores das variáveis $a$ e $b$ são informados pelo usuário e depois somados.
+A maneira mais clássica de um programa em C obter dados digitados pelo o usuário através do \textit{prompt} é usando a função \textit{scanf()}. 
+O Programa~\ref{prog010} mostra um exemplo onde os valores das variáveis $a$ e $b$ são informados pelo usuário e depois somados.
 \lstinputlisting[label={prog010},language=C, caption={Trabalhando com a função \textit{scanf()} para entrada de dados em C.}]{Code/Basics/prog010.c}
 
+\section{Estruturas de Decisão}
+
+\subsection{If/Else}
+
+O \textit{if} é utilizado para testar uma proposição lógica.
+A proposição é escrita entre parênteses.
+Caso o resultdo seja verdadeiro, o bloco de instruções subordinadas ao \textit{if} será executado.
+O bloco é delimitado por ``\{'' e ``\}''. 
+Se houver apenas uma instrução subordinada, não há necessidade das chaves.
+
+O \textit{else} é utilizado para capturar a condição não atendida no teste do \textit{if}, o ``caso contrário''.
+O Programa~\ref{prog011} mostra um exemplo onde o valor da variável $x$ é testado para saber se é maior ou igual a zero.
+Através deste teste é possível identificar se o valor é positivo (\textit{if} verdadeiro $\rightarrow valor >= 0 $), ou é negativo (\textit{else} $\rightarrow valor < 0$).
+\lstinputlisting[label={prog011},language=C, caption={Trabalhando com o \textit{if} em C.}]{Code/Basics/prog011.c}
+
+Há ainda a possibilidade verificar múltiplas condições com o \textit{else if}.
+O uso do \textit{else if} é demonstrado no Programa~\ref{prog012} que verifica se um valor inteiro informado pelo usuário é = 10, 20 ou 30.
+\lstinputlisting[label={prog012},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/Basics/prog012.c}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER X
