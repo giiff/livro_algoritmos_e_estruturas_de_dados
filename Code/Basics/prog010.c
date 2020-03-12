@@ -1,6 +1,6 @@
 #include <stdio.h>
 void main(){
-	int a, b, soma;
+	int a, b, n;
 
 	printf("Digite um numero inteiro: ");
 	scanf("%d", &a); 

@@ -9,7 +9,7 @@ void main() {
     else if (x==20){
         printf("%d.\n", x);
     }
-    esle if(x==30){
+    else if(x==30){
         printf("%d.\n", x);
     }
     else{
