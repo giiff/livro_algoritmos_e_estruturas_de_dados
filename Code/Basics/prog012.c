@@ -13,6 +13,6 @@ void main() {
         printf("%d.\n", x);
     }
     else{
-        printf("%d: diferente de 10, 20 ou 30.\n");
+        printf("Diferente de 10, 20 ou 30.\n");
     }
 }
