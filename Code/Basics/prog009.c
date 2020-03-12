@@ -9,5 +9,5 @@ void main() {
     // % modulo (divisao inteira)
     int n1 = 21;
     int m = 21 % 4;
-    printf("The module of %d is %d \n", n1, m);
+    printf("Modulo de %d = %d \n", n1, m);
 }
