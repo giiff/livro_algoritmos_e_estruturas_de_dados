@@ -27,6 +27,7 @@
 %--------------------------------------
 \usepackage[utf8]{inputenc}
 \hyphenation{Mi-nis-té-ri-o}
+\hyphenation{des-pre-za-das}
 \usepackage[top=3cm,bottom=3cm,left=3.2cm,right=3.2cm,headsep=10pt,a4paper]{geometry} % Page margins
 \usepackage[svgnames]{xcolor} % Required for specifying colors by name
 \definecolor{blue}{rgb}{0.0, 0.18, 0.39}
@@ -91,6 +92,7 @@ bordercolor=black]{todonotes}
 
 \newcommand{\VER}[1]{\begingroup\color{red}#1\endgroup}
 \newcommand{\terminal}[1]{\todo[inline]{\ttfamily{#1}}}
+
 
 %----------------------------------------------------------------------------------------
 
@@ -195,11 +197,11 @@ Este livro destina-se aos acadêmicos e demais interessados em iniciar os estudo
 \end{flushright}
 \vspace{12em}
 
-Um algoritmo é um procedimento computacional bem definido que processa um valor ou um conjunto de dados (entrada) e produz algum valor ou conjunto de dados (saída)~\cite{cormen2009}.
-Os algoritmos existem há muito tempo, mas estão presentes na sociedade moderna de uma forma nunca experimentada na história da humanidade.
+Um algoritmo é um procedimento computacional bem definido que processa um dado ou um conjunto de dados (entrada) e produz algum novo dado ou conjunto de dados (saída)~\cite{cormen2009}.
+Os algoritmos existem há muito tempo, mas estão presentes na sociedade moderna de uma forma nunca experimentada nestes cerca de 2,5 milhões de anos da história humana.
 Quase tudo que se produz, sejam produtos ou serviços, tem alguma influência de algoritmos.
 O comércio eletrônico utiliza tanto algoritmos clássicos como ordenações, quanto algoritmos modernos de recomendação de produtos baseado no histórico de visitas.
-A segurança das senhas em qualquer sistema bancário ou \textit{Web} é garantida por algoritmos de criptografia.
+A segurança das senhas em sistemas \textit{Web} ou bancários é baseada em algoritmos de criptografia.
 Imagens de satélite, dados genômicos, reconhecimento de faces, previsão do tempo, quase tudo que se possa imaginar atualmente é influenciado direta ou indiretamente por algum algoritmo.
 
 O estudo de algoritmos é uma demanda crescente frente aos novos desafios trazidos pelo grande volume de dados que as tecnologias modernas proporcionaram.
@@ -207,12 +209,99 @@ A análise de algortimos é uma área com questões importantes em aberto, como 
 
 \section{Análise de Algoritmos}\label{sec_analise}
 
-O propósito da análise de um algortimo é prever seu comportamento quanto ao tempo de execução ou ao espaço em memória que irá ocupar mesmo antes de ser executado em um computador específico.
-Porém, muitos fatores, como o tamanho e a variedade dos dos dados de entrada, influenciam o algoritmo.
+O propósito da análise de um algortimo é prever seu comportamento quanto ao tempo de execução ou ao espaço em memória que irá ocupar mesmo antes de ser executado em um computador específico~\cite{manber1989}.
+Muitos fatores, especialmente o tamanho e a variedade dos dos dados de entrada, influenciam o comportamento do algoritmo utilizando suas principais características.
 Portanto, a análise de algoritmos provê uma aproximação, o que em muitos casos é bastante significante.
+As possibilidades de entradas diferentes, ainda que de mesmo tamanho são muito vastas e por isso um algoritmos não se comportará da mesma maneira para diferentes entradas de um mesmo tamanho. 
+Por esta razão a análise de algoritmos se concentra primordialmente em predizer o tempo aproximado de execução baseada no tamanho da entrada, tirando da equação elementos como o hardware, por exemplo.
+Assim, ainda que haja uma variação no tempo de execução dependente da variabilidade da entrada, essa variação tem menor importância do que o tamanho da entrada.
 
+Para entradas de tamanho ($n$) pequeno, qualquer algoritmo custa pouco para ser executado, portanto, a análise de algoritmos concentra-se em valores grandes de $n$~\cite{ziviani2007}.
+O comportamento assintótico de uma função $f(n)$ representa o limite do comportamento do custo quando $n$ cresce.
 
 \subsection{Elementos de Notação Assintótica}
+Na análise de algoritmos, as constantes, associadas ou não ao tamanho da entrada, são desprezadas por sua baixa representatividade no tempo de execução~\cite{manber1989}.
+Por exemplo, se um algoritmo executa em $2n^2+50$, dizemos que o algoritmo executa em $n^2$ pois as constantes $2$ e $50$ não interferem significativamente no crecismento assintótico da função.
+
+\subsubsection{Notação Big O}
+
+O tempo de execução em função do tamanho da entrada está relacionado às várias classes de problemas que têm as seguintes funções de complexidade:
+\begin{itemize}
+\item $f(n) = O(1)~\mapsto$ Complexidade constante. O tempo de execução independe do tamanho ($n$) da entrada.
+\item $f(n) = O(log~n)~\mapsto$ Complexidade logarítmica. Tempo de execução menor do que o de uma constante grande. Tipicamente são alcançados por algoritmos que dividem o problema em problemas menores.
+\item $f(n) = O(n)~\mapsto$ Complexidade linear. Tempo de execução linear ao tamanho da entrada. São, em geral algoritmos que realizam pequenos trabalhos nos dados de entrada.
+\item $f(n) = O(n~log~n)~\mapsto$ Essa complexidade ocorre normalmente em algoritmos que quebra o problema em partes menores, solucionam-as de forma independente juntando em seguida essas sub-soluções.
+\item $f(n) = O(n^2)~\mapsto$ Complexidade quadrática. O crescimento quadrático significa que o tempo de execução crescerá rapidamente, pois será o quadrado do tamanho da entrada. Ou seja, para entradas grandes, o algoritmo levará muito tempo para ser executado.
+\item $f(n) = O(n^3)~\mapsto$ Complexidade cúbica. Assim como o algoritmo de complexidade quadrática,  o tempo será o cubo do tamanho da entrada. Algoritmos desse tipo são úteis apenas para pequenas tarefas.
+\item $f(n) = O(2^n)~\mapsto$ Complexidade exponencial. Algoritmos desse tipo geralmente não são úteis do ponto de vista prático. Geralmente são soluções baeadas em abordagens de ``força bruta''.
+\item $f(n) = O(n!)~\mapsto$ Complexidade fatorial. São ainda piores em termos de tempo de execução do que os algoritmos exponenciais.
+\end{itemize}
+
+
+A Tabela~\ref{tab:garey1979} ilustra os tempos de execução para diferentes tamanhos de entrada em cada uma das complexidades exponenciais e polinomiais.
+\begin{table}[htbp]
+\centering
+\caption{Comparação de tempos de execução polinomiais e exponenciais assumindo que 0,000001s é o tempo gasto para um $n = 1$. Adaptado de ~\textcite{garey1979}.}
+\label{tab:garey1979}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+\multirow{2}{*}{Complexidade} & \multicolumn{6}{l}{Tamanho da entrada (n)}                           \\ \cmidrule(l){2-7} 
+                              & 10       & 20       & 30       & 40        & 50        & 60          \\ \midrule
+$n$                           & 0,00001s & 0,00002s & 0,00003s & 0,00004s  & 0,00005s  & 0,00006s    \\ \midrule
+$n^2$                         & 0,0001   & 0,0004s  & 0,0009s  & 0,0016s   & 0,0025s   & 0,0036s     \\ \midrule
+$n^3$                         & 0,001s   & 0,008s   & 0,027s   & 0,064s    & 0,125s    & 0,216s      \\ \midrule
+$2^n$                         & 0,001    & 1,0s     & 17,9 min & 12,7 dias & 35,7 anos & 366 séculos \\ \bottomrule
+\end{tabular}%
+}
+\end{table}
+
+
+Por exemplo, tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
+Em outra entrada de mesmo tamanho, mas com os valores dispostos de outra maneira, $5, 9, 7, 4, 2$, encontraríamos o número $9$ em dois passos.
+Independente das permutações possíveis, encontraríamos o número procurado em no máximo 5 passos, que é o pior caso, tomando entradas de mesmo tamanho e procurando desta exata maneira.
+Assim, uma função $g(n)$ domina assintoticamente outra função $f(n)$ se existem constantes positivas $c$ e $n_0$ em que $n~\geq~n_0$ e $c.|g(n)|~\geq~|f(n)|$.
+Tomemos por exemplo as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, sendo $n~\geq~4$. 
+É fácil ver que $g(n)~\geq~f(n)$ para $n~\geq~4$ (Figura~\ref{BigO}).\\
+
+\begin{minipage}[c]{.5\textwidth}
+\[ g(n) =
+  \begin{cases}
+    n=1  & 6.1^2 = 6\\
+    n=2  & 6.2^2 = 24\\
+    n=3  & 6.3^2 = 54\\
+    n=4  & 6.4^2 = 96\\
+    n=5  & 6.5^2 = 150\\
+    n=6  & 6.6^2 = 216\\
+    n=7  & 6.7^2 = 294\\
+    ...
+  \end{cases}
+\]
+\end{minipage}\hfill
+\begin{minipage}[c]{.5\textwidth}
+\[ f(n) =
+  \begin{cases}
+    n=1  & 5.1^2+15 = 20\\
+    n=2  & 5.2^2+15 = 35\\
+    n=3  & 5.3^2+15 = 60\\
+    n=4  & 5.4^2+15 = 95\\
+    n=5  & 5.5^2+15 = 140\\
+    n=6  & 5.6^2+15 = 195\\
+    n=7  & 5.7^2+15 = 260\\
+    ...
+  \end{cases}
+\]
+\end{minipage}
+\hfill
+\begin{figure}[htbp]
+\centering
+	\includegraphics[width=.95\textwidth]{Pictures/BigO.png}
+	\caption[Big O]{Domínio assintótico da função $g(n)$ sobre a função $f(n)$ para $n~\geq~4$.}
+	\label{BigO}
+\end{figure}
+
+A notação $O$ denota um limite assintótico superior, ou seja, o pior caso, aquele que toma mais tempo de execução.
+Uma função é $O(g(n))$ se, para todos os valores de $n$ maiores que $n_0$ o valore da função $f(n)$ está abaixo de $g(n)$.
 
 
 
