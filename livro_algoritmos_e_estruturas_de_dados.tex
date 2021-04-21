@@ -220,11 +220,11 @@ Para entradas de tamanho ($n$) pequeno, qualquer algoritmo custa pouco para ser 
 O comportamento assintótico de uma função $f(n)$ representa o limite do comportamento do custo quando $n$ cresce.
 
 \subsection{Elementos de Notação Assintótica}
-Na análise de algoritmos, as constantes, associadas ou não ao tamanho da entrada, são desprezadas por sua baixa representatividade no tempo de execução~\cite{manber1989}.
-Por exemplo, se um algoritmo executa em $2n^2+50$, dizemos que o algoritmo executa em $n^2$ pois as constantes $2$ e $50$ não interferem significativamente no crecismento assintótico da função.
 
 \subsubsection{Notação Big O}
-
+A notação $O$ denota um limite assintótico superior, ou seja, o pior caso, aquele que toma mais tempo de execução.
+Na análise de algoritmos, as constantes, associadas ou não ao tamanho da entrada, têm baixa representatividade no tempo de execução~\cite{manber1989}.
+Por exemplo, se um algoritmo executa em $2n^2+50$, dizemos que o algoritmo executa em $n^2$ pois as constantes $2$ e $50$ não interferem significativamente no crecismento assintótico da função.
 O tempo de execução em função do tamanho da entrada está relacionado às várias classes de problemas que têm as seguintes funções de complexidade:
 \begin{itemize}
 \item $f(n) = O(1)~\mapsto$ Complexidade constante. O tempo de execução independe do tamanho ($n$) da entrada.
@@ -237,32 +237,16 @@ O tempo de execução em função do tamanho da entrada está relacionado às v�
 \item $f(n) = O(n!)~\mapsto$ Complexidade fatorial. São ainda piores em termos de tempo de execução do que os algoritmos exponenciais.
 \end{itemize}
 
-
-A Tabela~\ref{tab:garey1979} ilustra os tempos de execução para diferentes tamanhos de entrada em cada uma das complexidades exponenciais e polinomiais.
-\begin{table}[htbp]
-\centering
-\caption{Comparação de tempos de execução polinomiais e exponenciais assumindo que 0,000001s é o tempo gasto para um $n = 1$. Adaptado de ~\textcite{garey1979}.}
-\label{tab:garey1979}
-\resizebox{\textwidth}{!}{%
-\begin{tabular}{@{}lllllll@{}}
-\toprule
-\multirow{2}{*}{Complexidade} & \multicolumn{6}{l}{Tamanho da entrada (n)}                           \\ \cmidrule(l){2-7} 
-                              & 10       & 20       & 30       & 40        & 50        & 60          \\ \midrule
-$n$                           & 0,00001s & 0,00002s & 0,00003s & 0,00004s  & 0,00005s  & 0,00006s    \\ \midrule
-$n^2$                         & 0,0001   & 0,0004s  & 0,0009s  & 0,0016s   & 0,0025s   & 0,0036s     \\ \midrule
-$n^3$                         & 0,001s   & 0,008s   & 0,027s   & 0,064s    & 0,125s    & 0,216s      \\ \midrule
-$2^n$                         & 0,001    & 1,0s     & 17,9 min & 12,7 dias & 35,7 anos & 366 séculos \\ \bottomrule
-\end{tabular}%
-}
-\end{table}
-
-
-Por exemplo, tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
+Vejamos um exemplo. 
+Tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
 Em outra entrada de mesmo tamanho, mas com os valores dispostos de outra maneira, $5, 9, 7, 4, 2$, encontraríamos o número $9$ em dois passos.
 Independente das permutações possíveis, encontraríamos o número procurado em no máximo 5 passos, que é o pior caso, tomando entradas de mesmo tamanho e procurando desta exata maneira.
 Assim, uma função $g(n)$ domina assintoticamente outra função $f(n)$ se existem constantes positivas $c$ e $n_0$ em que $n~\geq~n_0$ e $c.|g(n)|~\geq~|f(n)|$.
-Tomemos por exemplo as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, sendo $n~\geq~4$. 
-É fácil ver que $g(n)~\geq~f(n)$ para $n~\geq~4$ (Figura~\ref{BigO}).\\
+
+Uma função é $O(g(n))$ se, para todos os valores de $n$ maiores que $n_0$, o valor da função $f(n)$ está abaixo de $g(n)$.
+Geralmente não é uma tarefa trivial determinar se uma certa função $g(n)$ é $O(f(n))$.
+Para ilustrar melhor o domínio assintótico de uma função, sejam as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, onde $n~\geq~4$. 
+É possível ver que $g(n)~\geq~f(n)$ para $n~\geq~4$ na Figura~\ref{BigO}.
 
 \begin{minipage}[c]{.5\textwidth}
 \[ g(n) =
@@ -296,14 +280,32 @@ Tomemos por exemplo as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, sendo $n~\geq
 \begin{figure}[htbp]
 \centering
 	\includegraphics[width=.95\textwidth]{Pictures/BigO.png}
-	\caption[Big O]{Domínio assintótico da função $g(n)$ sobre a função $f(n)$ para $n~\geq~4$.}
+	\caption[Big O]{Domínio assintótico da função $g(n)$ sobre a função $f(n)$ quando $n~\geq~4$.}
 	\label{BigO}
 \end{figure}
 
-A notação $O$ denota um limite assintótico superior, ou seja, o pior caso, aquele que toma mais tempo de execução.
-Uma função é $O(g(n))$ se, para todos os valores de $n$ maiores que $n_0$ o valore da função $f(n)$ está abaixo de $g(n)$.
-
-
+Diz-se que uma função $f(n)$ cresce monotonamente se $n_1~\geq~n_2$, e portanto $f(n_1)~\geq~f(n_2)$.
+Funções exponenciais crescem mais rápido do que funções polinomiais, ou seja, para as constantes $c~>~0$ e $a~> 1$, e para todas as funções $f(n)$ de crescimento monótono:
+$$ (f(n))^c~=~O(a^f(n)) $$
+Esta regra pode ser usada para comparar várias funções. Por exemplo, substituindo $f(n)$ por $n$ temos:
+$$ n^c~=~O(a^n) $$
+A Tabela~\ref{tab:garey1979} ilustra os tempos de execução para diferentes tamanhos de entrada em cada uma das complexidades exponenciais e polinomiais.
+\begin{table}[htbp]
+\centering
+\caption{Comparação de tempos de execução polinomiais e exponenciais assumindo que 0,000001s é o tempo gasto para um $n = 1$. Adaptado de ~\textcite{garey1979}.}
+\label{tab:garey1979}
+\resizebox{\textwidth}{!}{%
+\begin{tabular}{@{}lllllll@{}}
+\toprule
+\multirow{2}{*}{Complexidade} & \multicolumn{6}{l}{Tamanho da entrada (n)}                           \\ \cmidrule(l){2-7} 
+                              & 10       & 20       & 30       & 40        & 50        & 60          \\ \midrule
+$n$                           & 0,00001s & 0,00002s & 0,00003s & 0,00004s  & 0,00005s  & 0,00006s    \\ \midrule
+$n^2$                         & 0,0001   & 0,0004s  & 0,0009s  & 0,0016s   & 0,0025s   & 0,0036s     \\ \midrule
+$n^3$                         & 0,001s   & 0,008s   & 0,027s   & 0,064s    & 0,125s    & 0,216s      \\ \midrule
+$2^n$                         & 0,001    & 1,0s     & 17,9 min & 12,7 dias & 35,7 anos & 366 séculos \\ \bottomrule
+\end{tabular}%
+}
+\end{table}
 
 
 %----------------------------------------------------------------------------------------
@@ -554,6 +556,76 @@ Os algortimos são projetados em função de um tipo abstrato de dados.
 A representação computacional de um tipo abstrato de dados com seus tipos e operações permitidas pode ser entendida como uma \textbf{estrutura de dados}.
 Uma estrutura de dados é um meio para armazenar e processar dados com vistas à sua organização, acesso e modificações~\cite{cormen2009}.
 
+
+\newpage
+\section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
+
+\subsection*{Vetores}
+
+Primeiro, uma revisão sobre vetores.
+Em C uma variável que represente um vetor é um ponteiro.
+Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
+Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
+O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
+
+\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/Revisao/rev001.c}\label{rev001}
+
+\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/Revisao/rev003.c}\label{rev003}
+
+\subsection*{Strings em C}
+Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
+Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
+Por exemplo, a string "IFG" é um vetor de 4 elementos.
+O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
+\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
+
+
+
+\subsection*{Structs}
+Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
+O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
+
+\newpage
+\lstinputlisting[language=C, caption={Structs em C.}]{Code/Listas/Struct.c}\label{struct01}
+
+\newpage
+O programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C. 
+\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/Listas/Struct2.c}\label{struct02}
+
+\section{Listas Encadeadas}
+
+Uma lista encadeada é uma estrutura de dados que permite um crescimento sob demanda, limitado à capacidade de memória disponível no computador.
+Ela é composta de ``nós'' que tem suas posições de memória ligadas através de ponteiros. 
+Cada nó da lista, além de guardar dados em si, aponta o próximo nó.
+Os dados em um nó também podem ser heterogêneos.
+A Figura~\ref{listaEncadeada} ilustra essa ideia. 
+Apesar da figura dar a impressão de que os nós estão distribuídos contiguamente na memória, eles estão na verdade espalhados em endereços aleatórios de memória. 
+Por isso o encadeamento funciona com ponteiros apontando o endereço de memória do próximonó da lista.
+\begin{figure}
+	\centering
+	\includegraphics[width=.7\textwidth]{Pictures/ListaEncadeada01.png}
+	\caption[Lista Encadeada]{Representação de uma Lista Encadeada.}
+	\label{listaEncadeada}
+\end{figure}
+O  programa~\ref{ListaEncadeada01} apresenta uma implementação em C de uma lista encadeada.
+\newpage
+\lstinputlisting[language=C, caption={Implementação em C de lista encadeada.}]{Code/Listas/ListaEncadeada02.c}\label{ListaEncadeada01}
+
+\newpage
+As listas encadeadas podem conter ponteiros para outro nós além do próximo. 
+É possível criar uma lista com \textit{links} simultâneos para o próximo nó e para o nó anterior.
+Essas listas são conhecidas como listas duplamente encadeadas.
+O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma duplamente encadeada.
+
+\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/Listas/ListaEncadeada03.c}\label{ListaEncadeada03}
+
+
+
+\section{Pilhas}\label{pilhas}
+
+\section{Filas}\label{filas}
+
+
 \section{Algoritmos de Ordenação}\label{ordenacao}
 
 \subsection*{Bubble Sort}
@@ -686,74 +758,8 @@ O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \text
 	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
 \end{enumerate} 
 
-\newpage
-\section{Estruturas de Dados Homogêneas e Heterogêneas}\label{tipos}
-
-\subsection*{Vetores}
-
-Primeiro, uma revisão sobre vetores.
-Em C uma variável que represente um vetor é um ponteiro.
-Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
-Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
-O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
-
-\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/Revisao/rev001.c}\label{rev001}
-
-\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/Revisao/rev003.c}\label{rev003}
-
-\subsection*{Strings em C}
-Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
-Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
-Por exemplo, a string "IFG" é um vetor de 4 elementos.
-O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
-\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
 
 
-
-\subsection*{Structs}
-Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
-O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
-
-\newpage
-\lstinputlisting[language=C, caption={Structs em C.}]{Code/Listas/Struct.c}\label{struct01}
-
-\newpage
-O programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C. 
-\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/Listas/Struct2.c}\label{struct02}
-
-
-\section{Listas Encadeadas}
-
-Uma lista encadeada é uma estrutura de dados que permite um crescimento sob demanda, limitado à capacidade de memória disponível no computador.
-Ela é composta de ``nós'' que tem suas posições de memória ligadas através de ponteiros. 
-Cada nó da lista, além de guardar dados em si, aponta o próximo nó.
-Os dados em um nó também podem ser heterogêneos.
-A Figura~\ref{listaEncadeada} ilustra essa ideia. 
-Apesar da figura dar a impressão de que os nós estão distribuídos contiguamente na memória, eles estão na verdade espalhados em endereços aleatórios de memória. 
-Por isso o encadeamento funciona com ponteiros apontando o endereço de memória do próximonó da lista.
-\begin{figure}
-	\centering
-	\includegraphics[width=.7\textwidth]{Pictures/ListaEncadeada01.png}
-	\caption[Lista Encadeada]{Representação de um Lista Encadeada.}
-	\label{listaEncadeada}
-\end{figure}
-O  programa~\ref{ListaEncadeada01} apresenta uma implementação em C de uma lista encadeada.
-\newpage
-\lstinputlisting[language=C, caption={Implementação em C de lista encadeada.}]{Code/Listas/ListaEncadeada02.c}\label{ListaEncadeada01}
-
-\newpage
-As listas encadeadas podem conter ponteiros para outro nós além do próximo. 
-É possível criar uma lista com \textit{links} simultâneos para o próximo nó e para o nó anterior.
-Essas listas são conhecidas como listas duplamente encadeadas.
-O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma duplamente encadeada.
-
-\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/Listas/ListaEncadeada03.c}\label{ListaEncadeada03}
-
-
-
-\section{Pilhas}\label{pilhas}
-
-\section{Filas}\label{filas}
 
 \newpage
 \section{Árvores}\label{arvores}
