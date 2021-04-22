@@ -223,6 +223,11 @@ O comportamento assintótico de uma função $f(n)$ representa o limite do compo
 
 \subsubsection{Notação Big O}
 A notação $O$ denota um limite assintótico superior, ou seja, o pior caso, aquele que toma mais tempo de execução.
+Vejamos um exemplo. 
+Tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
+Em outra entrada de mesmo tamanho, mas com os valores dispostos de outra maneira, $5, 9, 7, 4, 2$, encontraríamos o número $9$ em dois passos.
+Independente das permutações possíveis, encontraríamos o número procurado em no máximo 5 passos, que é o pior caso, tomando entradas de mesmo tamanho e procurando desta exata maneira.
+
 Na análise de algoritmos, as constantes, associadas ou não ao tamanho da entrada, têm baixa representatividade no tempo de execução~\cite{manber1989}.
 Por exemplo, se um algoritmo executa em $2n^2+50$, dizemos que o algoritmo executa em $n^2$ pois as constantes $2$ e $50$ não interferem significativamente no crecismento assintótico da função.
 O tempo de execução em função do tamanho da entrada está relacionado às várias classes de problemas que têm as seguintes funções de complexidade:
@@ -237,15 +242,10 @@ O tempo de execução em função do tamanho da entrada está relacionado às v�
 \item $f(n) = O(n!)~\mapsto$ Complexidade fatorial. São ainda piores em termos de tempo de execução do que os algoritmos exponenciais.
 \end{itemize}
 
-Vejamos um exemplo. 
-Tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
-Em outra entrada de mesmo tamanho, mas com os valores dispostos de outra maneira, $5, 9, 7, 4, 2$, encontraríamos o número $9$ em dois passos.
-Independente das permutações possíveis, encontraríamos o número procurado em no máximo 5 passos, que é o pior caso, tomando entradas de mesmo tamanho e procurando desta exata maneira.
-Assim, uma função $g(n)$ domina assintoticamente outra função $f(n)$ se existem constantes positivas $c$ e $n_0$ em que $n~\geq~n_0$ e $c.|g(n)|~\geq~|f(n)|$.
-
-Uma função é $O(g(n))$ se, para todos os valores de $n$ maiores que $n_0$, o valor da função $f(n)$ está abaixo de $g(n)$.
 Geralmente não é uma tarefa trivial determinar se uma certa função $g(n)$ é $O(f(n))$.
-Para ilustrar melhor o domínio assintótico de uma função, sejam as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, onde $n~\geq~4$. 
+Uma função $g(n)$ domina assintoticamente outra função $f(n)$ se existem constantes positivas $c$ e $n_0$ em que $n~\geq~n_0$ e $c.|g(n)|~\geq~|f(n)|$.
+Ou seja, uma função é $O(g(n))$ se, para todos os valores de $n$ maiores que $n_0$, o valor da função $f(n)$ está abaixo de $g(n)$.
+Para ilustrar melhor o domínio assintótico de uma função, considere as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, onde $n~\geq~4$. 
 É possível ver que $g(n)~\geq~f(n)$ para $n~\geq~4$ na Figura~\ref{BigO}.
 
 \begin{minipage}[c]{.5\textwidth}
