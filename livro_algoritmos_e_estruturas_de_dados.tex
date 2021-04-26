@@ -223,6 +223,8 @@ O comportamento assintótico de uma função $f(n)$ representa o limite do compo
 
 \subsubsection{Notação Big O}
 A notação $O$ denota um limite assintótico superior, ou seja, o pior caso, aquele que toma mais tempo de execução.
+É importante ressaltar que existem notações para outros limites assintóticos, como médios ou inferiores.
+Porém, aqui veremos a notação $O$,por ser uma das mais utilizadas para estimar o tempo de execução como limite superior.
 Vejamos um exemplo. 
 Tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
 Em outra entrada de mesmo tamanho, mas com os valores dispostos de outra maneira, $5, 9, 7, 4, 2$, encontraríamos o número $9$ em dois passos.
@@ -580,7 +582,6 @@ O programa~\ref{rev002} mostra um exemplo de \textit{string} em C.
 \lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
 
 
-
 \subsection*{Structs}
 Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
 O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
@@ -619,12 +620,9 @@ O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma dup
 
 \lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/Listas/ListaEncadeada03.c}\label{ListaEncadeada03}
 
-
-
 \section{Pilhas}\label{pilhas}
 
 \section{Filas}\label{filas}
-
 
 \section{Algoritmos de Ordenação}\label{ordenacao}
 
@@ -758,9 +756,6 @@ O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \text
 	\item Criar gráficos para as três execuções comparando quantidade de comparações e quantidade de trocas e o tempo de execução;
 \end{enumerate} 
 
-
-
-
 \newpage
 \section{Árvores}\label{arvores}
 
@@ -768,7 +763,6 @@ O  programa~\ref{ArvoreBinaria01} apresenta uma implementação em C de uma árv
 A representação gráfica da árvore é feita usando a biblioteca \href{http://graphviz.org/}{Graphviz}~\cite{Ellson03graphvizand}.
 
 \lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/ArvoreBinaria/ArvoreBinaria.c}\label{ArvoreBinaria01}
-
 
 \section{Tabelas Hashing}\label{hashing}
 
@@ -787,7 +781,6 @@ A representação gráfica da árvore é feita usando a biblioteca \href{http://
 	\textit{\textcolor{white}{Um bonita citação...}}
 \end{flushright}
 \vspace{12em}
-
 
 
 % ----------------------------------------------------------------------------------------
