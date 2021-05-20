@@ -768,6 +768,83 @@ A representação gráfica da árvore é feita usando a biblioteca \href{http://
 
 \section{Grafos}\label{grafos}
 
+Grafos são estruturas de dados muito poderosas para encontrar soluções para diversos problemas.
+Exemplos disso são os algoritmos de localização e rotas para endereços, como o aparelho deGPS de um carro, ou ainda a montagem de genomas a partir de fragmentos de DNA sequenciados.
+É na verdade muito expressiva a quantidade de problemas do mundo real que podem ser computacionalmente modelados como grafos.
+
+Um grafo $G = (V,E)$ é formado por dois conjuntos $V$ e $E$, onde:
+\begin{itemize}
+	\item $V$ é um conjunto finito e não vazio de vértices de $G$ 
+	\item $E$ é um conjunto finito de arestas de $G$.
+\end{itemize}
+
+Uma aresta $e~\in~E(G)$ é representada por $e=(v_1, v_2)$ ligando os vértices $v_1$ e $v_2$.
+Vejamos um exemplo. Seja o conjunto $V = {a, b, c, d, e}$. Seja o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. Uma representação gráfica deste grafo pode ser visto na Figura~\ref{Grafos01}.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.3\textwidth]{Pictures/Grafos01}
+	\caption[Exemplo de grafo]{Exemplo de grafo.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\label{Grafos01}
+\end{figure}
+
+Dada uma aresta $e = (a, b)$, os vértices  $a$ e $b$ são ao mesmo tempo ``extremos''\footnote{$a$ e $b$ estão nas extremidades de $e$.} e incidentes à aresta $e$. 
+Os vértices $a$ e $b$ são também vértices adjacentes.
+Além disso, a aresta $e$ e incidente aos vétices $a$ e $b$
+
+Denota-se por $|V|$ e $|E|$ a cardinalidade dos conjuntos de $V(G)$ e $E(G)$. No exemplo da Figura~\ref{Grafos01}, a teríamos: $|V| = 5$ e $|E| = 7$.
+O tamanho do grafo é dado por $|V| +|E|$.
+
+
+\subsection{Grafos Simples}
+Um grafo é dito simples se não possui laços ou arestas múltiplas.
+Um laço é uma aresta com extremos idênticos.
+Arestas múltiplas são duas ou mais arestas com os mesmos extremos.
+A Figura~\ref{Grafos02} mostra um exemplo de laço e arestas múltiplas.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{Pictures/Grafos02}
+	\caption[Exemplo de grafo não simples]{Exemplo de grafo com laços e arestas múltiplas.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\label{Grafos02}
+\end{figure}
+
+\subsection{Subgrafo e Subgrafo Gerador}
+Um subgrafo $G' = (V', E')$ de um grafo $G = (V,E)$ é um grafo tal que $V' \subseteq V, E' \subseteq E$.
+Diz-se que um subgrafo $G' = (V', E')$ de um grafo $G = (V,E)$ é gerador, se $ V' = V$
+A Figura~\ref{Grafos03} mostra exemplos de subgrafo e subgrafo gerador.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.9\textwidth]{Pictures/Grafos03}
+	\caption[Exemplo de subgrafo e subgrafo gerador]{Exemplo de grafo, subgrafo e subgrafo gerador.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\label{Grafos03}
+\end{figure}
+
+\subsection{Grau de um Vértice}
+O grau (\textit{degree}) de um vértice $v \in V(G)$, denotado por $d(v)$, é igual ao número de arestas incidentes a $v$. 
+Laços são contados em dobro. 
+A Figura~\ref{Grafos04} traz um exemplo para graus de vértices de um grafo.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{Pictures/Grafos04}
+	\caption[Exemplo de graus de de vértices em um grafo.]{Exemplo de graus de de vértices em um grafo.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\label{Grafos04}
+\end{figure}
+Uma interessante propriedade - \textit{Handshaking lemma} - depreeende-se de $d(v)$.
+A soma dos graus dos vértices é igual a duas vezes a cardinalidade do conjunto de arestas:
+
+$$ \sum_{v~\in~V} d(v) = 2|E| $$
+
+
+\subsection{Grafo Direcionado ou Orientado}
+Um grafo $G = (V, E)$ é orientado, ou direcionado (digrafo) quando as arestas do conjunto $E$ estão dispostas em ``pares ordenados'', ou seja, existe a conotação de direção em suas extremidades.
+Por exemplo, seja a aresta $e_1 = (v_1, v_2)$. Se $e_1$ sai de $v_1$ e entra em $v_2$, temos uma direção definida de $V_1$ para $v_2$.
+A Figura~\ref{Grafos05} mostra um exemplo de grafo orientado.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.3\textwidth]{Pictures/Grafos05}
+	\caption[Exemplo de grafo orientado.]{Exemplo de grafo orientado.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\label{Grafos05}
+\end{figure}
+
 \subsection{Busca em Grafos}
 
 %----------------------------------------------------------------------------------------
