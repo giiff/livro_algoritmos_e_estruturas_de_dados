@@ -86,8 +86,8 @@ class Grafo:
         if valor not in self.__vertices: # vertice nao existe no dicionario de vertices?
             raise ValueError("Não foi possível encontrar {0} no grafo".format(valor))
         vertice = self.__vertices[valor]
-        # Como podem existir arestas ligadas ao vertice que ser adeletado,
-        # faz-se uma copia delas para evitar erros de uma aresta apontando para apenas um vertice apos remocao
+        # Como podem existir arestas ligadas ao vertice que sera deletado,
+        # Faz-se uma copia delas para evitar erros de uma aresta apontando para apenas um vertice apos remocao
         arestasOrigemCopia = vertice.getArestasEntrada().copy()
         for aresta in arestasOrigemCopia:
             verticeAdjacente = aresta.getVerticeOrigem()

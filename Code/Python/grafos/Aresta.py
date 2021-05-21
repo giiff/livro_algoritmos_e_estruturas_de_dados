@@ -5,7 +5,6 @@ class Aresta:
     '''
     def __init__(self, verticeOrigem, verticeDestino, peso = 1, direcionada = True):
         '''
-        
         :param verticeOrigem: Vertice
         :param verticeDestino: Vertice
         :param peso: indefidido (int, float, etc...)

@@ -7,7 +7,7 @@ class Vertice:
         direcionado: Treu ou False para identificar se as arestas que eventualmente incidam no vertice sera direcionadas ou nao
         arestas: um conjunto de arestas
     '''
-    def __init__(self, valor, direcionado=True):
+    def __init__(self, valor, direcionado = True):
         '''
         Metodo construtor da classe Vertice
         :param valor: indefinido (str, int, etc...)
@@ -57,9 +57,9 @@ class Vertice:
             return self.__arestas
         # lista com arestas que entram do vertice
         arestasDeEntrada = []
-        for edge in self.__arestas: # percorre todas as arestas
-            if edge.getVerticeDestino() == self: # verifica quais arestas estao saindo vertice
-                arestasDeEntrada.append(edge) # adiciona cada aresta que sai
+        for aresta in self.__arestas: # percorre todas as arestas
+            if aresta.getVerticeDestino() == self: # verifica quais arestas estao saindo vertice
+                arestasDeEntrada.append(aresta) # adiciona cada aresta que sai
         return arestasDeEntrada
 
     def getArestas(self):
