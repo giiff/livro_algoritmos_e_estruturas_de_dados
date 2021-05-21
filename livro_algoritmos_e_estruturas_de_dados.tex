@@ -341,7 +341,7 @@ Um código escrito em linguagem C funciona com comandos, que são normalmente pa
 Uma vez escritos em um arquivo, os comandos são então lidos pelos compiladores e convertidos para a linguagem de máquina que corresponde a ação pretendida.
 O Programa~\ref{prog001} mostra um exemplo de programa em C.
 
-\lstinputlisting[label={prog001},language=C, caption={Meu primeiro programa em C.}]{Code/Basics/prog001.c}
+\lstinputlisting[label={prog001},language=C, caption={Meu primeiro programa em C.}]{Code/C/Basics/prog001.c}
 
 Após escrito, o programa precisa ser compilado. 
 Se o programa tiver sido escrito corretamente (sintaxe e estrutura), o compilador gera um executável.
@@ -365,7 +365,7 @@ Essa mensagem é representada como uma cadeira de caracteres (\textit{string}) l
 Se for necessário representar as aspas em uma \textit{string}, será necessário escapá-las usando a barra ``$\backslash$''.
 O Programa~\ref{prog002} mostra como fazer isso.
 
-\lstinputlisting[label={prog002},language=C, caption={Escapando aspas.}]{Code/Basics/prog002.c}
+\lstinputlisting[label={prog002},language=C, caption={Escapando aspas.}]{Code/C/Basics/prog002.c}
 
 \section{Trabalhando com Variáveis}
 
@@ -424,21 +424,21 @@ Combinando os tipo e os modificadores temos:
 O Programa~\ref{prog003} mostra um exemplo de variável representando o valor inteiro 10 e em seguida a impressão de uma mensagem com seu valor.
 Na impressão, é importante notar que a mensagem é formatada para que em um dterminado ponto ($\backslash$d) apareçam os dígitos correspondentes ao valor de \texttt{a} que é a variável abrigando o valor 10.
 
-\lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog003.c}
+\lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog003.c}
 
 As formas de declarrar variáveis podem ser diversas. O Programa~\ref{prog004} mostra a delaração de variáveis $n1$ e $n2$ atribuindo imediatamente os valores, enquanto a vairiável $soma$ é criada sem que seu valor seja atribuído imediatamente. No Programa~\ref{prog005}, as variáveis $n1$ e $n2$ são declaradas na mesma linha, separadas por vírgula, uma vez que são do mesmo tipo $int$.
 
-\lstinputlisting[label={prog004},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog004.c}
+\lstinputlisting[label={prog004},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog004.c}
 
-\lstinputlisting[label={prog005},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog005.c}
+\lstinputlisting[label={prog005},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog005.c}
 
 Quanto à atribuição de valores à uma variável, ela pode ser direta ou indireta, ou seja, um valor pode ser diretamente atribuído à uma variável ou o valor de uma variável pode ser atribuído a outra, como no exemplo do Programa~\ref{prog006}, onde $n1$ recebe o valor de $n2$ que recebe o valore de $n3$ que recebe $10$. Nesse caso, $n1$, $n2$ e $n3$ terão valor = $10$.
 
-\lstinputlisting[label={prog006},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog006.c}
+\lstinputlisting[label={prog006},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog006.c}
 
 Dependendo do tipo primitivo de dados da variável, diferentes formatações podem ser usadas paara a função printf() conforme pode ser visto na Tabela~\ref{tab:printf}. O Programa~\ref{prog007} ilustra um exemplo de impressão de um float com 2 casa decimais.
 
-\lstinputlisting[label={prog007},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog007.c}
+\lstinputlisting[label={prog007},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog007.c}
 
 
 \begin{table}[ht]
@@ -463,7 +463,7 @@ Dependendo do tipo primitivo de dados da variável, diferentes formatações pod
 
 O Programa~\ref{prog008}  mostra algumas variáveis e seus respectivos tamanhos em \textit{Bytes} com sua saída formatada.
 
-\lstinputlisting[label={prog008},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog008.c}
+\lstinputlisting[label={prog008},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog008.c}
 
 \subsubsection{Operadores Aritméticos}
 
@@ -507,13 +507,13 @@ Os operadores aritméticos usados em C são mostrados na Tabela~\ref{tab:oparead
 		\end{tabular}%
 \end{table}
 O Programa~\ref{prog009} ilustra o uso do operador \textit{mod}, que retorna o resto da divisão inteira.
-\lstinputlisting[label={prog009},language=C, caption={Trabalhando com variáveis.}]{Code/Basics/prog009.c}
+\lstinputlisting[label={prog009},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog009.c}
 
 \subsubsection{Entrada de Dados}
 
 A maneira mais clássica de um programa em C obter dados digitados pelo o usuário através do \textit{prompt} é usando a função \textit{scanf()}. 
 O Programa~\ref{prog010} mostra um exemplo onde os valores das variáveis $a$ e $b$ são informados pelo usuário e depois somados.
-\lstinputlisting[label={prog010},language=C, caption={Trabalhando com a função \textit{scanf()} para entrada de dados em C.}]{Code/Basics/prog010.c}
+\lstinputlisting[label={prog010},language=C, caption={Trabalhando com a função \textit{scanf()} para entrada de dados em C.}]{Code/C/Basics/prog010.c}
 
 \section{Estruturas de Decisão}
 
@@ -528,17 +528,17 @@ Se houver apenas uma instrução subordinada, não há necessidade das chaves.
 O \textit{else} é utilizado para capturar a condição não atendida no teste do \textit{if}, o ``caso contrário''.
 O Programa~\ref{prog011} mostra um exemplo onde o valor da variável $x$ é testado para saber se é maior ou igual a zero.
 Através deste teste é possível identificar se o valor é positivo (\textit{if} verdadeiro $\rightarrow valor >= 0 $), ou é negativo (\textit{else} $\rightarrow valor < 0$).
-\lstinputlisting[label={prog011},language=C, caption={Trabalhando com o \textit{if} em C.}]{Code/Basics/prog011.c}
+\lstinputlisting[label={prog011},language=C, caption={Trabalhando com o \textit{if} em C.}]{Code/C/Basics/prog011.c}
 
 Há ainda a possibilidade verificar múltiplas condições com o \textit{else if}.
 O uso do \textit{else if} é demonstrado no Programa~\ref{prog012} que verifica se um valor inteiro informado pelo usuário é = 10, 20 ou 30.
-\lstinputlisting[label={prog012},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/Basics/prog012.c}
+\lstinputlisting[label={prog012},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/C/Basics/prog012.c}
 
 Um exemplo onde caracteres podem ser usados é mostrado no Programa~\ref{prog013}.
 Neste programa uma questão apresenta alternativas $a$, $b$, $c$, $d$ e $e$. 
 O usuário escolhe a letra correspondente à resposta corrta e o programa diz se ele acertou ou não. 
 Além disso, reporta se a opção escolhida é inválida.
-\lstinputlisting[label={prog013},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/Basics/prog013.c}
+\lstinputlisting[label={prog013},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/C/Basics/prog013.c}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER X
@@ -570,16 +570,16 @@ Portanto, quando um vetor é parâmetro para uma função o que é passado é a 
 Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
 O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
 
-\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/Revisao/rev001.c}\label{rev001}
+\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/C/Revisao/rev001.c}\label{rev001}
 
-\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/Revisao/rev003.c}\label{rev003}
+\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/C/Revisao/rev003.c}\label{rev003}
 
 \subsection*{Strings em C}
 Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
 Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
 Por exemplo, a string "IFG" é um vetor de 4 elementos.
 O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
-\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/Revisao/rev002.c}\label{rev002}
+\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/C/Revisao/rev002.c}\label{rev002}
 
 
 \subsection*{Structs}
@@ -587,11 +587,11 @@ Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
 O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
 
 \newpage
-\lstinputlisting[language=C, caption={Structs em C.}]{Code/Listas/Struct.c}\label{struct01}
+\lstinputlisting[language=C, caption={Structs em C.}]{Code/C/Listas/Struct.c}\label{struct01}
 
 \newpage
 O programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C. 
-\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/Listas/Struct2.c}\label{struct02}
+\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/C/Listas/Struct2.c}\label{struct02}
 
 \section{Listas Encadeadas}
 
@@ -610,7 +610,7 @@ Por isso o encadeamento funciona com ponteiros apontando o endereço de memória
 \end{figure}
 O  programa~\ref{ListaEncadeada01} apresenta uma implementação em C de uma lista encadeada.
 \newpage
-\lstinputlisting[language=C, caption={Implementação em C de lista encadeada.}]{Code/Listas/ListaEncadeada02.c}\label{ListaEncadeada01}
+\lstinputlisting[language=C, caption={Implementação em C de lista encadeada.}]{Code/C/Listas/ListaEncadeada02.c}\label{ListaEncadeada01}
 
 \newpage
 As listas encadeadas podem conter ponteiros para outro nós além do próximo. 
@@ -618,7 +618,7 @@ As listas encadeadas podem conter ponteiros para outro nós além do próximo.
 Essas listas são conhecidas como listas duplamente encadeadas.
 O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma duplamente encadeada.
 
-\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/Listas/ListaEncadeada03.c}\label{ListaEncadeada03}
+\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/C/Listas/ListaEncadeada03.c}\label{ListaEncadeada03}
 
 \section{Pilhas}\label{pilhas}
 
@@ -629,7 +629,7 @@ O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma dup
 \subsection*{Bubble Sort}
 O algoritmo da bolha (\textit{Bubble Sort}) é um algortimo de ordenação onde cada elemento de uma posição $i$ é comparado com o elemento de posição $i+1$, os quais trocam de posição, se for o caso, para atender à ordenação procurada (crescente ou decrescente).
 O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \textit{Bubble Sort}, enquanto a Figura~\ref{diaBubleSort} ilustra seu funcionamento para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/Ordenacao/BubbleSort.c}\label{BubbleSort}
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/C/Ordenacao/BubbleSort.c}\label{BubbleSort}
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\textwidth]{Pictures/BubbleSort}
@@ -657,7 +657,7 @@ O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \te
 No algoritmo de ordenação por seleção (\textit{Selection Sort}) cada número do vetor, a partir do primeiro, é eleito e comparado com o menor número\footnote{Ou maior dependendo da ordenação desejada.} entre aqueles que estão à direita do eleito.
 O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo \textit{Selection Sort} para um vetor de tamanho 4.
 %, e a Figura~\ref{diaSelectionSort} ilustra seu funcionamento.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Selection.}]{Code/Ordenacao/SelectionSort.c}\label{SelectionSort}
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Selection.}]{Code/C/Ordenacao/SelectionSort.c}\label{SelectionSort}
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=.75\textwidth]{Pictures/SelectionSort}
@@ -684,7 +684,7 @@ O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo 
 O algoritmo de ordenação por inserção (\textit{Insertion Sort}), funciona como uma mão de baralho onde você ordena suas cartas começando a comparação entre as duas primeiras.
 No \textit{Insertion Sort}, é eleito o segundo elemento do vetor para iniciar a comparção. É percorrido o vetor de forma a garantir que todos os números à esquerda do eleito sejam menores que ele.
 O programa~\ref{InsertionSort} apresenta uma implementação em C do algoritmo \textit{Insertion Sort} para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Insertion Sort.}]{Code/Ordenacao/InsertionSort.c}\label{InsertionSort}
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Insertion Sort.}]{Code/C/Ordenacao/InsertionSort.c}\label{InsertionSort}
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=.75\textwidth]{Pictures/InsertionSort}
@@ -714,7 +714,7 @@ As soluções dos subproblemas são combinadas para prover a solução do proble
 No \textit{Merge Sort}, o vetor é dividido em partes iguais recursivamente até que haja apenas um elemento. Por exemplo se um vetor tem $n$ elementos, ele é divido em $n/2$, o resultado é novamente dividido por $2$ até que o vetor não seja mais divisível.
 Os pares da última divisão são ordenados entre si assim como na volta recursiva montando o vetor original que estará então ordenado.
 O programa~\ref{MergeSort} apresenta uma implementação em C do algoritmo \textit{Merge Sort} para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Merge Sort.}]{Code/Ordenacao/MergeSort.c}\label{MergeSort}
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Merge Sort.}]{Code/C/Ordenacao/MergeSort.c}\label{MergeSort}
 
 \subsection*{Exercícios}
 \begin{enumerate}
@@ -739,7 +739,7 @@ No \textit{Quick Sort}, o vetor é dividido em duas partes recursivamente a part
 Os pares da última divisão são ordenados entre si assim na volta recursiva colocando todos os valores menores que o pivô no vetor à sua esquerda e todos os valores maiores que o pivô no vetor à sua direita.
 Após esse procedimento o pivô estará ordenado em sua posição com relação os demais números.
 O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \textit{Quick Sort} para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Quick Sort.}]{Code/Ordenacao/QuickSort.c}\label{QuickSort}
+\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Quick Sort.}]{Code/C/Ordenacao/QuickSort.c}\label{QuickSort}
 
 \subsection*{Exercícios}
 \begin{enumerate}
@@ -762,7 +762,7 @@ O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \text
 O  programa~\ref{ArvoreBinaria01} apresenta uma implementação em C de uma árvore binária.
 A representação gráfica da árvore é feita usando a biblioteca \href{http://graphviz.org/}{Graphviz}~\cite{Ellson03graphvizand}.
 
-\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/ArvoreBinaria/ArvoreBinaria.c}\label{ArvoreBinaria01}
+\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/C/ArvoreBinaria/ArvoreBinaria.c}\label{ArvoreBinaria01}
 
 \section{Tabelas Hashing}\label{hashing}
 
