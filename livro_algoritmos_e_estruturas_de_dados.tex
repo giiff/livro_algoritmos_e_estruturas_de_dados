@@ -35,6 +35,7 @@
 \usepackage{avant} % Use the Avantgarde font for headings
 %\usepackage{times} % Use the Times font for headings
 \usepackage{mathptmx} % Use the Adobe Times Roman as the default text font together with math symbols from the Sym­bol, Chancery and Com­puter Modern fonts
+\usepackage{amsmath} % matrix
 \usepackage{microtype} % Slightly tweak font spacing for aesthetics
 % Index
 \usepackage{calc} % For simpler calculation - used for spacing the index letter headings correctly
@@ -60,6 +61,7 @@ bordercolor=black]{todonotes}
 \usepackage{graphicx}
 \usepackage{float}
 \usepackage{multirow}
+\usepackage{tikz}
 
 %CODE
 \usepackage{courier}
@@ -769,7 +771,7 @@ A representação gráfica da árvore é feita usando a biblioteca \href{http://
 \section{Grafos}\label{grafos}
 
 Grafos são estruturas de dados muito poderosas para encontrar soluções para diversos problemas.
-Exemplos disso são os algoritmos de localização e rotas para endereços, como o aparelho deGPS de um carro, ou ainda a montagem de genomas a partir de fragmentos de DNA sequenciados.
+Exemplos disso, são os algoritmos de localização e rotas para endereços, como o aparelho de GPS de um carro, ou ainda a montagem de genomas a partir de fragmentos de DNA sequenciados.
 É na verdade muito expressiva a quantidade de problemas do mundo real que podem ser computacionalmente modelados como grafos.
 
 Um grafo $G = (V,E)$ é formado por dois conjuntos $V$ e $E$, onde:
@@ -779,7 +781,10 @@ Um grafo $G = (V,E)$ é formado por dois conjuntos $V$ e $E$, onde:
 \end{itemize}
 
 Uma aresta $e~\in~E(G)$ é representada por $e=(v_1, v_2)$ ligando os vértices $v_1$ e $v_2$.
-Vejamos um exemplo. Seja o conjunto $V = {a, b, c, d, e}$. Seja o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. Uma representação gráfica deste grafo pode ser visto na Figura~\ref{Grafos01}.
+Vejamos um exemplo. 
+Seja o conjunto $V = {a, b, c, d, e}$. 
+Seja o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. 
+Uma representação gráfica deste grafo pode ser visto na Figura~\ref{Grafos01}.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.3\textwidth]{Pictures/Grafos01}
@@ -796,7 +801,7 @@ O tamanho do grafo é dado por $|V| +|E|$.
 
 
 \subsection{Grafos Simples}
-Um grafo é dito simples se não possui laços ou arestas múltiplas.
+Um grafo é dito simples, se não possui laços ou arestas múltiplas.
 Um laço é uma aresta com extremos idênticos.
 Arestas múltiplas são duas ou mais arestas com os mesmos extremos.
 A Figura~\ref{Grafos02} mostra um exemplo de laço e arestas múltiplas.
@@ -840,10 +845,83 @@ Por exemplo, seja a aresta $e_1 = (v_1, v_2)$. Se $e_1$ sai de $v_1$ e entra em 
 A Figura~\ref{Grafos05} mostra um exemplo de grafo orientado.
 \begin{figure}[htbp]
 	\centering
-	\includegraphics[width=.3\textwidth]{Pictures/Grafos05}
+	\includegraphics[width=.35\textwidth]{Pictures/Grafos05}
 	\caption[Exemplo de grafo orientado.]{Exemplo de grafo orientado.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
 	\label{Grafos05}
 \end{figure}
+
+\subsection{Representação de Grafos}
+Apesar da representação visual da informação ser uma das vantagens dos grafos, armazenar computacionalmente os grafos como figuras limita a aplicação dos algoritmos em grafos.
+Portanto, outras maneira de abstrair os grafos foram pensadas. 
+As mais largamente utilizadas são as listas e as matrizes de adjacência.
+
+
+Suponha que um grafo tenha $n$ vértices numerados $n_1, n_2, \dots, n_n$ de forma que eles estejam assim ordenados para fins de identificação apenas (não implica que são vétices ordenados e portanto um grafo ordenado).
+Uma matriz de adjacência é uma matriz $n x n$ onde o elemento $i, j$ é o número de arestas entre os nós $n_i$ e $n_j$.
+Tomando como exemplo o grafo da Figura~\ref{Grafos01}, a matriz de adjacência seria uma matriz $5 x 5$, já que temos nele o conjunto $V = {a, b, c, d, e}$ e o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. 
+A matriz de adjacência para este grafo está abaixo representada.
+$$\begin{bmatrix}
+0 & 1 & 1 & 0 & 0 \\
+1 & 0 & 1 & 1 & 0 \\
+1 & 1 & 0 & 1 & 1 \\
+0 & 1 & 1 & 0 & 1 \\
+0 & 0 & 1 & 1 & 0 \\
+\end{bmatrix}$$
+
+Para grafos não-orientados, a matriz de adjacência é simétrica, de forma que nesses casos apenas é necessário o armazenamento dos elementos da diagonal principal e os elementos abaixo dela, por exemplo.
+$$\begin{bmatrix}
+\textbf{0} & ~ & ~ & ~ & ~ \\
+\textbf{1} & \textbf{0} & ~ & ~ & ~ \\
+\textbf{1} & \textbf{1} & \textbf{0} & ~ & ~ \\
+\textbf{0} & \textbf{1} & \textbf{1} & \textbf{0} & ~ \\
+\textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{0} \\
+\end{bmatrix}$$
+
+Já a matriz de um grafo direcionado não será simétrica por a existência de uma aresta de $n_i$ para $n_j$ não implica na existência de uma aresta de $n_j$ para $n_i$.
+Os valores da matriz podem ser os pesos das arestas.
+
+Quando um grafo tem muitos vértices, mas relativamente poucas arestas, a matriz de adjacências torna-se esparsa.
+Em casos assim, serão necessários $n^2$ dados para representar um grafo com $n$ vértices.
+Consequentemente o algoritmo para percorrer toda a amatriz precisará ``olhar'' $n^2$ elementos da matriz.
+Em casos assim, o grafo pode ser melhor representado usando uma lista de adjacências.
+Em listas de adjacência são usados ponteiros para ir de um item na lista para outro usando uma lista encadeada.
+Tomando o mesmo exemplo do grafo da Figura~\ref{Grafos01}, teríamos:
+\usetikzlibrary{positioning}
+\tikzset{
+node of list/.style = { 
+             draw, 
+             fill=orange!20, 
+             minimum height=6mm, 
+             minimum width=6mm,
+             node distance=6mm
+   },
+link/.style = {
+     -stealth,
+     shorten >=1pt
+     },
+array element/.style = {
+    draw, fill=white,
+    minimum width = 6mm,
+    minimum height = 10mm
+  }
+}
+
+\def\LinkedList#1{%
+  \foreach \element in \list {
+     \node[node of list, right = of aux, name=ele] {\element};
+     \draw[link] (aux) -- (ele);
+     \coordinate (aux) at (ele.east);
+  } 
+}
+
+\begin{center}
+\begin{tikzpicture}
+\foreach \index/\list in {1/{b,c,null}, 2/{a,c,d,null}, 3/{a,b,d,e,null}, 4/{b,c,e,null}, 5/{c,d,null}} {
+   \node[array element] (aux) at (0,-\index) {\index};
+   \LinkedList{\list}
+}
+\end{tikzpicture}
+\end{center}
 
 \subsection{Busca em Grafos}
 
