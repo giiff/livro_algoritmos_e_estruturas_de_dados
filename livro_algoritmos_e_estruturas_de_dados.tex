@@ -808,7 +808,7 @@ A Figura~\ref{Grafos02} mostra um exemplo de laço e arestas múltiplas.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.5\textwidth]{Pictures/Grafos02}
-	\caption[Exemplo de grafo não simples]{Exemplo de grafo com laços e arestas múltiplas.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\caption[Exemplo de grafo não simples]{Exemplo de grafo com la{\'c}os e arestas m{\'u}ltiplas.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
 	\label{Grafos02}
 \end{figure}
 
@@ -855,10 +855,9 @@ Apesar da representação visual da informação ser uma das vantagens dos grafo
 Portanto, outras maneira de abstrair os grafos foram pensadas. 
 As mais largamente utilizadas são as listas e as matrizes de adjacência.
 
-
 Suponha que um grafo tenha $n$ vértices numerados $n_1, n_2, \dots, n_n$ de forma que eles estejam assim ordenados para fins de identificação apenas (não implica que são vétices ordenados e portanto um grafo ordenado).
 Uma matriz de adjacência é uma matriz $n x n$ onde o elemento $i, j$ é o número de arestas entre os nós $n_i$ e $n_j$.
-Tomando como exemplo o grafo da Figura~\ref{Grafos01}, a matriz de adjacência seria uma matriz $5 x 5$, já que temos nele o conjunto $V = {a, b, c, d, e}$ e o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. 
+Tomando como exemplo o grafo da Figura~\ref{Grafos01}, a matriz de adjacência seria uma matriz $5~x~5$, já que temos nele o conjunto $V = {a, b, c, d, e}$ e o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. 
 A matriz de adjacência para este grafo está abaixo representada.
 $$\begin{bmatrix}
 0 & 1 & 1 & 0 & 0 \\
@@ -868,7 +867,7 @@ $$\begin{bmatrix}
 0 & 0 & 1 & 1 & 0 \\
 \end{bmatrix}$$
 
-Para grafos não-orientados, a matriz de adjacência é simétrica, de forma que nesses casos apenas é necessário o armazenamento dos elementos da diagonal principal e os elementos abaixo dela, por exemplo.
+Para grafos não-orientados, a matriz de adjacência é simétrica, de forma que nesses casos apenas é necessário o armazenamento dos elementos da diagonal principal e os elementos abaixo (ou acima) dela.
 $$\begin{bmatrix}
 \textbf{0} & ~ & ~ & ~ & ~ \\
 \textbf{1} & \textbf{0} & ~ & ~ & ~ \\
@@ -877,7 +876,7 @@ $$\begin{bmatrix}
 \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{0} \\
 \end{bmatrix}$$
 
-Já a matriz de um grafo direcionado não será simétrica por a existência de uma aresta de $n_i$ para $n_j$ não implica na existência de uma aresta de $n_j$ para $n_i$.
+Já a matriz de um grafo direcionado não será simétrica porque a existência de uma aresta de $n_i$ para $n_j$ não implica na existência de uma aresta de $n_j$ para $n_i$.
 Os valores da matriz podem ser os pesos das arestas.
 
 Quando um grafo tem muitos vértices, mas relativamente poucas arestas, a matriz de adjacências torna-se esparsa.
