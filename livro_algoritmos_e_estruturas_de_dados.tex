@@ -944,8 +944,9 @@ DFS(vertice, visitados = []):
 \end{lstlisting}
 
 A busca em largura (\textit{Breadth-First Search}) é uma estratégia que expande a fronteira de vértices descobertos e não descobertos de maneira uniforme.
-Dado um grafo $G = (V,E)$ e um vértice inicial $v_1$, a busca em largura explora todas as arestas de G para checar quais vŕtices são alcançáveis a partir de $v_1$.
-Tipicamente a complexidade de tempo desse algoritmo é de $O(|V|)$ para percorrer o grafo inteiro~\cite{cormen2009}.
+Dado um grafo $G = (V,E)$ e um vértice $v_1$, inicialmente inclui-se o vértice $V_1$ em uma fila, busca-se todos os vértices adjacentes a ele e inclui-se eles também nessa fila após retirar $v_1$ da fila.
+Então é feito o mesmo procedimento sucessivamente com cada vértice remanescente nesta fila.
+Tipicamente a complexidade de tempo desse algoritmo também é de $O(|V| + |E|)$ para percorrer o grafo inteiro~\cite{cormen2009}.
 
 
 %----------------------------------------------------------------------------------------

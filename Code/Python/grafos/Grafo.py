@@ -1,6 +1,6 @@
-import math
 import numpy as np
 import pandas as pd
+from collections import deque
 from .Aresta import Aresta
 from .Vertice import Vertice
 
@@ -9,15 +9,16 @@ class Grafo:
     Classe Grafo
     Representa um grafo que pode ou nao ser direcionado
     '''
-    def __init__(self, direcionado = True):
+
+    def __init__(self, direcionado=True):
         '''
         Metodo construtor da classe Grafo
         Por padrao o grafo sera direcionado, a menos que explicite-se False para o parametro direcionado
         :param direcionado: boolean
         '''
-        self.__vertices = {} # dicionario
-        self.__arestas = set() # conjunto
-        self.__direcionado = direcionado # boolean
+        self.__vertices = {}  # dicionario
+        self.__arestas = set()  # conjunto
+        self.__direcionado = direcionado  # boolean
 
     def __str__(self):
         '''
@@ -31,29 +32,29 @@ class Grafo:
 
     def adicionarVertice(self, valor):
         '''
-        Adicina um vertice ao grafo
-        A partir do valor informado, cria-se um vertice com os metodos da classe Vertice
-        Esse vertice e entao inserido no dicionario de vertice do grafo tendo o valor como chave*
+        Adicina um verticeLabel ao grafo
+        A partir do valor informado, cria-se um verticeLabel com os metodos da classe Vertice
+        Esse verticeLabel e entao inserido no dicionario de verticeLabel do grafo tendo o valor como chave*
             *atencao que neste caso nao pode haver vertices com o mesmo valor
         :param valor: indefinido (int, float, str, etc)
         :return: void
         '''
-        if valor not in self.__vertices: # ainda nao existe um vertice com esse valor?
+        if valor not in self.__vertices:  # ainda nao existe um verticeLabel com esse valor?
             self.__vertices[valor] = Vertice(valor, self.__direcionado)
 
-    def adicionarAresta(self, origem, destino, peso = 1):
+    def adicionarAresta(self, origem, destino, peso=1):
         '''
         Adiciona uma aresta ao conjunto de arestas do grafo
         A aresta e criada utilizando os metodos da classe Aresta
         Precisam existir vertices de origem e destino comos valores previamente informados
-        :param origem: indefinido (int, str, etc) valor do vertice de onde sai a aresta
-        :param destino: indefinido (int, str, etc) valor do vertice onde entra a aresta
+        :param origem: indefinido (int, str, etc) valor do verticeLabel de onde sai a aresta
+        :param destino: indefinido (int, str, etc) valor do verticeLabel onde entra a aresta
         :param peso: indefinido (int, float)
         :return: void
         '''
         verticeOrigem = self.getVertice(origem)
         verticeDestino = self.getVertice(destino)
-        if (verticeOrigem or verticeDestino) is None: # verifica se existem os vertices de origem e destino
+        if (verticeOrigem or verticeDestino) is None:  # verifica se existem os vertices de origem e destino
             raise ValueError("Nao ha no grafo, vertices de origem ou de destino com os valores informados.")
         aresta = Aresta(verticeOrigem, verticeDestino, peso, self.__direcionado)
         verticeOrigem.adicionarAresta(aresta)
@@ -61,20 +62,20 @@ class Grafo:
             verticeDestino.adicionarAresta(aresta)
         self.__arestas.add(aresta)
 
-    def removerAresta(self, origem, destino, peso = 1):
+    def removerAresta(self, origem, destino, peso=1):
         '''
         Remove uma aresta do grafo
-        :param origem: indefinido (int, str, etc) valor do vertice de onde sai a aresta
-        :param destino: indefinido (int, str, etc) valor do vertice onde entra a aresta
+        :param origem: indefinido (int, str, etc) valor do verticeLabel de onde sai a aresta
+        :param destino: indefinido (int, str, etc) valor do verticeLabel onde entra a aresta
         :param peso: indefinido (int, float)
         :return: void
         '''
         verticeOrigem = self.getVertice(origem)
         verticeDestino = self.getVertice(destino)
-        if (verticeOrigem or verticeDestino) is None: # verifica se existem os vertices de origem e destino
+        if (verticeOrigem or verticeDestino) is None:  # verifica se existem os vertices de origem e destino
             raise ValueError("Nao ha no grafo, vertices de origem ou de destino com os valores informados.")
         aresta = Aresta(verticeOrigem, verticeDestino, peso, self.__direcionado)
-        if aresta not in self.__arestas: # aresta informada nao existe no conjunto de arestas do grafo
+        if aresta not in self.__arestas:  # aresta informada nao existe no conjunto de arestas do grafo
             raise ValueError("Não foi possível encontrar {0} no grafo.".format(str(aresta)))
         verticeOrigem.removerAresta(aresta)
         verticeDestino.removerAresta(aresta)
@@ -82,15 +83,15 @@ class Grafo:
 
     def removerVertice(self, valor):
         '''
-        Remove um vertice do grafo com base em seu valor
+        Remove um verticeLabel do grafo com base em seu valor
         :param valor: indefinido (int, str, etc)
         :return: void
         '''
-        if valor not in self.__vertices: # vertice nao existe no dicionario de vertices?
+        if valor not in self.__vertices:  # verticeLabel nao existe no dicionario de vertices?
             raise ValueError("Não foi possível encontrar {0} no grafo".format(valor))
         vertice = self.__vertices[valor]
-        # Como podem existir arestas ligadas ao vertice que sera deletado,
-        # Faz-se uma copia delas para evitar erros de uma aresta apontando para apenas um vertice apos remocao
+        # Como podem existir arestas ligadas ao verticeLabel que sera deletado,
+        # Faz-se uma copia delas para evitar erros de uma aresta apontando para apenas um verticeLabel apos remocao
         arestasOrigemCopia = vertice.getArestasEntrada().copy()
         for aresta in arestasOrigemCopia:
             verticeAdjacente = aresta.getVerticeOrigem()
@@ -103,12 +104,12 @@ class Grafo:
             verticeAdjacente.removerAresta(aresta)
             if aresta in self.__arestas:
                 self.__arestas.remove(aresta)
-        # remove finalmente o vertice do grafo
+        # remove finalmente o verticeLabel do grafo
         self.__vertices.pop(valor)
 
     def getVertice(self, valor):
         '''
-        Retorna um vertice com base em seu valor
+        Retorna um verticeLabel com base em seu valor
         :param valor: indefinido (int, str, etc)
         :return: Vertice
         '''
@@ -130,7 +131,7 @@ class Grafo:
 
     def getGrauEntrada(self, valor):
         '''
-        Retorna o grau de entrada de um dado vertice a partir de seu valor
+        Retorna o grau de entrada de um dado verticeLabel a partir de seu valor
         :param valor: indefinido (int, str, etc)
         :return: int
         '''
@@ -138,7 +139,7 @@ class Grafo:
 
     def getGrauSaida(self, valor):
         '''
-        Retorna o grau de saida de um dado vertice a partir de seu valor
+        Retorna o grau de saida de um dado verticeLabel a partir de seu valor
         :param valor: indefinido (int, str, etc)
         :return: int
         '''
@@ -146,7 +147,7 @@ class Grafo:
 
     def getGrau(self, valor):
         '''
-        Retorna o grau de um vertice (quantidade de arestas entrada e saida)
+        Retorna o grau de um verticeLabel (quantidade de arestas entrada e saida)
         :param valor: 
         :return: int
         '''
@@ -176,11 +177,11 @@ class Grafo:
         matriz = np.zeros((
             len(listaDeVertices),
             len(listaDeVertices)),
-            dtype = object)
-        matrizDeAdjacencias = pd.DataFrame(matriz, columns = listaDeVertices, index = listaDeVertices)
+            dtype=object)
+        matrizDeAdjacencias = pd.DataFrame(matriz, columns=listaDeVertices, index=listaDeVertices)
         for index, row in matrizDeAdjacencias.iterrows():
             for e in self.getArestas():
-                matrizDeAdjacencias.loc[e.getVerticeOrigem().getValor(),e.getVerticeDestino().getValor()] = e.getPeso()
+                matrizDeAdjacencias.loc[e.getVerticeOrigem().getValor(), e.getVerticeDestino().getValor()] = e.getPeso()
         return matrizDeAdjacencias
 
     def getMatrizAdjacenciaComoArray(self):
@@ -197,9 +198,16 @@ class Grafo:
         '''
         return self.getMatrizAdjacencia().to_dict('dict')
 
-    def DFS(self, vertice, visitados = []):
-        if vertice not in visitados: # vertice da vez ainda nao foi visitado?
-            visitados.append(vertice) # adiciona-o aos visitados
+    def DFS(self, verticeLabel, visitados=[]):
+        '''
+        Busca em profundidade
+        Retorna uma lista com os vertices visitados
+        :param verticeLabel: str
+        :param visitados: list()
+        :return: list()
+        '''
+        if verticeLabel not in visitados:  # verticeLabel da vez ainda nao foi visitado?
+            visitados.append(verticeLabel)  # adiciona-o aos visitados
             for v in self.getVertices():
                 if v not in visitados:
                     return visitados
@@ -208,7 +216,26 @@ class Grafo:
                         visitados = self.DFS(adjacente, visitados)
         return visitados
 
-
+    def BFS(self, verticeLabel, visitados=[], fila=deque([])):
+        '''
+        Busca em largura
+        Retorna uma lista com os vertices visitados
+        :param verticeLabel: str
+        :param visitados: list()
+        :param fila: collections.deque()
+        :return: list()
+        '''
+        fila.append(verticeLabel)  # adiciona o vertice 1 a fila
+        if verticeLabel not in visitados:  # se vertice 1 nao esta em visitados
+            visitados.append(verticeLabel)  # adiciona vertice 1 a visitados
+        while fila:  # enquanto houver vertices na fila
+            vertice = self.getVertice(fila.popleft())  # tira vertice ja visitado da fila
+            for e in self.getVertice(vertice.getValor()).getArestas():  # percorre todas as arestas saindo do vertice
+                adjacente = e.getVerticeDestino().getValor()  # para cada aresta, um vertice adjacente
+                if adjacente not in visitados:  # se o vertice adjacente nao esta em visitados
+                    visitados.append(adjacente)  # insere o adjacente em visitados
+                    fila.append(adjacente)  # tira o adjacente da fila
+        return visitados  # retorna a lista de visitados
 
 
 if __name__ == "__main__":

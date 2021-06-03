@@ -15,27 +15,27 @@ class Aresta:
         self.__peso = peso
         self.__direcionada = direcionada
 
-    def __str__(self):
-        '''
-        Método __str__ converte o objeto da classe para um formato string impimivel
-        :return: str
-        '''
-        if self.__direcionada:
-            padraoDeImpressao = "{0} |-{1}-> {2}"
-        else:
-            padraoDeImpressao = "{0} <-{1}-> {2}"
-        return padraoDeImpressao.format(self.__verticeOrigem.getValor(), self.__peso, self.__verticeDestino.getValor())
+    # def __str__(self):
+    #     '''
+    #     Método __str__ converte o objeto da classe para um formato string impimivel
+    #     :return: str
+    #     '''
+    #     if self.__direcionada:
+    #         padraoDeImpressao = "{0} |-{1}-> {2}"
+    #     else:
+    #         padraoDeImpressao = "{0} <-{1}-> {2}"
+    #     return padraoDeImpressao.format(self.__verticeOrigem.getValor(), self.__peso, self.__verticeDestino.getValor())
 
     def getVerticeOrigem(self):
         '''
-        Retorna o vertice de origem da aresta
+        Retorna o verticeLabel de origem da aresta
         :return: Vertice
         '''
         return self.__verticeOrigem
 
     def getVerticeDestino(self):
         '''
-        Retorna o vertice de destino da aresta
+        Retorna o verticeLabel de destino da aresta
         :return: Vertice
         '''
         return self.__verticeDestino
@@ -68,7 +68,7 @@ class Aresta:
 
     def __hash__(self):
         '''
-        Gera um hash a partir do valor do vertice
+        Gera um hash a partir do valor do verticeLabel
         :return: str
         '''
         return hash(self.__verticeOrigem.getValor() +
