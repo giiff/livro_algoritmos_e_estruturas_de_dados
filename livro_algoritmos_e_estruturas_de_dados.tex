@@ -924,6 +924,30 @@ array element/.style = {
 
 \subsection{Busca em Grafos}
 
+A busca em profundidade (\textit{Deep-First Search}) é um algoritmo para percorrer os nó de um grafo de uma forma particular. 
+Dado um grafo $G = (V,E)$ e um vértice inicial $v_1$, a estratégia é buscar, sempre que possível, o mais profundo no grafo partindo de um vértice inicial $v_1$ e atravessando as arestas e outros vértices a ele conectados~\cite{ziviani2007}.
+Quando todas as arestas adjacentes a $v_1$ tiverem sido exploradas a busca anda para trás (\textit{backtrack}) para explorar outros vértices que saem do vértice $v_1$ que ainda não tenham sido descobertos.
+O processo se repete até que todos os vértices do grafo tenham sido visitados.
+Tipicamente a complexidade de tempo desse algoritmo é de $O(|V|~+~|E|)$ para percorrer o grafo inteiro~\cite{cormen2009}.
+O algoritmo a seguir descreve a busca em profundidade.
+\begin{lstlisting}
+DFS(vertice, visitados = []):
+	Se vertice da vez ainda nao foi visitado:
+		adicionar na lista de visitados
+        Para cada vertice do grafo:
+        		Se vertice nao esta na lista de visitados:
+		        retornar a lista de visitados
+            Senao:
+                Para cada vertice adjacente ao vertice da vez:
+                		lista de visitados <- DFS(adjacente, visitados)
+        retornar visitados
+\end{lstlisting}
+
+A busca em largura (\textit{Breadth-First Search}) é uma estratégia que expande a fronteira de vértices descobertos e não descobertos de maneira uniforme.
+Dado um grafo $G = (V,E)$ e um vértice inicial $v_1$, a busca em largura explora todas as arestas de G para checar quais vŕtices são alcançáveis a partir de $v_1$.
+Tipicamente a complexidade de tempo desse algoritmo é de $O(|V|)$ para percorrer o grafo inteiro~\cite{cormen2009}.
+
+
 %----------------------------------------------------------------------------------------
 %	CHAPTER X
 %----------------------------------------------------------------------------------------

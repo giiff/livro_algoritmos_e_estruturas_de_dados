@@ -21,7 +21,7 @@ class Aresta:
         :return: str
         '''
         if self.__direcionada:
-            padraoDeImpressao = "{0} -{1}-> {2}"
+            padraoDeImpressao = "{0} |-{1}-> {2}"
         else:
             padraoDeImpressao = "{0} <-{1}-> {2}"
         return padraoDeImpressao.format(self.__verticeOrigem.getValor(), self.__peso, self.__verticeDestino.getValor())

@@ -1,3 +1,6 @@
+import math
+import numpy as np
+import pandas as pd
 from .Aresta import Aresta
 from .Vertice import Vertice
 
@@ -159,6 +162,53 @@ class Grafo:
         :return: boolean
         '''
         return self.__direcionado
+
+    def getMatrizAdjacencia(self):
+        '''
+        Retorna um matriz de adjacencias como obheto pandas dataframe
+        Os indices das linhas e colunas sao os labels dos vertices
+        Os valores são os pesos das arestas
+        :return: pd.DataFrame
+        '''
+        listaDeVertices = []
+        for l in self.getVertices():
+            listaDeVertices.append(l)
+        matriz = np.zeros((
+            len(listaDeVertices),
+            len(listaDeVertices)),
+            dtype = object)
+        matrizDeAdjacencias = pd.DataFrame(matriz, columns = listaDeVertices, index = listaDeVertices)
+        for index, row in matrizDeAdjacencias.iterrows():
+            for e in self.getArestas():
+                matrizDeAdjacencias.loc[e.getVerticeOrigem().getValor(),e.getVerticeDestino().getValor()] = e.getPeso()
+        return matrizDeAdjacencias
+
+    def getMatrizAdjacenciaComoArray(self):
+        '''
+        Retorna a matriz de adjacencias convertida para um array numpy
+        :return: np.Array
+        '''
+        return self.getMatrizAdjacencia().to_numpy()
+
+    def getMatrizAdjacenciaComoDict(self):
+        '''
+        Retorna a matriz de adjacencias convertida para um dicionario
+        :return: dict
+        '''
+        return self.getMatrizAdjacencia().to_dict('dict')
+
+    def DFS(self, vertice, visitados = []):
+        if vertice not in visitados: # vertice da vez ainda nao foi visitado?
+            visitados.append(vertice) # adiciona-o aos visitados
+            for v in self.getVertices():
+                if v not in visitados:
+                    return visitados
+                else:
+                    for adjacente in self.getVertices():
+                        visitados = self.DFS(adjacente, visitados)
+        return visitados
+
+
 
 
 if __name__ == "__main__":
