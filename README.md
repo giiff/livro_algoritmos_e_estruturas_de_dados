@@ -8,6 +8,8 @@ Sua finalidade é prover material didático orientado para o perfil de tecnólog
 
 ## Como obter os códigos deste repositório ?
 
+Os códigos, em geral, estão em C. Recentemente comçou a implementação também em Python 3.
+
 ### Primeira vez que vai baixar o repositório ?
 
 * No terminal de seu Linux, escolha e acesse a pasta de trabalho e digite/cole:
@@ -50,7 +52,9 @@ gcc meu_programa.c -o meu_executavel
 ./meu_executavel
 ```
 
-# Usando o GIT: Como gerenciar o MEU PRÓPRIO repositório
+# Usando o GIT: 
+
+Como gerenciar o SEU PRÓPRIO repositório?
 
 ## Como criar um repositório novo?
 
