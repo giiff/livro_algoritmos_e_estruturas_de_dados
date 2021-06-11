@@ -874,7 +874,7 @@ a & 0 & 1 & 1 & 0 & 0 \\
 b & 1 & 0 & 1 & 1 & 0 \\
 c & 1 & 1 & 0 & 1 & 1 \\
 d & 0 & 1 & 1 & 0 & 1 \\
-3 & 0 & 0 & 1 & 1 & 0 \\
+e & 0 & 0 & 1 & 1 & 0 \\
 \end{array}
 \right)
 \qquad
@@ -939,6 +939,7 @@ array element/.style = {
 \end{figure}
 
 \subsection{Busca em Grafos}
+\indent
 
 A busca em profundidade (\textit{Deep-First Search}) é um algoritmo para percorrer os vértices de um grafo.
 Dado um grafo $G = (V,E)$ e um vértice inicial $v_1$, a estratégia da busca em profundidade é buscar, sempre que possível, o mais profundo no grafo.
@@ -955,7 +956,7 @@ A Figura~\ref{Grafos_DFS} mostra um exemplo ilustrado do funcionamento do algori
 \end{figure}
 
 A busca em largura (\textit{Breadth-First Search}) é uma estratégia que expande a fronteira de vértices descobertos e não descobertos de maneira uniforme.
-Dado um grafo $G = (V,E)$ e um vértice $v_1$, inicialmente inclui-se o vértice $V_1$ em uma lista de vértices visitados.
+Dado um grafo $G = (V,E)$ e um vértice $v_1$, inicialmente inclui-se o vértice $v_1$ em uma lista de vértices visitados.
 Busca-se então, todos os vértices adjacentes a $v_1$, os quais são incluídos em uma fila para ser visitados.
 Os vértices vão sendo incluídos na lista de visitados à medida que vão sendo excluídos da fila de visitação.
 O mesmo procedimento é executado sucessivamente até que todos os vértices tenham sido visitados e não haja mais nenhum na fila para visitação.

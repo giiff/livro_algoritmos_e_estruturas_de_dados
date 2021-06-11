@@ -166,7 +166,7 @@ class Grafo:
 
     def getMatrizAdjacencia(self):
         '''
-        Retorna um matriz de adjacencias como obheto pandas dataframe
+        Retorna um matriz de adjacencias como objeto pandas dataframe
         Os indices das linhas e colunas sao os labels dos vertices
         Os valores são os pesos das arestas
         :return: pd.DataFrame
@@ -234,18 +234,18 @@ class Grafo:
                 adjacente = e.getVerticeDestino().getValor()  # para cada aresta, um vertice adjacente
                 if adjacente not in visitados:  # se o vertice adjacente nao esta em visitados
                     visitados.append(adjacente)  # insere o adjacente em visitados
-                    fila.append(adjacente)  # tira o adjacente da fila
+                    fila.append(adjacente)  # insere o adjacente da fila a visitar
         return visitados  # retorna a lista de visitados
 
 
 if __name__ == "__main__":
-    G = Grafo()
+#     G = Grafo()
 
-    G.adicionarVertice("a")
-    G.adicionarVertice("b")
-    G.adicionarVertice("c")
+#     G.adicionarVertice("a")
+#     G.adicionarVertice("b")
+#     G.adicionarVertice("c")
 
-    G.adicionarAresta("a", "b", 2)
-    G.adicionarAresta("a", "c", 7)
-    G.adicionarAresta("c", "b", 1)
-    G.adicionarAresta("b", "c", 3)
+#     G.adicionarAresta("a", "b", 2)
+#     G.adicionarAresta("a", "c", 7)
+#     G.adicionarAresta("c", "b", 1)
+#     G.adicionarAresta("b", "c", 3)
