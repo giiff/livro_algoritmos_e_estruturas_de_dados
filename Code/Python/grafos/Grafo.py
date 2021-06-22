@@ -3,6 +3,7 @@ import pandas as pd
 from collections import deque
 from .Aresta import Aresta
 from .Vertice import Vertice
+import math
 
 class Grafo:
     '''
@@ -237,15 +238,38 @@ class Grafo:
                     fila.append(adjacente)  # insere o adjacente da fila a visitar
         return visitados  # retorna a lista de visitados
 
+    def Prim(self):
+        '''
+        Arvore geradora minima de Prim
+        Retorna o subgrafo que configura uma arvore geradora minima de Prim
+        :return: list()
+        '''
+
+        listaVisitar = []
+        [listaVisitar.append(v_i) for v_i in self.getVertices()] # Lista com todos os vertices do grafo para visitar
+        print(f"Todos os vertices: {listaVisitar}\n\n")
+        arvoreGeradoraMinima = [] # arvore geradora minima: lista de vertices
+        for label in listaVisitar:
+            menorPeso = math.inf
+            for aresta in self.getVertice(label).getArestasSaida(): # todas arestas saindo de v_i
+                if aresta:
+                    if aresta.getPeso() < menorPeso:
+                        menorPeso = aresta.getPeso()
+            for aresta in self.getVertice(label).getArestasSaida(): # todas arestas saindo de v_i
+                if aresta and aresta.getPeso() == menorPeso:
+                    arvoreGeradoraMinima.append( [label, aresta.getPeso(), aresta.getVerticeDestino().getValor()] )
+        return arvoreGeradoraMinima
+
+
 
 if __name__ == "__main__":
-#     G = Grafo()
+    G = Grafo()
 
-#     G.adicionarVertice("a")
-#     G.adicionarVertice("b")
-#     G.adicionarVertice("c")
+    G.adicionarVertice("a")
+    G.adicionarVertice("b")
+    G.adicionarVertice("c")
 
-#     G.adicionarAresta("a", "b", 2)
-#     G.adicionarAresta("a", "c", 7)
-#     G.adicionarAresta("c", "b", 1)
-#     G.adicionarAresta("b", "c", 3)
+    G.adicionarAresta("a", "b", 2)
+    G.adicionarAresta("a", "c", 7)
+    G.adicionarAresta("c", "b", 1)
+    G.adicionarAresta("b", "c", 3)
