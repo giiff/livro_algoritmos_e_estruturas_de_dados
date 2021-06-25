@@ -244,23 +244,34 @@ class Grafo:
         Retorna o subgrafo que configura uma arvore geradora minima de Prim
         :return: list()
         '''
-
         listaVisitar = []
-        [listaVisitar.append(v_i) for v_i in self.getVertices()] # Lista com todos os vertices do grafo para visitar
+        [listaVisitar.append(v_i) for v_i in self.getVertices()]# todos os vertices do grafo para visitar
         print(f"Todos os vertices: {listaVisitar}\n\n")
+
         arvoreGeradoraMinima = [] # arvore geradora minima: lista de vertices
-        for label in listaVisitar:
+        for valor in listaVisitar:
             menorPeso = math.inf
-            for aresta in self.getVertice(label).getArestasSaida(): # todas arestas saindo de v_i
+            for aresta in self.getVertice(valor).getArestasSaida(): # todas arestas saindo de v_i
                 if aresta:
-                    if aresta.getPeso() < menorPeso:
-                        menorPeso = aresta.getPeso()
-            for aresta in self.getVertice(label).getArestasSaida(): # todas arestas saindo de v_i
+                    if aresta.getPeso() < menorPeso: # 80 < 240
+                        menorPeso = aresta.getPeso() # 240 -> 80
+            for aresta in self.getVertice(valor).getArestasSaida(): # todas arestas saindo de v_i
                 if aresta and aresta.getPeso() == menorPeso:
-                    arvoreGeradoraMinima.append( [label, aresta.getPeso(), aresta.getVerticeDestino().getValor()] )
+                    arvoreGeradoraMinima.append( [valor, aresta.getPeso(), aresta.getVerticeDestino().getValor()] )
         return arvoreGeradoraMinima
 
+    def Dijkstra(self):
 
+        listaVisitar = []
+        dist = {}
+        prev = {}
+        for v_i in self.getVertices(): # todos os vertices do grafo para visitar
+            dist[v_i] = math.inf
+            prev[v_i] = math.inf
+            listaVisitar.append(v_i)
+            print(f"({v_i}, {dist[v_i]}, {prev[v_i]})")
+        print(f"Todos os vertices: {listaVisitar}\n\n")
+        #TODO Terminar a implementacao deste metodo
 
 if __name__ == "__main__":
     G = Grafo()
