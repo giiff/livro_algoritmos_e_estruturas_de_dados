@@ -253,25 +253,56 @@ class Grafo:
             menorPeso = math.inf
             for aresta in self.getVertice(valor).getArestasSaida(): # todas arestas saindo de v_i
                 if aresta:
-                    if aresta.getPeso() < menorPeso: # 80 < 240
-                        menorPeso = aresta.getPeso() # 240 -> 80
+                    if aresta.getPeso() < menorPeso:
+                        menorPeso = aresta.getPeso()
             for aresta in self.getVertice(valor).getArestasSaida(): # todas arestas saindo de v_i
                 if aresta and aresta.getPeso() == menorPeso:
                     arvoreGeradoraMinima.append( [valor, aresta.getPeso(), aresta.getVerticeDestino().getValor()] )
         return arvoreGeradoraMinima
 
-    def Dijkstra(self):
+    def Dijkstra(self, origem):
+        '''
+        Algoritmo de menor caminho de Dijkstra
+        :param origem: str
+        :return: peso:dict, antessores:dict
+        '''
+        peso = {}
+        antecessor = {}
+        V = []
+        [V.append(v_i) for v_i in self.getVertices()]# todos os vertices do grafo para visitar O(n)
+        for v in V: # O(n)
+            peso[v] = math.inf # peso desconhecido entre origem e todos vertice v
+            antecessor[v] = math.inf # vertice de onde vem o menor peso
+        peso[origem] = 0 # peso zero quando origem = destino
+        while V:
+            vComMenorPeso =   self.getVComMenorPeso( V, peso ) # v com menor peso
+            V.remove(vComMenorPeso) # retira o vComMenorPeso do conjunto V
+            for aresta in self.getVertice(vComMenorPeso).getArestasSaida(): # todas arestas saindo do v_i adjacente O(e+v)
+                pesoSomadoParaComparacao = peso[vComMenorPeso] + aresta.getPeso() # peso somado
+                if  pesoSomadoParaComparacao < peso[aresta.getVerticeDestino().getValor()]: # compara peso somado
+                    peso[aresta.getVerticeDestino().getValor()] = pesoSomadoParaComparacao # novo menor peso de v_i
+                    antecessor[aresta.getVerticeDestino().getValor()] = vComMenorPeso # adiciona v_i na lista de antecessores
+        return peso, antecessor
 
-        listaVisitar = []
-        dist = {}
-        prev = {}
-        for v_i in self.getVertices(): # todos os vertices do grafo para visitar
-            dist[v_i] = math.inf
-            prev[v_i] = math.inf
-            listaVisitar.append(v_i)
-            print(f"({v_i}, {dist[v_i]}, {prev[v_i]})")
-        print(f"Todos os vertices: {listaVisitar}\n\n")
-        #TODO Terminar a implementacao deste metodo
+    def getVComMenorPeso(self, V:list, pesos:dict):
+        vComMenorPeso = None
+        for node in V: # O(n)
+            if vComMenorPeso == None:
+                vComMenorPeso = node
+            elif pesos[node] < pesos[vComMenorPeso]:
+                vComMenorPeso = node
+        return vComMenorPeso
+
+    def getCaminho(self, origem: str, destino:str, antecessor:dict):
+        caminho = [destino]
+        while antecessor[destino] != origem: # O(n)
+            if destino in antecessor:
+                caminho.append(antecessor[destino])
+                antecessor[destino] = antecessor[antecessor[destino]]
+        caminho.append(origem)
+        caminho.reverse()
+        return caminho
+
 
 if __name__ == "__main__":
     G = Grafo()
