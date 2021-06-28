@@ -1,10 +1,10 @@
 class Vertice:
     '''
     Classe Vertice
-    Representa um verticeLabel de um grafo
-    Cada verticeLabel, tem 3 atributos:
-        valor: valor do verticeLabel
-        direcionado: Treu ou False para identificar se as arestas que eventualmente incidam no verticeLabel sera direcionadas ou nao
+    Representa um valor de um grafo
+    Cada valor, tem 3 atributos:
+        valor: valor do valor
+        direcionado: Treu ou False para identificar se as arestas que eventualmente incidam no valor sera direcionadas ou nao
         arestas: um conjunto de arestas
     '''
     def __init__(self, valor, direcionado = True):
@@ -32,51 +32,51 @@ class Vertice:
 
     def getArestasSaida(self):
         '''
-        Retorna uma lista com as arestas que saem do verticeLabel
+        Retorna uma lista com as arestas que saem do valor
         :return: list
         '''
-        # lista vazia quando o verticeLabel nao e parte de um grafo direcionado
+        # lista vazia quando o valor nao e parte de um grafo direcionado
         if self.__direcionado == False:
             return self.__arestas
-        # lista com arestas que saem do verticeLabel
+        # lista com arestas que saem do valor
         arestasDeSaida = []
         for aresta in self.__arestas: # percorre todas as arestas
-            if aresta.getVerticeOrigem() == self: # verifica quais arestas estao saindo verticeLabel
+            if aresta.getVerticeOrigem() == self: # verifica quais arestas estao saindo valor
                 arestasDeSaida.append(aresta) # adiciona cada aresta que sai
         return arestasDeSaida
 
     def getArestasEntrada(self):
         '''
-        Retorna uma lista com as arestas que entram do verticeLabel
+        Retorna uma lista com as arestas que entram do valor
         :return: list
         '''
-        # lista vazia quando o verticeLabel nao e parte de um grafo direcionado
+        # lista vazia quando o valor nao e parte de um grafo direcionado
         if self.__direcionado == False:
             return self.__arestas
-        # lista com arestas que entram do verticeLabel
+        # lista com arestas que entram do valor
         arestasDeEntrada = []
         for aresta in self.__arestas: # percorre todas as arestas
-            if aresta.getVerticeDestino() == self: # verifica quais arestas estao saindo verticeLabel
+            if aresta.getVerticeDestino() == self: # verifica quais arestas estao saindo valor
                 arestasDeEntrada.append(aresta) # adiciona cada aresta que sai
         return arestasDeEntrada
 
     def getArestas(self):
         '''
-        Retorna o conjunto de arestas do verticeLabel (entradas e saidas)
+        Retorna o conjunto de arestas do valor (entradas e saidas)
         :return:
         '''
         return self.__arestas
 
     def getValor(self):
         '''
-        retorna o valor do verticeLabel
+        retorna o valor do valor
         :return:
         '''
         return self.__valor
 
     def adicionarAresta(self, aresta):
         '''
-        Adiciona uma nova aresta no conjunto de arestas do verticeLabel
+        Adiciona uma nova aresta no conjunto de arestas do valor
         :param aresta: Aresta
         :return: void
         '''
@@ -84,7 +84,7 @@ class Vertice:
 
     def removerAresta(self, aresta):
         '''
-        Remove uma dada aresta do conjunto de arestas do verticeLabel
+        Remove uma dada aresta do conjunto de arestas do valor
         :param aresta: Aresta
         :return: void
         '''
@@ -92,7 +92,7 @@ class Vertice:
             self.__arestas.remove(aresta)
         else:
             raise ValueError(
-                "Nao foi possivel encontrar a aresta {0} no verticeLabel {1}".format(str(aresta), str(self)))
+                "Nao foi possivel encontrar a aresta {0} no valor {1}".format(str(aresta), str(self)))
 
     def __eq__(self, outroVertice):
         '''
@@ -104,7 +104,7 @@ class Vertice:
 
     def __hash__(self):
         '''
-        Gera um hash a partir do valor do verticeLabel
+        Gera um hash a partir do valor do valor
         :return: str
         '''
         return hash(self.getValor())

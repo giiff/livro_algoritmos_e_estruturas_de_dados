@@ -28,14 +28,14 @@ class Aresta:
 
     def getVerticeOrigem(self):
         '''
-        Retorna o verticeLabel de origem da aresta
+        Retorna o valor de origem da aresta
         :return: Vertice
         '''
         return self.__verticeOrigem
 
     def getVerticeDestino(self):
         '''
-        Retorna o verticeLabel de destino da aresta
+        Retorna o valor de destino da aresta
         :return: Vertice
         '''
         return self.__verticeDestino
@@ -68,7 +68,7 @@ class Aresta:
 
     def __hash__(self):
         '''
-        Gera um hash a partir do valor do verticeLabel
+        Gera um hash a partir do valor do valor
         :return: str
         '''
         return hash(self.__verticeOrigem.getValor() +
