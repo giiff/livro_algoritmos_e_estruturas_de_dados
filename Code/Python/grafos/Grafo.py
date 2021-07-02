@@ -258,7 +258,7 @@ class Grafo:
 
     def Dijkstra(self, origem):
         '''
-        Algoritmo de menor caminho de Dijkstra
+        Algoritmo de menor caminho usando Dijkstra em um grafo G = (V,E)
         :param origem: str
         :return: peso:dict, antessores:dict
         '''
@@ -271,33 +271,38 @@ class Grafo:
             antecessor[v] = math.inf # vertice de onde vem o menor peso
         peso[origem] = 0 # peso zero quando origem = destino
         while V:
-            vComMenorPeso =   self.getVComMenorPeso( V, peso ) # v com menor peso
+            vComMenorPeso =  self.getVComMenorPeso( V, peso ) # v com menor peso
             V.remove(vComMenorPeso) # retira o vComMenorPeso do conjunto V
-            for aresta in self.getVertice(vComMenorPeso).getArestasSaida(): # todas arestas saindo do v_i adjacente O(e+v)
-                pesoSomadoParaComparacao = peso[vComMenorPeso] + aresta.getPeso() # peso somado
-                if  pesoSomadoParaComparacao < peso[aresta.getVerticeDestino().getValor()]: # compara peso somado
-                    peso[aresta.getVerticeDestino().getValor()] = pesoSomadoParaComparacao # novo menor peso de v_i
-                    antecessor[aresta.getVerticeDestino().getValor()] = vComMenorPeso # adiciona v_i na lista de antecessores
+            for e in self.getVertice(vComMenorPeso).getArestasSaida(): # todas arestas saindo do v_i adjacente O(n(e)+n(v))
+                pesoSomadoParaComparacao = peso[vComMenorPeso] + e.getPeso() # peso somado
+                if pesoSomadoParaComparacao < peso[e.getVerticeDestino().getValor()]: # compara peso somado
+                    peso[e.getVerticeDestino().getValor()] = pesoSomadoParaComparacao # novo menor peso de v_i
+                    antecessor[e.getVerticeDestino().getValor()] = vComMenorPeso # adiciona v_i na lista de antecessores
         return peso, antecessor
 
     def getVComMenorPeso(self, V:list, pesos:dict):
         vComMenorPeso = None
-        for node in V: # O(n)
+        for v in V: # O(n)
             if vComMenorPeso == None:
-                vComMenorPeso = node
-            elif pesos[node] < pesos[vComMenorPeso]:
-                vComMenorPeso = node
+                vComMenorPeso = v
+            elif pesos[v] < pesos[vComMenorPeso]:
+                vComMenorPeso = v
         return vComMenorPeso
 
-    def getCaminho(self, origem: str, destino:str, antecessor:dict):
-        caminho = [destino]
-        while antecessor[destino] != origem: # O(n)
-            if destino in antecessor:
-                caminho.append(antecessor[destino])
-                antecessor[destino] = antecessor[antecessor[destino]]
+    def getCaminho(self, origem: str, destino:str, Dijkstra:dict):
+        caminho = [destino] # Goiânia, Brasília, Formosa
+        while Dijkstra[1][destino] != origem: # O(n)
+            if destino in Dijkstra[1]:
+                caminho.append(Dijkstra[1][destino])
+                Dijkstra[1][destino] = Dijkstra[1][Dijkstra[1][destino]]
         caminho.append(origem)
         caminho.reverse()
-        return caminho
+        
+        distanciaTotal = None
+        if destino in Dijkstra[0]:
+            distanciaTotal = Dijkstra[0][destino]
+
+        return caminho, distanciaTotal
 
 
 if __name__ == "__main__":
