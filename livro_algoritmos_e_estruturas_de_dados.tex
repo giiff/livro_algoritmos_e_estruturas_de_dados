@@ -969,6 +969,36 @@ A Figura~\ref{Grafos_BFS} mostra um exemplo ilustrado do funcionamento do algori
 	\label{Grafos_BFS}
 \end{figure}
 
+\subsection{Caminho de Euler}
+
+Um caminho Euleriano ou caminho de Euler, é um caminho em um grafo $G = {V,E}$, direcionado ou não, em que cada aresta só pode ser visitada uma única vez, enquanto os vértices pode ser visitados mais de uma vez.
+Se o caminho de Euler inicia e termina em um mesmo vértice, então esses caminho é chamado de circuito ou ciclo de Euler.
+Um caminho de Euler ocorre nas seguintes circunstâncias:
+\begin{itemize}
+	\item Se todos os vértices do grafo $G$ tem um grau par.
+	\item Se a quantidade de vértices com grau ímpar for igual a $2$.
+\end{itemize}
+O diagrama da Figura~\ref{Grafos_Euler} mostra um caminho de Euler para um grafo direcionado.
+Nele, cada aresta foi visitada uma única vez. 
+O caminho de Euler foi possível porque, neste caso, a quantidade de vértices com grau impar é igual a $2$, ou seja, vértices $A$ e $C$.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{Pictures/Euler_Path.png}
+	\caption[Caminho de Euler.]{Exemplo de caminho de Euler em um grafo direcionado.}
+	\label{Grafos_Euler}
+\end{figure}
+
+\subsection{Caminho Hamiltoniano}
+
+Um caminho Hamiltoniano é um caminho em um grafo $G = {V,E}$ direcionado ou não, em que cada vértice é visitado apenas uma vez.
+O problema de checar se um grafo contém um caminho Hamiltoniano é NP-completo, ou seja, é um problema da classe de problemas não-deternimísticos polinomiais (NP), cujas soluções não podem ser verificadas em tempo polinomial.
+O diagrama da Figura~\ref{Grafos_Hamiltoniano} mostra um caminho Hamiltoniano para um grafo não direcionado.
+\begin{figure}[htbp]
+	\centering
+	\includegraphics[width=.5\textwidth]{Pictures/Hamiltoniano_Path.png}
+	\caption[Caminho Hamiltoniano.]{Exemplo de caminho Hamiltoniano em um grafo não direcionado.}
+	\label{Grafos_Hamiltoniano}
+\end{figure}
 
 %----------------------------------------------------------------------------------------
 %	CHAPTER X

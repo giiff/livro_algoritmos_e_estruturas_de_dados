@@ -297,7 +297,7 @@ class Grafo:
                 Dijkstra[1][destino] = Dijkstra[1][Dijkstra[1][destino]]
         caminho.append(origem)
         caminho.reverse()
-        
+
         distanciaTotal = None
         if destino in Dijkstra[0]:
             distanciaTotal = Dijkstra[0][destino]
