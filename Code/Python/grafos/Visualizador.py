@@ -1,14 +1,16 @@
-from .Grafo import Grafo
-from PIL import Image
-import pydot
 import tempfile
+
 
 def mostrarGrafo(grafo, tituloGrafo = None):
     '''
     Gera uma imagem do grafo usando pydot e graphviz
     Mostra a imagem gerada usando PIL (Python Image Library)
+    Dependencias: pip install pydot pillow; e o Graphviz instalado no sistema
     '''
-    tipoGrafo = "digraph" if grafo.direcionado() else "grafo"
+    import pydot  # importacoes locais: so sao exigidas quando a funcao e usada
+    from PIL import Image
+
+    tipoGrafo = "digraph" if grafo.direcionado() else "graph"
     pydotGrafo = pydot.Dot(graph_type = tipoGrafo)
 
     if tituloGrafo:
@@ -16,22 +18,21 @@ def mostrarGrafo(grafo, tituloGrafo = None):
 
     # vertices
     for vertice in grafo.getVertices().values():
-        no = pydot.Node(vertice.getValor())
+        no = pydot.Node(str(vertice.getValor()))
         no.set_style("filled")
         no.set_fillcolor("#CDE6D4")
         pydotGrafo.add_node(no)
 
     # arestas
     for aresta in grafo.getArestas():
-        valorVerticeOrigem = aresta.getVerticeOrigem().getValor()
-        valorVerticeDestino = aresta.getVerticeDestino().getValor()
-        peso = str(aresta.getPeso())
+        valorVerticeOrigem = str(aresta.getVerticeOrigem().getValor())
+        valorVerticeDestino = str(aresta.getVerticeDestino().getValor())
         pydotAresta = pydot.Edge(valorVerticeOrigem, valorVerticeDestino)
-        pydotAresta.set_label(peso)
+        pydotAresta.set_label(str(aresta.getPeso()))
         pydotGrafo.add_edge(pydotAresta)
 
-    temp = tempfile.NamedTemporaryFile()
-    pydotGrafo.write_png(temp.name)
-    image = Image.open(temp.name)
-    temp.close()
+    with tempfile.NamedTemporaryFile(suffix = ".png") as temp:
+        pydotGrafo.write_png(temp.name)
+        image = Image.open(temp.name)
+        image.load()
     image.show()

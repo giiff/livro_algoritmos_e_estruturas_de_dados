@@ -2,7 +2,7 @@
 #define TAMANHO 100
 int getValorDoMeio(int *vetor, int tamanho);
 
-void main(){
+int main(void) {
     int vetor[TAMANHO];
     int valorDoMeio;
     for(int i=0; i<TAMANHO;i++){
@@ -10,6 +10,7 @@ void main(){
     }
     valorDoMeio = getValorDoMeio(vetor,TAMANHO);
     printf("Valor do meio: %d \n", valorDoMeio);
+    return 0;
 }
 
 int getValorDoMeio(int *vetor, int tamanho){

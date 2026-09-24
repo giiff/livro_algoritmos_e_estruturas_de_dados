@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main() {
+int main(void) {
     int n1;
     int n2;
     int n3;
@@ -8,4 +8,5 @@ void main() {
     printf("n1 = %d \n",n1);
     printf("n2 = %d \n",n2);
     printf("n3 = %d \n",n3);
+    return 0;
 }

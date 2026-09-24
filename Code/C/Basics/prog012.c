@@ -1,5 +1,5 @@
 #include <stdio.h>
-void main() {
+int main(void) {
     int x;
     printf("Informe um valor inteiro: ");
     scanf("%d", &x);
@@ -15,4 +15,5 @@ void main() {
     else{
         printf("Diferente de 10, 20 ou 30.\n");
     }
+    return 0;
 }

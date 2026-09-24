@@ -1,0 +1,39 @@
+# LaTeX: arquivos intermediarios
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.idx
+*.ilg
+*.ind
+*.lof
+*.log
+*.lol
+*.lot
+*.maf
+*.mtc*
+*.out
+*.ptc
+*.run.xml
+*.synctex.gz
+*.toc
+build/
+
+# C: executaveis e objetos
+*.o
+a.out
+Code/C/**/*.png
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ipynb_checkpoints/
+.venv/
+
+# Editores e IDEs
+.idea/
+.vscode/
+*~

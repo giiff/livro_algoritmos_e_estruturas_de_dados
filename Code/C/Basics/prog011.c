@@ -1,5 +1,5 @@
 #include <stdio.h>
-void main() {
+int main(void) {
     int x;
     printf("Informe um valor inteiro: ");
     scanf("%d", &x);
@@ -9,4 +9,5 @@ void main() {
     else{
         printf("%d: negativo.\n", x);
     }
+    return 0;
 }
