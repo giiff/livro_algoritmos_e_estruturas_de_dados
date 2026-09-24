@@ -1,5 +1,5 @@
 #include <stdio.h>
-void main() {
+int main(void) {
     float valor;
     printf("Informe um valor do item: ");
     scanf("%f", &valor);
@@ -11,4 +11,5 @@ void main() {
         valor += valor*0.075;
         printf("Valor com impostos: R$ %.2f\n", valor);
     }
+    return 0;
 }

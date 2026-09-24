@@ -1,68 +1,64 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 #define TAM 1024
 
-// Define o tipo No contendo
-typedef struct No{
+// Define o tipo No contendo o nome de um diretorio
+typedef struct No {
     char diretorio[TAM];
     struct No *prox;
 } No;
 
-//Define No cabeca da lista
+//Define No cabeca da lista (o diretorio atual)
 No* cabeca = NULL;
 
-void printFormatado(No* no);
+//Entra em um subdiretorio: insere um No no inicio da lista
+void avancarDiretorio(const char diretorio[]) {
+    No* no = malloc(sizeof(No));
+    if (no == NULL) {
+        printf("Memoria insuficiente.\n");
+        exit(EXIT_FAILURE);
+    }
+    snprintf(no->diretorio, sizeof(no->diretorio), "%s", diretorio);
+    no->prox = cabeca;
+    cabeca = no;
+}
 
-void avancarDiretorio(char diretorio[]) {
-    No* no = (No *) malloc(sizeof (no) * 1024);
-    for (int i=0;i<TAM;i++)
-        no->diretorio[i] = diretorio[i];
-    no->prox = NULL;
-    if (cabeca == NULL)
-        cabeca = no;
-    else {
-        no->prox = cabeca;
-        cabeca = no;
+//Volta ao diretorio anterior: remove o No do inicio da lista
+void voltarDiretorio(void) {
+    if (cabeca != NULL) { // lista NAO vazia
+        No *no = cabeca;
+        cabeca = cabeca->prox;
+        free(no); // libera memoria
     }
 }
 
-void voltarDiretorio() {
-    No *no;
-    if (cabeca == NULL) {// lista vazia
-        return; 
-    } else { // lista NAO vazia
-        cabeca = cabeca->prox;
-        free(no);// libera memoria
+//Imprime o caminho do diretorio raiz ate o atual (do fim para o inicio da lista)
+void imprimirCaminho(No* no) {
+    if (no == NULL)
         return;
-    } 
+    imprimirCaminho(no->prox);
+    printf("/%s", no->diretorio);
 }
 
-void imprimirLista() {
-    No* no;
+void imprimirLista(void) {
     if (cabeca == NULL) {
         printf("Lista vazia.\n");
         return;
     }
-    no = cabeca;
-    while (no != NULL) {
-        printFormatado(no);
-        no = no->prox;
-    }
+    imprimirCaminho(cabeca);
     printf("\n");
 }
 
-void printFormatado(No* no){
-    printf("/%s", no->diretorio, no, no->prox);
-}
-
-void main() {
+int main(void) {
     avancarDiretorio("A0");
     imprimirLista();
     avancarDiretorio("A1");
     imprimirLista();
     avancarDiretorio("A2");
     imprimirLista();
-    voltarDiretorio("A2");
+    voltarDiretorio();
     imprimirLista();
-}ww
+    while (cabeca != NULL) //libera o que restou
+        voltarDiretorio();
+    return 0;
+}

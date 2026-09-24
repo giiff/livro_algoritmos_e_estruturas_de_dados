@@ -1,35 +1,31 @@
 #include <stdio.h>
-#include <string.h>
 #include <stdlib.h>
 
-// Define o tipo No contendo
-typedef struct No{
+// Define o tipo No contendo um dado e o link para o proximo No
+typedef struct No {
     int dado;
     struct No *link;
 } No;
 
 void printFormat01(No* no);
 void printFormat02(No* no);
-//Define o ultimo No da lista
+//Define o primeiro No (cabeca) da lista
 No* cabeca = NULL;
 
-//Funcao que adiciona dados
+//Funcao que adiciona dados no inicio da lista
 void inserir(int dado) {
-    No* no;
-    no = (No *) malloc(sizeof (no));
-    no->dado = dado;
-    no->link = NULL;
-    if (cabeca == NULL)
-        cabeca = no;
-    else {
-        no->link = cabeca;
-        cabeca = no;
+    No* no = malloc(sizeof(No)); //aloca o tamanho da struct, e nao do ponteiro
+    if (no == NULL) {
+        printf("Memoria insuficiente.\n");
+        exit(EXIT_FAILURE);
     }
+    no->dado = dado;
+    no->link = cabeca; //o novo No aponta para a antiga cabeca (ou NULL)
+    cabeca = no;
 }
 
-
 //Funcao que imprime a lista
-void imprimirLista() {
+void imprimirLista(void) {
     No* no;
     if (cabeca == NULL) {
         printf("Lista vazia.\n");
@@ -37,32 +33,32 @@ void imprimirLista() {
     }
     no = cabeca;
     while (no != NULL) {
-        if (no->link !=NULL){
+        if (no->link != NULL) {
             printFormat01(no);
-        }else{
+        } else {
             printFormat02(no);
         }
         no = no->link;
     }
-
 }
 
-void printFormat01(No* no){
-    printf("[%d(%p)|%p]\n", no->dado, no, no->link);
+void printFormat01(No* no) {
+    printf("[%d(%p)|%p]\n", no->dado, (void *) no, (void *) no->link);
     printf("                  |\n");
     printf("                  V\n");
     printf("      -------------\n");
     printf("      |\n");
     printf("      V\n");
 }
-void printFormat02(No* no){
-    printf("[%d(%p)|%p]\n", no->dado, no, no->link);
+
+void printFormat02(No* no) {
+    printf("[%d(%p)|%p]\n", no->dado, (void *) no, (void *) no->link);
     printf("                  |\n");
     printf("                  V\n");
     printf("                 NULL\n");
 }
 
-void buscarDado(int dado){
+void buscarDado(int dado) {
     No* no;
     if (cabeca == NULL) {
         printf("Lista vazia.\n");
@@ -71,42 +67,39 @@ void buscarDado(int dado){
     no = cabeca;
     while (no != NULL) {
         if (no->dado == dado)
-            printf("[%d(%p)]\n", no->dado, no);
+            printf("[%d(%p)]\n", no->dado, (void *) no);
         no = no->link;
     }
 }
 
 void removerDado(int dado) {
-    No *no, *anterior;
-    if (cabeca == NULL) {// lista vazia
-        return; 
-    } else { // lista NAO vazia
-        no = cabeca;
-        anterior = cabeca;
-        while (no != NULL) {
-            if (no->dado == dado){
-                if (no == cabeca){// removendo o primeiro
-                    cabeca = cabeca->link;
-                    free(no);// libera memoria
-                    return;
-                } 
-                else{ // removendo do meio
-                    anterior->link = no->link;//refaz links
-                    free(no);// libera memoria
-                    return;
-                }
-            } 
-            else{ // continua procurando na lista
-                anterior = no;
-                no = no->link;
+    No *no = cabeca, *anterior = NULL;
+    while (no != NULL) { //lista vazia: o laco nao executa
+        if (no->dado == dado) {
+            if (anterior == NULL) { // removendo o primeiro
+                cabeca = no->link;
+            } else { // removendo do meio ou do fim
+                anterior->link = no->link; //refaz links
             }
+            free(no); // libera memoria
+            return;
         }
-        return;
+        anterior = no; // continua procurando na lista
+        no = no->link;
     }
 }
 
-void main() {
-    // Insere na lista os numeros de 1 a 3
+//Funcao que libera todos os Nos da lista
+void liberarLista(void) {
+    while (cabeca != NULL) {
+        No *proximo = cabeca->link;
+        free(cabeca);
+        cabeca = proximo;
+    }
+}
+
+int main(void) {
+    // Insere na lista os numeros de 1 a 4
     for (int i = 1; i <= 4; i++)
         inserir(i);
     imprimirLista();
@@ -114,4 +107,6 @@ void main() {
     printf("--------------\n");
     imprimirLista();
     buscarDado(3);
+    liberarLista();
+    return 0;
 }

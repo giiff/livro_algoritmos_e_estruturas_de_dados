@@ -1,5 +1,5 @@
 #include <stdio.h>
-void main() {
+int main(void) {
     printf ("Quem descobriu o Brasil?\n\n");
     printf ("a) Cabral\n");
     printf ("b) Cabrel\n");
@@ -27,4 +27,5 @@ void main() {
     else{
         printf("Opcao invalida.\n");
     }
+    return 0;
 }

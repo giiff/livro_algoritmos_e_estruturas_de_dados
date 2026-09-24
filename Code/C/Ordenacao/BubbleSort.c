@@ -1,37 +1,49 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 #define TAMANHO 4
-void main() {
+
+void bubbleSort(int vetor[], int tamanho);
+void imprimirVetor(const int vetor[], int tamanho);
+
+int main(void) {
     int vetor[TAMANHO]; //vetor com tamanho definido
-    int aux = 0; //varivel para ser usada na troca
-    clock_t tempoInicial, tempoFinal; //Variaveis para guardar o tempo de execucao
-    srand(time(NULL)); //Cria uma semente para numeros aleatorios
-    tempoInicial = clock(); //inicia contagem do tempo
+    clock_t tempoInicial, tempoFinal; //variaveis para guardar o tempo de execucao
+    srand(42); //semente fixa: mesma sequencia a cada execucao (use srand(time(NULL)) para variar)
     for (int i = 0; i < TAMANHO; i++) {
-        vetor[i] = rand() % 10; //Atribui um inteiro aleatorio entre 0 e 9
+        vetor[i] = rand() % 10; //atribui um inteiro aleatorio entre 0 e 9
     }
-    //Mostra valores do vetor nao ordenado
-    for (int i = 0; i < TAMANHO; i++) {
+    imprimirVetor(vetor, TAMANHO); //mostra valores do vetor nao ordenado
+    tempoInicial = clock(); //inicia contagem do tempo (somente da ordenacao)
+    bubbleSort(vetor, TAMANHO); //ordena pelo metodo da bolha
+    tempoFinal = clock(); //finaliza contagem do tempo
+    imprimirVetor(vetor, TAMANHO); //mostra valores do vetor ordenado
+    //calcula e mostra o tempo total de execucao da ordenacao
+    printf("Tempo: %f s\n", (double) (tempoFinal - tempoInicial) / CLOCKS_PER_SEC);
+    return 0;
+}
+
+void imprimirVetor(const int vetor[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
         printf("%d\t", vetor[i]);
     }
     printf("\n");
-    //Ordena vetor pelo metodo da bolha
-    for (int i = 1; i < TAMANHO; i++) {
-        for (int j = 0; j < TAMANHO - 1; j++) {
+}
+
+void bubbleSort(int vetor[], int tamanho) {
+    int aux; //variavel usada na troca
+    int houveTroca = 1; //indica se alguma troca ocorreu na passagem
+    //a cada passagem, o maior elemento ainda desordenado "sobe" para o fim do vetor
+    for (int i = 0; i < tamanho - 1 && houveTroca; i++) {
+        houveTroca = 0;
+        //os ultimos i elementos ja estao em sua posicao final
+        for (int j = 0; j < tamanho - 1 - i; j++) {
             if (vetor[j] > vetor[j + 1]) {
                 aux = vetor[j];
                 vetor[j] = vetor[j + 1];
                 vetor[j + 1] = aux;
+                houveTroca = 1;
             }
         }
-    }
-    //Mostra valores do vetor ordenado   
-    for (int i = 0; i < TAMANHO; i++) {
-        printf("%d\t", vetor[i]);
-    }
-    printf("\n");
-    tempoFinal = clock(); //finaliza contagem do tempo
-    //calcula e mostra o tempo total de execucao
-    printf("Tempo: %f s\n", (double) (tempoFinal - tempoInicial) / CLOCKS_PER_SEC);
+    } //se uma passagem inteira nao fez trocas, o vetor ja esta ordenado
 }

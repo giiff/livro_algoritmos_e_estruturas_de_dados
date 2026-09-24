@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-void main() {
+int main(void) {
     // Operators
     // + soma
     // - subtracao
@@ -10,4 +10,5 @@ void main() {
     int n1 = 21;
     int m = 21 % 4;
     printf("Modulo de %d = %d \n", n1, m);
+    return 0;
 }

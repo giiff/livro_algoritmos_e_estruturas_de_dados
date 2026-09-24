@@ -1,0 +1,7 @@
+Tamanho de A = 1 bytes 
+Tamanho de 2147483647 = 4 bytes 
+Tamanho de 32767 = 2 bytes 
+Tamanho de 2147483647 = 8 bytes 
+Tamanho de 3.4e+38 = 4 bytes 
+Tamanho de 1.7e+308 = 8 bytes 
+Tamanho de 1.8e+308 = 16 bytes 

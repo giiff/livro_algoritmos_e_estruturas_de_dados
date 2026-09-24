@@ -1,6 +1,6 @@
 #include <stdio.h>
 #define TAMANHO 4
-void main(){
+int main(void) {
     int vetor[TAMANHO][TAMANHO];
     for (int l=0; l<TAMANHO; l++){
     	for (int c=0; c<TAMANHO; c++){
@@ -17,6 +17,7 @@ void main(){
     	}
     	printf("\n");
 	}
+    return 0;
 }
 // Valor [0][0]: 1
 // Valor [0][1]: 2

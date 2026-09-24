@@ -1,38 +1,45 @@
 #include <stdio.h>
-#include <time.h>
 #include <stdlib.h>
+#include <time.h>
 #define TAMANHO 4
-void main() {
+
+void insertionSort(int vetor[], int tamanho);
+void imprimirVetor(const int vetor[], int tamanho);
+
+int main(void) {
     int vetor[TAMANHO]; //vetor com tamanho definido
-    int eleito = 0;
-    int j = 0;
-    clock_t tempoInicial, tempoFinal; //Variaveis para guardar o tempo de execucao
-    srand(time(NULL)); //Cria uma semente para numeros aleatorios
-    tempoInicial = clock(); //inicia contagem do tempo
+    clock_t tempoInicial, tempoFinal; //variaveis para guardar o tempo de execucao
+    srand(42); //semente fixa: mesma sequencia a cada execucao (use srand(time(NULL)) para variar)
     for (int i = 0; i < TAMANHO; i++) {
-        vetor[i] = rand() % 10; //Atribui um inteiro aleatorio entre 0 e 9
+        vetor[i] = rand() % 10; //atribui um inteiro aleatorio entre 0 e 9
     }
-    //Mostra valores do vetor nao ordenado
-    for (int i = 0; i < TAMANHO; i++) {
+    imprimirVetor(vetor, TAMANHO); //mostra valores do vetor nao ordenado
+    tempoInicial = clock(); //inicia contagem do tempo (somente da ordenacao)
+    insertionSort(vetor, TAMANHO); //ordena pelo metodo da insercao
+    tempoFinal = clock(); //finaliza contagem do tempo
+    imprimirVetor(vetor, TAMANHO); //mostra valores do vetor ordenado
+    //calcula e mostra o tempo total de execucao da ordenacao
+    printf("Tempo: %f s\n", (double) (tempoFinal - tempoInicial) / CLOCKS_PER_SEC);
+    return 0;
+}
+
+void imprimirVetor(const int vetor[], int tamanho) {
+    for (int i = 0; i < tamanho; i++) {
         printf("%d\t", vetor[i]);
     }
     printf("\n");
-    //Ordena vetor pelo metodo da da selecao
-    for (int i = 1; i < TAMANHO; i++) {
+}
+
+void insertionSort(int vetor[], int tamanho) {
+    int eleito, j;
+    for (int i = 1; i < tamanho; i++) { //o eleito comeca pelo segundo elemento
         eleito = vetor[i];
         j = i - 1;
+        //desloca para a direita os elementos maiores que o eleito
         while (j >= 0 && vetor[j] > eleito) {
             vetor[j + 1] = vetor[j];
             j--;
         }
-        vetor[j + 1] = eleito;
+        vetor[j + 1] = eleito; //insere o eleito na posicao correta
     }
-    //Mostra valores do vetor ordenado   
-    for (int i = 0; i < TAMANHO; i++) {
-        printf("%d\t", vetor[i]);
-    }
-    printf("\n");
-    tempoFinal = clock(); //finaliza contagem do tempo
-    //calcula e mostra o tempo total de execucao
-    printf("Tempo: %f s\n", (double) (tempoFinal - tempoInicial) / CLOCKS_PER_SEC);
 }

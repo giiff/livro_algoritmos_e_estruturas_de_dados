@@ -1,5 +1,5 @@
 #include <stdio.h>
-void main(){
+int main(void) {
 	int a, b, soma;
 
 	printf("Digite um numero inteiro: ");
@@ -10,4 +10,5 @@ void main(){
 
 	soma = a + b; 
 	printf("O valor da soma: %d\n", soma); 
+	return 0;
 }

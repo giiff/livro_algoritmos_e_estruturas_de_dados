@@ -1,0 +1,40 @@
+[4(ENDERECO)|ENDERECO]
+                  |
+                  V
+      -------------
+      |
+      V
+[3(ENDERECO)|ENDERECO]
+                  |
+                  V
+      -------------
+      |
+      V
+[2(ENDERECO)|ENDERECO]
+                  |
+                  V
+      -------------
+      |
+      V
+[1(ENDERECO)|ENDERECO_NULO]
+                  |
+                  V
+                 NULL
+--------------
+[4(ENDERECO)|ENDERECO]
+                  |
+                  V
+      -------------
+      |
+      V
+[3(ENDERECO)|ENDERECO]
+                  |
+                  V
+      -------------
+      |
+      V
+[1(ENDERECO)|ENDERECO_NULO]
+                  |
+                  V
+                 NULL
+[3(ENDERECO)]
