@@ -2,6 +2,14 @@
 
 Documento de trabalho gerado a partir da revisão de `livro_algoritmos_e_estruturas_de_dados.tex`, `bibliography.bib`, `Code/C`, `Code/Python`, notebooks e figuras (estado do commit `49aaee2`).
 
+## Situação
+
+| Fase | Estado |
+|---|---|
+| 0 — Infraestrutura | Concluída (`.gitignore`, `Makefile`, testes, CI) |
+| 1 — Correções | Concluída (itens das tabelas 1.2, 1.3 e 1.4, exceto redesenho das figuras de terceiros) |
+| 2 a 6 | Pendentes |
+
 ---
 
 ## 1. Diagnóstico do conteúdo atual

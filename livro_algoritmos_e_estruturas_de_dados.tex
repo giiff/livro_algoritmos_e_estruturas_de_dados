@@ -208,14 +208,16 @@ A segurança das senhas em sistemas \textit{Web} ou bancários é baseada em alg
 Imagens de satélite, dados genômicos, reconhecimento de faces, previsão do tempo, quase tudo que se possa imaginar atualmente é influenciado direta ou indiretamente por algum algoritmo.
 
 O estudo de algoritmos é uma demanda crescente frente aos novos desafios trazidos pelo grande volume de dados que as tecnologias modernas proporcionaram.
-A análise de algortimos é uma área com questões importantes em aberto, como é o caso dos \textit{Millennium Prize Problems}, com sete problemas matemático-computacionais, cujo prêmio é de 1 milhão de dólares pela solução de cada problema.
+A análise de algoritmos ainda tem questões importantes em aberto.
+A mais conhecida é o problema \textit{P versus NP}, que pergunta se todo problema cuja solução pode ser verificada rapidamente também pode ser resolvido rapidamente~\cite{cook1971}.
+Ele integra a lista dos sete \textit{Millennium Prize Problems} do \textit{Clay Mathematics Institute}, que oferece 1 milhão de dólares pela solução de cada um~\cite{clay2000}.
 
 \section{Análise de Algoritmos}\label{sec_analise}
 
-O propósito da análise de um algortimo é prever seu comportamento quanto ao tempo de execução ou ao espaço em memória que irá ocupar mesmo antes de ser executado em um computador específico~\cite{manber1989}.
-Muitos fatores, especialmente o tamanho e a variedade dos dos dados de entrada, influenciam o comportamento do algoritmo utilizando suas principais características.
-Portanto, a análise de algoritmos provê uma aproximação, o que em muitos casos é bastante significante.
-As possibilidades de entradas diferentes, ainda que de mesmo tamanho são muito vastas e por isso um algoritmos não se comportará da mesma maneira para diferentes entradas de um mesmo tamanho. 
+O propósito da análise de um algoritmo é prever seu comportamento quanto ao tempo de execução ou ao espaço em memória que irá ocupar mesmo antes de ser executado em um computador específico~\cite{manber1989}.
+Muitos fatores, especialmente o tamanho e a variedade dos dados de entrada, influenciam o comportamento do algoritmo.
+Portanto, a análise de algoritmos provê uma aproximação, o que em muitos casos é suficiente para comparar soluções.
+As possibilidades de entradas diferentes, ainda que de mesmo tamanho são muito vastas e por isso um algoritmo não se comportará da mesma maneira para diferentes entradas de um mesmo tamanho. 
 Por esta razão a análise de algoritmos se concentra primordialmente em predizer o tempo aproximado de execução baseada no tamanho da entrada, tirando da equação elementos como o hardware, por exemplo.
 Assim, ainda que haja uma variação no tempo de execução dependente da variabilidade da entrada, essa variação tem menor importância do que o tamanho da entrada.
 
@@ -224,34 +226,40 @@ O comportamento assintótico de uma função $f(n)$ representa o limite do compo
 
 \subsection{Elementos de Notação Assintótica}
 
-\subsubsection{Notação Big O}
-A notação $O$ denota um limite assintótico superior, ou seja, o pior caso, aquele que toma mais tempo de execução.
-É importante ressaltar que existem notações para outros limites assintóticos, como médios ou inferiores.
-Porém, aqui veremos a notação $O$,por ser uma das mais utilizadas para estimar o tempo de execução como limite superior.
-Vejamos um exemplo. 
-Tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira e lendo-os em ordem, encontraríamos o número $9$ em cinco passos.
+\subsubsection{Melhor caso, pior caso e caso médio}
+Para entradas de um mesmo tamanho $n$, o custo de um algoritmo pode variar conforme a disposição dos dados.
+Vejamos um exemplo com a busca sequencial, que lê os valores em ordem até encontrar o procurado.
+Tomando os valores $7, 2, 5, 4, 9$ dispostos desta maneira, encontraríamos o número $9$ em cinco passos.
 Em outra entrada de mesmo tamanho, mas com os valores dispostos de outra maneira, $5, 9, 7, 4, 2$, encontraríamos o número $9$ em dois passos.
-Independente das permutações possíveis, encontraríamos o número procurado em no máximo 5 passos, que é o pior caso, tomando entradas de mesmo tamanho e procurando desta exata maneira.
+Independentemente das permutações possíveis, encontraríamos o número procurado em no máximo $n = 5$ passos (\textbf{pior caso}) e em no mínimo $1$ passo (\textbf{melhor caso}), quando ele está na primeira posição.
+Se todas as posições forem igualmente prováveis, a busca faz em média $(n+1)/2$ comparações (\textbf{caso médio}).
+O pior caso é o mais usado na prática, pois garante um limite para qualquer entrada de tamanho $n$~\cite{cormen2009}.
+
+\subsubsection{Notação Big O}
+A notação $O$ denota um \textbf{limite assintótico superior} para uma função: $f(n) = O(g(n))$ significa que, a partir de algum tamanho de entrada, $f(n)$ não cresce mais rápido do que $g(n)$, a menos de uma constante.
+É comum usar $O$ para descrever o tempo de pior caso, mas limite superior e pior caso são conceitos diferentes: é possível, por exemplo, dar um limite superior para o melhor caso.
+A busca sequencial acima executa em $O(n)$ no pior caso.
 
 Na análise de algoritmos, as constantes, associadas ou não ao tamanho da entrada, têm baixa representatividade no tempo de execução~\cite{manber1989}.
-Por exemplo, se um algoritmo executa em $2n^2+50$, dizemos que o algoritmo executa em $n^2$ pois as constantes $2$ e $50$ não interferem significativamente no crecismento assintótico da função.
+Por exemplo, se um algoritmo executa em $2n^2+50$, dizemos que o algoritmo executa em $n^2$ pois as constantes $2$ e $50$ não interferem significativamente no crescimento assintótico da função.
 O tempo de execução em função do tamanho da entrada está relacionado às várias classes de problemas que têm as seguintes funções de complexidade:
 \begin{itemize}
 \item $f(n) = O(1)~\mapsto$ Complexidade constante. O tempo de execução independe do tamanho ($n$) da entrada.
-\item $f(n) = O(log~n)~\mapsto$ Complexidade logarítmica. Tempo de execução menor do que o de uma constante grande. Tipicamente são alcançados por algoritmos que dividem o problema em problemas menores.
-\item $f(n) = O(n)~\mapsto$ Complexidade linear. Tempo de execução linear ao tamanho da entrada. São, em geral algoritmos que realizam pequenos trabalhos nos dados de entrada.
-\item $f(n) = O(n~log~n)~\mapsto$ Essa complexidade ocorre normalmente em algoritmos que quebra o problema em partes menores, solucionam-as de forma independente juntando em seguida essas sub-soluções.
-\item $f(n) = O(n^2)~\mapsto$ Complexidade quadrática. O crescimento quadrático significa que o tempo de execução crescerá rapidamente, pois será o quadrado do tamanho da entrada. Ou seja, para entradas grandes, o algoritmo levará muito tempo para ser executado.
-\item $f(n) = O(n^3)~\mapsto$ Complexidade cúbica. Assim como o algoritmo de complexidade quadrática,  o tempo será o cubo do tamanho da entrada. Algoritmos desse tipo são úteis apenas para pequenas tarefas.
-\item $f(n) = O(2^n)~\mapsto$ Complexidade exponencial. Algoritmos desse tipo geralmente não são úteis do ponto de vista prático. Geralmente são soluções baeadas em abordagens de ``força bruta''.
+\item $f(n) = O(\log n)~\mapsto$ Complexidade logarítmica. O tempo cresce muito lentamente: dobrar o tamanho da entrada acrescenta apenas um passo. Tipicamente ocorre em algoritmos que descartam uma fração fixa da entrada a cada passo, como a busca binária.
+\item $f(n) = O(n)~\mapsto$ Complexidade linear. Tempo de execução linear ao tamanho da entrada. São, em geral, algoritmos que realizam uma quantidade constante de trabalho para cada elemento da entrada.
+\item $f(n) = O(n \log n)~\mapsto$ Essa complexidade ocorre normalmente em algoritmos que quebram o problema em partes menores, solucionam-nas de forma independente e juntam em seguida essas subsoluções, como o \textit{Merge Sort}.
+\item $f(n) = O(n^2)~\mapsto$ Complexidade quadrática. O crescimento quadrático significa que o tempo de execução crescerá rapidamente, pois será proporcional ao quadrado do tamanho da entrada. Ou seja, para entradas grandes, o algoritmo levará muito tempo para ser executado.
+\item $f(n) = O(n^3)~\mapsto$ Complexidade cúbica. Assim como no algoritmo de complexidade quadrática, o tempo será proporcional ao cubo do tamanho da entrada. Algoritmos desse tipo são úteis apenas para pequenas tarefas.
+\item $f(n) = O(2^n)~\mapsto$ Complexidade exponencial. Algoritmos desse tipo geralmente não são úteis do ponto de vista prático. Geralmente são soluções baseadas em abordagens de ``força bruta''.
 \item $f(n) = O(n!)~\mapsto$ Complexidade fatorial. São ainda piores em termos de tempo de execução do que os algoritmos exponenciais.
 \end{itemize}
 
-Geralmente não é uma tarefa trivial determinar se uma certa função $g(n)$ é $O(f(n))$.
-Uma função $g(n)$ domina assintoticamente outra função $f(n)$ se existem constantes positivas $c$ e $n_0$ em que $n~\geq~n_0$ e $c.|g(n)|~\geq~|f(n)|$.
-Ou seja, uma função é $O(g(n))$ se, para todos os valores de $n$ maiores que $n_0$, o valor da função $f(n)$ está abaixo de $g(n)$.
-Para ilustrar melhor o domínio assintótico de uma função, considere as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$, onde $n~\geq~4$. 
-É possível ver que $g(n)~\geq~f(n)$ para $n~\geq~4$ na Figura~\ref{BigO}.
+Geralmente não é uma tarefa trivial determinar se uma certa função $f(n)$ é $O(g(n))$.
+Formalmente, uma função $g(n)$ domina assintoticamente outra função $f(n)$ se existem constantes positivas $c$ e $n_0$ tais que $|f(n)|~\leq~c \cdot |g(n)|$ para todo $n~\geq~n_0$~\cite{ziviani2007,cormen2009}.
+Nesse caso, escreve-se $f(n) = O(g(n))$.
+Ou seja, para todos os valores de $n$ a partir de $n_0$, o valor de $f(n)$ fica abaixo de $g(n)$ multiplicada por uma constante $c$.
+Para ilustrar o domínio assintótico de uma função, considere as funções $g(n)=6n^2$ e $f(n) = 5n^2~+~15$.
+Com $c = 1$ e $n_0 = 4$, tem-se $f(n)~\leq~g(n)$ para todo $n~\geq~4$, como mostra a Figura~\ref{BigO}; logo, $5n^2 + 15 = O(n^2)$.
 
 \begin{minipage}[c]{.5\textwidth}
 \[ g(n) =
@@ -289,12 +297,31 @@ Para ilustrar melhor o domínio assintótico de uma função, considere as funç
 	\label{BigO}
 \end{figure}
 
-Diz-se que uma função $f(n)$ cresce monotonamente se $n_1~\geq~n_2$, e portanto $f(n_1)~\geq~f(n_2)$.
+\subsubsection{Notações $\Omega$ e $\Theta$}
+De forma análoga, a notação $\Omega$ denota um \textbf{limite assintótico inferior}: $f(n) = \Omega(g(n))$ se existem constantes positivas $c$ e $n_0$ tais que $f(n)~\geq~c \cdot g(n)$ para todo $n~\geq~n_0$.
+Já a notação $\Theta$ denota um \textbf{limite assintótico firme}: $f(n) = \Theta(g(n))$ se $f(n) = O(g(n))$ e $f(n) = \Omega(g(n))$, ou seja, se $f(n)$ fica entre $c_1 \cdot g(n)$ e $c_2 \cdot g(n)$ para todo $n~\geq~n_0$~\cite{knuth1976,cormen2009}.
+No exemplo anterior, $5n^2 + 15 = \Theta(n^2)$, pois também vale $5n^2 + 15~\geq~5n^2$ para todo $n~\geq~1$.
+A Tabela~\ref{tab:notacoes} resume as três notações.
+
+\begin{table}[htbp]
+\centering
+\caption{Notações assintóticas.}
+\label{tab:notacoes}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Notação & Significado & Definição (para todo $n \geq n_0$) \\ \midrule
+$f(n) = O(g(n))$ & $f$ não cresce mais rápido que $g$ & $0 \leq f(n) \leq c\,g(n)$ \\
+$f(n) = \Omega(g(n))$ & $f$ não cresce mais devagar que $g$ & $0 \leq c\,g(n) \leq f(n)$ \\
+$f(n) = \Theta(g(n))$ & $f$ cresce na mesma taxa que $g$ & $c_1 g(n) \leq f(n) \leq c_2 g(n)$ \\ \bottomrule
+\end{tabular}
+\end{table}
+
+Diz-se que uma função $f(n)$ cresce monotonamente se $n_1~\geq~n_2$ implica $f(n_1)~\geq~f(n_2)$.
 Funções exponenciais crescem mais rápido do que funções polinomiais, ou seja, para as constantes $c~>~0$ e $a~> 1$, e para todas as funções $f(n)$ de crescimento monótono:
-$$ (f(n))^c~=~O(a^f(n)) $$
+$$ (f(n))^c~=~O(a^{f(n)}) $$
 Esta regra pode ser usada para comparar várias funções. Por exemplo, substituindo $f(n)$ por $n$ temos:
 $$ n^c~=~O(a^n) $$
-A Tabela~\ref{tab:garey1979} ilustra os tempos de execução para diferentes tamanhos de entrada em cada uma das complexidades exponenciais e polinomiais.
+A Tabela~\ref{tab:garey1979} ilustra os tempos de execução para diferentes tamanhos de entrada em complexidades polinomiais e exponenciais.
 \begin{table}[htbp]
 \centering
 \caption{Comparação de tempos de execução polinomiais e exponenciais assumindo que 0,000001s é o tempo gasto para um $n = 1$. Adaptado de ~\textcite{garey1979}.}
@@ -305,9 +332,9 @@ A Tabela~\ref{tab:garey1979} ilustra os tempos de execução para diferentes tam
 \multirow{2}{*}{Complexidade} & \multicolumn{6}{l}{Tamanho da entrada (n)}                           \\ \cmidrule(l){2-7} 
                               & 10       & 20       & 30       & 40        & 50        & 60          \\ \midrule
 $n$                           & 0,00001s & 0,00002s & 0,00003s & 0,00004s  & 0,00005s  & 0,00006s    \\ \midrule
-$n^2$                         & 0,0001   & 0,0004s  & 0,0009s  & 0,0016s   & 0,0025s   & 0,0036s     \\ \midrule
+$n^2$                         & 0,0001s  & 0,0004s  & 0,0009s  & 0,0016s   & 0,0025s   & 0,0036s     \\ \midrule
 $n^3$                         & 0,001s   & 0,008s   & 0,027s   & 0,064s    & 0,125s    & 0,216s      \\ \midrule
-$2^n$                         & 0,001    & 1,0s     & 17,9 min & 12,7 dias & 35,7 anos & 366 séculos \\ \bottomrule
+$2^n$                         & 0,001s   & 1,0s     & 17,9 min & 12,7 dias & 35,7 anos & 366 séculos \\ \bottomrule
 \end{tabular}%
 }
 \end{table}
@@ -337,8 +364,9 @@ Nos anos 80, C tornou-se popular fora do ambiente Unix, criando a demanda por co
 Desde então, C é considerada uma linguagem de propósito geral, com instruções de alto nível e capaz de gerar programas rápidos em tempo de execução.
 Além disso, C influenciou de forma direta a sintaxe e estruturas de linguagens modernas como C++, Java, C\#, Objective C, e muitas outras.
 
-A linguagem C começou a ser padronizada pela \textit{American National Standards Institute} (ANSI) para garantir a compatibilidade e a portabilidade da linguagem.
-Este padrão foi atualizado ao longo do tempo e posteriormente reconhecido pela ISO, dando origem ao padrão ANSI/ISO.
+A linguagem C foi padronizada pelo \textit{American National Standards Institute} (ANSI) em 1989 (C89) para garantir a compatibilidade e a portabilidade da linguagem.
+O padrão foi adotado pela \textit{International Organization for Standardization} (ISO) em 1990 e revisado em 1999 (C99), 2011 (C11), 2018 (C17) e 2024 (C23).
+Os exemplos deste livro seguem o padrão C17~\cite{isoc17}.
 
 Um código escrito em linguagem C funciona com comandos, que são normalmente palavras em inglês (sintaxe) e são organizados em determinadas estruturas.
 Uma vez escritos em um arquivo, os comandos são então lidos pelos compiladores e convertidos para a linguagem de máquina que corresponde a ação pretendida.
@@ -348,23 +376,26 @@ O Programa~\ref{prog001} mostra um exemplo de programa em C.
 
 Após escrito, o programa precisa ser compilado. 
 Se o programa tiver sido escrito corretamente (sintaxe e estrutura), o compilador gera um executável.
-É importante peceber, que compiladores não verificam erros lógicos, ou seja de concepção do código.
+É importante perceber que compiladores não verificam erros lógicos, ou seja de concepção do código.
 É justamente aí que reside o valor do trabalho humano como programador: combinar sintaxe e estruturas de forma que solucionem um dado problema do mundo real.
 Caso o compilador encontre algum erro no código dois tipos de mensagens podem ser emitidas:
 \begin{enumerate}
 	\item Erro (\textit{error}): Quando o código tem um problema que impede o compilador de gerar um executável
-	\item Aviso (\textit{warnning}): Quando o problema no código não impede de gerar um executável, mas requer algum tipo de atenção.
+	\item Aviso (\textit{warning}): Quando o problema no código não impede de gerar um executável, mas requer algum tipo de atenção.
 \end{enumerate}
 
-Para compilar o Programa~\ref{prog001} em Linux com o compilador C (Veja aqui como instalar) basta o seguinte comando no terminal: 
-\terminal{gcc prog001.c -o prog001.sh}
+Para compilar o Programa~\ref{prog001} em Linux com o compilador GCC (as instruções de instalação estão no arquivo \texttt{README.md} do repositório) basta o seguinte comando no terminal:
+\terminal{gcc -Wall prog001.c -o prog001}
 
-Após esta ação, será gerado o arquivo executável \texttt{prog001.sh}, o qual poderá ser executado com o comando: 
-\terminal{./prog001.sh}
+A opção \texttt{-Wall} pede ao compilador que mostre todos os avisos comuns, o que ajuda a encontrar erros.
+Após esta ação, será gerado o arquivo executável \texttt{prog001}, o qual poderá ser executado com o comando:
+\terminal{./prog001}
+
+Todo programa em C começa pela função \texttt{main}, que devolve um inteiro ao sistema operacional: por convenção, \texttt{return 0;} indica que o programa terminou sem erros.
 
 No Programa~\ref{prog001} é impressa uma mensagem na tela. 
-O catacter especial representado por ``$\backslash$n'' identifica uma quebra de linha.
-Essa mensagem é representada como uma cadeira de caracteres (\textit{string}) limitada pelas aspas.
+O caractere especial representado por ``$\backslash$n'' identifica uma quebra de linha.
+Essa mensagem é representada como uma cadeia de caracteres (\textit{string}) limitada pelas aspas.
 Se for necessário representar as aspas em uma \textit{string}, será necessário escapá-las usando a barra ``$\backslash$''.
 O Programa~\ref{prog002} mostra como fazer isso.
 
@@ -375,18 +406,18 @@ O Programa~\ref{prog002} mostra como fazer isso.
 Uma variável é um objeto capaz de guardar e representar um valor ou expressão em memória. 
 Às variáveis são associadas a nomes ou identificadores e sua existência é limitada por um espaço e um tempo na memória do computador, o qual frequentemente é igual ao tempo de execução do programa em que elas foram criadas.
 
-Nas linguagen de programação é comum existirem tipos de dados pré-definidos, chamados tipo primitivos.
-Em C, os tipo primitivos são:
+Nas linguagens de programação é comum existirem tipos de dados predefinidos, chamados tipos primitivos.
+Em C, os tipos primitivos são:
 
 \begin{itemize}
-	\item char: caracter
+	\item char: caractere
 	\item int: inteiro
 	\item float: real de precisão simples
-	\item double: real de alta precisão
+	\item double: real de precisão dupla
 	\item void: vazio ou sem valor
 \end{itemize}
 
-Há ainda os modificadores que alteram o tamanho, e consequentemente sua capacidade, dos tipos em memória. São eles:
+Há ainda os modificadores que alteram o sinal ou o tamanho, e consequentemente a capacidade, dos tipos em memória. São eles:
 
 \begin{itemize}
 	\item signed
@@ -395,51 +426,57 @@ Há ainda os modificadores que alteram o tamanho, e consequentemente sua capacid
 	\item short
 \end{itemize}
 
-Combinando os tipo e os modificadores temos:
+O padrão da linguagem define apenas os tamanhos \textbf{mínimos} de cada tipo; os tamanhos reais dependem do compilador e da arquitetura~\cite{isoc17}.
+A Tabela~\ref{tab:tipos_modificadores} combina os tipos e os modificadores e mostra os valores típicos do GCC em Linux de 64 bits (modelo LP64).
+Os limites exatos de cada sistema estão nas constantes de \texttt{<limits.h>} (por exemplo, \texttt{INT\_MAX}) e \texttt{<float.h>}, e o operador \texttt{sizeof} informa o tamanho em \textit{bytes} de um tipo ou variável.
+Quando o tamanho exato importa, podem ser usados os tipos de \texttt{<stdint.h>}, como \texttt{int32\_t} e \texttt{uint64\_t}.
 
 \begin{table}[htbp]
 	\centering
-	\caption{}
+	\caption{Tipos primitivos e modificadores em C: valores típicos do GCC em Linux de 64 bits.}
 	\label{tab:tipos_modificadores}
 	\resizebox{\textwidth}{!}{%
 		\begin{tabular}{@{}llcr@{}}
 			\toprule
-			\multicolumn{1}{c}{Palavra chave} & \multicolumn{1}{c}{Tipo}                 & Tamanho (Bytes) & \multicolumn{1}{c}{Intervalo}  \\ \midrule
-			char                              & Caracter                                 & 1       & -128 a 127                     \\
-			signed char                       & Caractere com sinal                      & 1       & -128 a 127                     \\
-			unsigned char                     & Caractere sem sinal                      & 1       & 0 a 255                        \\
-			int                               & Inteiro                                  & 4       & -32.768 a 32.767               \\
-			signed int                        & Inteiro com sinal                        & 4       & -32.768 a 32.767               \\
-			unsigned int                      & Inteiro sem sinal                        & 4       & 0 a 65.535                     \\
-			short int                         & Inteiro curto                            & 2       & -32.768 a 32 767               \\
-			signed short int                  & Inteiro curto com sinal                  & 2       & -32.768 a 32.767               \\
-			unsigned short int                & Inteiro curto sem sinal                  & 2       & 0 a 65.535                     \\
-			long int                          & Inteiro long                             & 8       & -2.147.483.648 a 2.147.483.647 \\
-			signed long int                   & Inteiro longo com sinal                  & 8       & -2.147.483.648 a 2.147.483.647 \\
-			unsigned long int                 & Inteiro longo sem sinal                  & 8       & 0 a 4.294.967.295              \\
-			float                             & Ponto flutuante com precisão simples     & 4       & 3.4 E-38 a 3.4E+38             \\
-			double                            & Ponto flutuante com precisão simples     & 8       & 1.7 E-308 a 1.7E+308           \\
-			long double                       & Ponto flutuante com precisão dupla longo & 16      & 3.4E-4932 a 1.1E+4932          \\ \bottomrule
+			\multicolumn{1}{c}{Palavra-chave} & \multicolumn{1}{c}{Tipo}                  & Tamanho (Bytes) & \multicolumn{1}{c}{Intervalo}                                   \\ \midrule
+			char                              & Caractere                                 & 1       & -128 a 127 ou 0 a 255$^{*}$ \\
+			signed char                       & Caractere com sinal                       & 1       & -128 a 127                                                      \\
+			unsigned char                     & Caractere sem sinal                       & 1       & 0 a 255                                                         \\
+			short int                         & Inteiro curto                             & 2       & -32.768 a 32.767                                                \\
+			unsigned short int                & Inteiro curto sem sinal                   & 2       & 0 a 65.535                                                      \\
+			int                               & Inteiro                                   & 4       & -2.147.483.648 a 2.147.483.647                                  \\
+			unsigned int                      & Inteiro sem sinal                         & 4       & 0 a 4.294.967.295                                               \\
+			long int                          & Inteiro longo                             & 8       & $-9{,}22 \times 10^{18}$ a $9{,}22 \times 10^{18}$              \\
+			unsigned long int                 & Inteiro longo sem sinal                   & 8       & 0 a $1{,}84 \times 10^{19}$                                     \\
+			long long int                     & Inteiro longo longo                       & 8       & $-9{,}22 \times 10^{18}$ a $9{,}22 \times 10^{18}$              \\
+			float                             & Ponto flutuante com precisão simples      & 4       & $\pm 1{,}2 \times 10^{-38}$ a $\pm 3{,}4 \times 10^{38}$        \\
+			double                            & Ponto flutuante com precisão dupla        & 8       & $\pm 2{,}2 \times 10^{-308}$ a $\pm 1{,}8 \times 10^{308}$      \\
+			long double                       & Ponto flutuante com precisão estendida    & 16      & $\pm 3{,}4 \times 10^{-4932}$ a $\pm 1{,}2 \times 10^{4932}$    \\ \bottomrule
 		\end{tabular}%
 	}
 \end{table}
 
+\noindent $^{*}$~O \texttt{char} simples pode ter ou não sinal, conforme o compilador e a arquitetura; no GCC para x86-64, ele tem sinal.
+Os tipos \texttt{int}, \texttt{short int} e \texttt{long int} já têm sinal; por isso \texttt{signed int} equivale a \texttt{int}.
+Em Windows, \texttt{long int} costuma ter 4 \textit{bytes}.
+Para os tipos de ponto flutuante, os intervalos indicam o menor e o maior valor absoluto normalizado.
+
 O Programa~\ref{prog003} mostra um exemplo de variável representando o valor inteiro 10 e em seguida a impressão de uma mensagem com seu valor.
-Na impressão, é importante notar que a mensagem é formatada para que em um dterminado ponto ($\backslash$d) apareçam os dígitos correspondentes ao valor de \texttt{a} que é a variável abrigando o valor 10.
+Na impressão, é importante notar que a mensagem é formatada para que em um determinado ponto (\texttt{\%d}) apareçam os dígitos correspondentes ao valor de \texttt{a}, que é a variável que abriga o valor 10.
 
 \lstinputlisting[label={prog003},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog003.c}
 
-As formas de declarrar variáveis podem ser diversas. O Programa~\ref{prog004} mostra a delaração de variáveis $n1$ e $n2$ atribuindo imediatamente os valores, enquanto a vairiável $soma$ é criada sem que seu valor seja atribuído imediatamente. No Programa~\ref{prog005}, as variáveis $n1$ e $n2$ são declaradas na mesma linha, separadas por vírgula, uma vez que são do mesmo tipo $int$.
+As formas de declarar variáveis podem ser diversas. O Programa~\ref{prog004} mostra a declaração de variáveis $n1$ e $n2$ atribuindo imediatamente os valores, enquanto a variável $soma$ é criada sem que seu valor seja atribuído imediatamente. No Programa~\ref{prog005}, as variáveis $n1$ e $n2$ são declaradas na mesma linha, separadas por vírgula, uma vez que são do mesmo tipo $int$.
 
 \lstinputlisting[label={prog004},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog004.c}
 
 \lstinputlisting[label={prog005},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog005.c}
 
-Quanto à atribuição de valores à uma variável, ela pode ser direta ou indireta, ou seja, um valor pode ser diretamente atribuído à uma variável ou o valor de uma variável pode ser atribuído a outra, como no exemplo do Programa~\ref{prog006}, onde $n1$ recebe o valor de $n2$ que recebe o valore de $n3$ que recebe $10$. Nesse caso, $n1$, $n2$ e $n3$ terão valor = $10$.
+Quanto à atribuição de valores a uma variável, ela pode ser direta ou indireta, ou seja, um valor pode ser diretamente atribuído a uma variável ou o valor de uma variável pode ser atribuído a outra, como no exemplo do Programa~\ref{prog006}, onde $n1$ recebe o valor de $n2$ que recebe o valor de $n3$ que recebe $10$. Nesse caso, $n1$, $n2$ e $n3$ terão valor = $10$.
 
 \lstinputlisting[label={prog006},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog006.c}
 
-Dependendo do tipo primitivo de dados da variável, diferentes formatações podem ser usadas paara a função printf() conforme pode ser visto na Tabela~\ref{tab:printf}. O Programa~\ref{prog007} ilustra um exemplo de impressão de um float com 2 casa decimais.
+Dependendo do tipo primitivo de dados da variável, diferentes formatações podem ser usadas na função printf() conforme pode ser visto na Tabela~\ref{tab:printf}. O Programa~\ref{prog007} ilustra um exemplo de impressão de um float com 2 casas decimais.
 
 \lstinputlisting[label={prog007},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog007.c}
 
@@ -451,16 +488,20 @@ Dependendo do tipo primitivo de dados da variável, diferentes formatações pod
 		\begin{tabular}{@{}ll@{}}
 			\toprule
 			Formatação & Significado                        \\ \midrule
-			\%c        & caracter                           \\
-			\%d        & inteiro  base 10                   \\
-			\%e        & exponencial ponto flutuante        \\
-			\%f        & ponto flutuante                    \\
-			\%i        & integer (base 10)                  \\
+			\%c        & caractere                          \\
+			\%d        & inteiro na base 10                 \\
+			\%i        & inteiro na base 10                 \\
+			\%ld       & inteiro longo (\texttt{long int})  \\
+			\%u        & inteiro sem sinal (\textit{unsigned}) \\
+			\%zu       & tamanho (\texttt{size\_t}), resultado de \texttt{sizeof} \\
+			\%f        & ponto flutuante (\texttt{float} ou \texttt{double}) \\
+			\%e        & ponto flutuante em notação exponencial \\
+			\%Lf       & ponto flutuante \texttt{long double} \\
 			\%o        & octal (base 8)                     \\
-			\%s        & \textit{string}                    \\
-			\%u        & \textit{unsigned} inteiro          \\
 			\%x        & hexadecimal (base 16)              \\
-			\%\%       & caracter de porcentagem            \\ \bottomrule
+			\%s        & \textit{string}                    \\
+			\%p        & endereço de memória (ponteiro)     \\
+			\%\%       & caractere de porcentagem           \\ \bottomrule
 		\end{tabular}%
 \end{table}
 
@@ -485,8 +526,8 @@ Os operadores aritméticos usados em C são mostrados na Tabela~\ref{tab:oparead
 			Atribuição por adição         & a += b           \\
 			Subtração unária              & -a               \\
 			Subtração                     & a - b            \\
-			Decremento pré-fixado         & --a              \\
-			Decremento pós-fixado         & a--              \\
+			Decremento pré-fixado         & -{}-a            \\
+			Decremento pós-fixado         & a-{}-            \\
 			Atribuição por subtração      & a -= b           \\
 			Multiplicação                 & a * b            \\
 			Atribuição por multiplicação  & a *= b           \\
@@ -496,25 +537,34 @@ Os operadores aritméticos usados em C são mostrados na Tabela~\ref{tab:oparead
 			Atribuição por módulo (resto) & a \%= b          \\ \bottomrule
 		\end{tabular}%
 \end{table}
+Quando uma expressão tem vários operadores, a ordem de avaliação segue a precedência mostrada na Tabela~\ref{tab:prioridade_operadores}; em caso de dúvida, os parênteses deixam a ordem explícita.
+Em C não há operador de potência: usa-se a função \texttt{pow()} da biblioteca \texttt{<math.h>}.
 \begin{table}[htb]
 	\centering
-	\caption{Precedência de operadores.}
+	\caption{Precedência dos principais operadores em C (da maior para a menor).}
 	\label{tab:prioridade_operadores}
-		\begin{tabular}{@{}ll@{}}
+		\begin{tabular}{@{}lll@{}}
 			\toprule
-			\textbf{Prioridade} & \textbf{Operadores}                                                                \\ \midrule
-			1º                  & Parênteses internos                                                                \\
-			2º                  & potência (\textasciicircum{}) e raiz (quando a linguagem oferece esses operadores) \\
-			3º                  & * / div e mod                                                                      \\
-			4º                  & + e -                                                                              \\ \bottomrule
+			\textbf{Prioridade} & \textbf{Operadores} & \textbf{Descrição} \\ \midrule
+			1º & \texttt{()} \texttt{[]} \texttt{->} \texttt{.} \texttt{a++} \texttt{a-{}-} & chamada, índice, campo, pós-fixados \\
+			2º & \texttt{++a} \texttt{-{}-a} \texttt{+a} \texttt{-a} \texttt{!} \texttt{*p} \texttt{\&a} \texttt{sizeof} & unários \\
+			3º & \texttt{*} \texttt{/} \texttt{\%} & multiplicativos \\
+			4º & \texttt{+} \texttt{-} & aditivos \\
+			5º & \texttt{<} \texttt{<=} \texttt{>} \texttt{>=} & relacionais \\
+			6º & \texttt{==} \texttt{!=} & igualdade \\
+			7º & \texttt{\&\&} & E lógico \\
+			8º & \texttt{||} & OU lógico \\
+			9º & \texttt{?:} & condicional (ternário) \\
+			10º & \texttt{=} \texttt{+=} \texttt{-=} \texttt{*=} \texttt{/=} \texttt{\%=} & atribuição \\ \bottomrule
 		\end{tabular}%
 \end{table}
-O Programa~\ref{prog009} ilustra o uso do operador \textit{mod}, que retorna o resto da divisão inteira.
+O Programa~\ref{prog009} ilustra o uso do operador \texttt{\%} (módulo), que retorna o resto da divisão inteira.
+Vale lembrar que a divisão entre dois inteiros em C descarta a parte fracionária: \texttt{7 / 2} resulta em \texttt{3}, enquanto \texttt{7.0 / 2} resulta em \texttt{3.5}.
 \lstinputlisting[label={prog009},language=C, caption={Trabalhando com variáveis.}]{Code/C/Basics/prog009.c}
 
 \subsubsection{Entrada de Dados}
 
-A maneira mais clássica de um programa em C obter dados digitados pelo o usuário através do \textit{prompt} é usando a função \textit{scanf()}. 
+A maneira mais clássica de um programa em C obter dados digitados pelo usuário através do \textit{prompt} é usando a função \textit{scanf()}. 
 O Programa~\ref{prog010} mostra um exemplo onde os valores das variáveis $a$ e $b$ são informados pelo usuário e depois somados.
 \lstinputlisting[label={prog010},language=C, caption={Trabalhando com a função \textit{scanf()} para entrada de dados em C.}]{Code/C/Basics/prog010.c}
 
@@ -523,6 +573,7 @@ O Programa~\ref{prog010} mostra um exemplo onde os valores das variáveis $a$ e 
 \subsection{If/Else}
 
 O \textit{if} é utilizado para testar uma proposição lógica.
+Em C, qualquer valor diferente de zero é considerado verdadeiro, e zero é considerado falso.
 A proposição é escrita entre parênteses.
 Caso o resultado seja verdadeiro, o bloco de instruções subordinadas ao \textit{if} será executado.
 O bloco é delimitado por ``\{'' e ``\}''. 
@@ -533,13 +584,13 @@ O Programa~\ref{prog011} mostra um exemplo onde o valor da variável $x$ é test
 Através deste teste é possível identificar se o valor é positivo (\textit{if} verdadeiro $\rightarrow valor >= 0 $), ou é negativo (\textit{else} $\rightarrow valor < 0$).
 \lstinputlisting[label={prog011},language=C, caption={Trabalhando com o \textit{if} em C.}]{Code/C/Basics/prog011.c}
 
-Há ainda a possibilidade verificar múltiplas condições com o \textit{else if}.
-O uso do \textit{else if} é demonstrado no Programa~\ref{prog012} que verifica se um valor inteiro informado pelo usuário é = 10, 20 ou 30.
+Há ainda a possibilidade de verificar múltiplas condições com o \textit{else if}.
+O uso do \textit{else if} é demonstrado no Programa~\ref{prog012} que verifica se um valor inteiro informado pelo usuário é igual a 10, 20 ou 30.
 \lstinputlisting[label={prog012},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/C/Basics/prog012.c}
 
 Um exemplo onde caracteres podem ser usados é mostrado no Programa~\ref{prog013}.
 Neste programa uma questão apresenta alternativas $a$, $b$, $c$, $d$ e $e$. 
-O usuário escolhe a letra correspondente à resposta corrta e o programa diz se ele acertou ou não. 
+O usuário escolhe a letra correspondente à resposta correta e o programa diz se ele acertou ou não. 
 Além disso, reporta se a opção escolhida é inválida.
 \lstinputlisting[label={prog013},language=C, caption={Trabalhando com o \textit{if, else if, else} em C.}]{Code/C/Basics/prog013.c}
 
@@ -555,9 +606,9 @@ Além disso, reporta se a opção escolhida é inválida.
 \end{flushright}
 \vspace{12em}
 
-Tipos abstratos de dados são conjuntos de valores sobre os quais é possível aplicar funções de forma homogênea através de um algortimo.
-Funções e valores em conjunto, consituem um modelo matemático que pode ser empregado em problemas do mundo real~\cite{ascencio2010}.
-Os algortimos são projetados em função de um tipo abstrato de dados.
+Tipos abstratos de dados são conjuntos de valores sobre os quais é possível aplicar funções de forma homogênea através de um algoritmo.
+Funções e valores, em conjunto, constituem um modelo matemático que pode ser empregado em problemas do mundo real~\cite{ascencio2010}.
+Os algoritmos são projetados em função de um tipo abstrato de dados.
 A representação computacional de um tipo abstrato de dados com seus tipos e operações permitidas pode ser entendida como uma \textbf{estrutura de dados}.
 Uma estrutura de dados é um meio para armazenar e processar dados com vistas à sua organização, acesso e modificações~\cite{cormen2009}.
 
@@ -568,60 +619,87 @@ Uma estrutura de dados é um meio para armazenar e processar dados com vistas à
 \subsection*{Vetores}
 
 Primeiro, uma revisão sobre vetores.
-Em C uma variável que represente um vetor é um ponteiro.
-Portanto, quando um vetor é parâmetro para uma função o que é passado é a sua referência, ou seja, o endereço base do vetor.
-Vetores podem ser bi-, tri-, ou multi-domensionais, mas abrigam o mesmo tipo de dados.
-O programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor.
+Um vetor é uma sequência de elementos do mesmo tipo, guardados em posições contíguas de memória e acessados por um índice que, em C, começa em zero.
+Em C, o nome de um vetor, quando usado em uma expressão, é convertido em um ponteiro para o seu primeiro elemento.
+Portanto, quando um vetor é parâmetro para uma função, o que é passado é o endereço base do vetor, e a função pode alterar os elementos originais.
+Por essa mesma razão, a função não conhece o tamanho do vetor, que precisa ser passado como um parâmetro à parte.
+Vetores podem ser uni-, bi-, tri- ou multidimensionais, mas abrigam sempre o mesmo tipo de dados.
+O Programa~\ref{rev001} mostra o vetor sendo passado para uma função que retorna o valor do meio do vetor, e o Programa~\ref{rev003} mostra um vetor de duas dimensões (matriz).
 
-\lstinputlisting[language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/C/Revisao/rev001.c}\label{rev001}
+\lstinputlisting[label={rev001},language=C, caption={Em C, vetores são passados para funções por referência.}]{Code/C/Revisao/rev001.c}
 
-\lstinputlisting[language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/C/Revisao/rev003.c}\label{rev003}
+\lstinputlisting[label={rev003},language=C, caption={Um vetor de duas dimensões mostrando apenas valores da diagonal principal.}]{Code/C/Revisao/rev003.c}
 
 \subsection*{Strings em C}
-Em C, uma \textit{string} é um vetor de caracteres e cada \textit{string} termina com um caracter \textit{NULL}.
-Uma constante \textit{string} é definida dentro de aspas em que o caractere \textit{NULL} é automaticamente incluído.
-Por exemplo, a string "IFG" é um vetor de 4 elementos.
-O programa~\ref{rev002} mostra um exemplo de \textit{string} em C. 
-\lstinputlisting[language=C, caption={Em C, \textit{strings} são vetores de caracteres..}]{Code/C/Revisao/rev002.c}\label{rev002}
+Em C, uma \textit{string} é um vetor de caracteres terminado pelo caractere nulo \texttt{'\textbackslash 0'}.
+Uma constante \textit{string} é definida entre aspas e o caractere nulo é incluído automaticamente ao seu final.
+Por exemplo, a \textit{string} \texttt{"IFG"} é um vetor de 4 elementos: \texttt{'I'}, \texttt{'F'}, \texttt{'G'} e \texttt{'\textbackslash 0'}.
+Por isso, um vetor que guarda uma \textit{string} precisa ter uma posição a mais do que a quantidade de caracteres.
+O Programa~\ref{rev002} mostra um exemplo de \textit{string} em C que percorre os caracteres até encontrar o caractere nulo.
+\lstinputlisting[label={rev002},language=C, caption={Em C, \textit{strings} são vetores de caracteres.}]{Code/C/Revisao/rev002.c}
 
 
 \subsection*{Structs}
-Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos.
-O programa~\ref{struct01} mostra um exemplo de \textit{struct} em C. 
+Em C, uma \textit{struct} é uma forma de criar novos tipos heterogêneos, agrupando campos de tipos diferentes sob um mesmo nome.
+O Programa~\ref{struct01} mostra um exemplo de \textit{struct} em C.
+Nele, a função \texttt{imprimirPessoa} recebe a \textit{struct} por valor (uma cópia), enquanto \texttt{setPessoa} recebe um ponteiro e, por isso, altera a variável original.
 
 \newpage
-\lstinputlisting[language=C, caption={Structs em C.}]{Code/C/Listas/Struct.c}\label{struct01}
+\lstinputlisting[label={struct01},language=C, caption={Structs em C.}]{Code/C/Listas/Struct.c}
 
 \newpage
-O programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C. 
-\lstinputlisting[language=C, caption={Composição de Structs em C.}]{Code/C/Listas/Struct2.c}\label{struct02}
+O Programa~\ref{struct02} mostra um exemplo de composição de \textit{struct} em C, em que uma \textit{struct} é campo de outra. 
+\lstinputlisting[label={struct02},language=C, caption={Composição de Structs em C.}]{Code/C/Listas/Struct2.c}
 
 \section{Listas Encadeadas}
 
 Uma lista encadeada é uma estrutura de dados que permite um crescimento sob demanda, limitado à capacidade de memória disponível no computador.
-Ela é composta de ``nós'' que tem suas posições de memória ligadas através de ponteiros. 
+Ela é composta de ``nós'' que têm suas posições de memória ligadas através de ponteiros. 
 Cada nó da lista, além de guardar dados em si, aponta o próximo nó.
 Os dados em um nó também podem ser heterogêneos.
 A Figura~\ref{listaEncadeada} ilustra essa ideia. 
-Apesar da figura dar a impressão de que os nós estão distribuídos contiguamente na memória, eles estão na verdade espalhados em endereços aleatórios de memória. 
-Por isso o encadeamento funciona com ponteiros apontando o endereço de memória do próximonó da lista.
+Apesar de a figura dar a impressão de que os nós estão distribuídos contiguamente na memória, eles podem estar espalhados em quaisquer endereços, conforme a memória é alocada.
+Por isso o encadeamento funciona com ponteiros que guardam o endereço de memória do próximo nó da lista.
+O último nó aponta para \texttt{NULL}, indicando o fim da lista.
+
+Cada nó é criado com a função \texttt{malloc}, que reserva memória durante a execução do programa.
+Dois cuidados são essenciais: reservar o tamanho da \textit{struct} (\texttt{sizeof(No)}), e não o tamanho do ponteiro, e liberar com \texttt{free} cada nó que não for mais usado.
+Esquecer o \texttt{free} provoca vazamento de memória (\textit{memory leak}).
+A Tabela~\ref{tab:custo_lista} compara o custo das operações em um vetor e em uma lista encadeada com $n$ elementos.
+
+\begin{table}[htbp]
+\centering
+\caption{Custo das operações em um vetor e em uma lista simplesmente encadeada com $n$ elementos~\cite{cormen2009}.}
+\label{tab:custo_lista}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Operação & Vetor & Lista encadeada \\ \midrule
+Acessar o $i$-ésimo elemento & $O(1)$ & $O(n)$ \\
+Buscar um valor & $O(n)$ & $O(n)$ \\
+Inserir no início & $O(n)$ & $O(1)$ \\
+Remover um nó já localizado & $O(n)$ & $O(1)$\textsuperscript{*} \\ \bottomrule
+\end{tabular}
+
+\smallskip
+{\footnotesize \textsuperscript{*}Desde que se conheça o nó anterior.}
+\end{table}
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\textwidth]{Pictures/ListaEncadeada01.png}
 	\caption[Lista Encadeada]{Representação de uma Lista Encadeada.}
 	\label{listaEncadeada}
 \end{figure}
-O  programa~\ref{ListaEncadeada01} apresenta uma implementação em C de uma lista encadeada.
+O Programa~\ref{ListaEncadeada01} apresenta uma implementação em C de uma lista encadeada, com funções para inserir no início, buscar, remover e liberar a lista.
 \newpage
-\lstinputlisting[language=C, caption={Implementação em C de lista encadeada.}]{Code/C/Listas/ListaEncadeada02.c}\label{ListaEncadeada01}
+\lstinputlisting[label={ListaEncadeada01},language=C, caption={Implementação em C de lista encadeada.}]{Code/C/Listas/ListaEncadeada02.c}
 
 \newpage
-As listas encadeadas podem conter ponteiros para outro nós além do próximo. 
+As listas encadeadas podem conter ponteiros para outros nós além do próximo.
 É possível criar uma lista com \textit{links} simultâneos para o próximo nó e para o nó anterior.
 Essas listas são conhecidas como listas duplamente encadeadas.
-O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma duplamente encadeada.
+O Programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma lista duplamente encadeada.
 
-\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/C/Listas/ListaEncadeada03.c}\label{ListaEncadeada03}
+\lstinputlisting[label={ListaEncadeada03},language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/C/Listas/ListaEncadeada03.c}
 
 \section{Pilhas}\label{pilhas}
 
@@ -630,9 +708,11 @@ O  programa~\ref{ListaEncadeada03} apresenta uma implementação em C de uma dup
 \section{Algoritmos de Ordenação}\label{ordenacao}
 
 \subsection*{Bubble Sort}
-O algoritmo da bolha (\textit{Bubble Sort}) é um algortimo de ordenação onde cada elemento de uma posição $i$ é comparado com o elemento de posição $i+1$, os quais trocam de posição, se for o caso, para atender à ordenação procurada (crescente ou decrescente).
-O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \textit{Bubble Sort}, enquanto a Figura~\ref{diaBubleSort} ilustra seu funcionamento para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/C/Ordenacao/BubbleSort.c}\label{BubbleSort}
+O algoritmo da bolha (\textit{Bubble Sort}) é um algoritmo de ordenação em que cada elemento de uma posição $i$ é comparado com o elemento de posição $i+1$, os quais trocam de posição, se for o caso, para atender à ordenação procurada (crescente ou decrescente).
+A cada passagem pelo vetor, o maior elemento ainda desordenado ``sobe'' até a sua posição final, como uma bolha.
+Se uma passagem inteira terminar sem trocas, o vetor já está ordenado e o algoritmo pode parar.
+O Programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \textit{Bubble Sort}, enquanto a Figura~\ref{diaBubleSort} ilustra seu funcionamento para um vetor de tamanho 4.
+\lstinputlisting[label={BubbleSort},language=C, caption={Implementação em C do algoritmo de ordenação BubbleSort.}]{Code/C/Ordenacao/BubbleSort.c}
 \begin{figure}
 	\centering
 	\includegraphics[width=.7\textwidth]{Pictures/BubbleSort}
@@ -642,7 +722,7 @@ O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \te
 
 \subsection*{Exercícios}
 \begin{enumerate}
-	\item Atualizar a implementação do \textit{Bubble Sort} para executar as seguinte tarefa:
+	\item Atualizar a implementação do \textit{Bubble Sort} para executar as seguintes tarefas:
 	\begin{itemize}
 		\item executar o algoritmo com três vetores de entrada:
 		\begin{enumerate}
@@ -657,10 +737,11 @@ O  programa~\ref{BubbleSort} apresenta uma implementação em C do algoritmo \te
 
 \newpage
 \subsection*{Selection Sort}
-No algoritmo de ordenação por seleção (\textit{Selection Sort}) cada número do vetor, a partir do primeiro, é eleito e comparado com o menor número\footnote{Ou maior dependendo da ordenação desejada.} entre aqueles que estão à direita do eleito.
-O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo \textit{Selection Sort} para um vetor de tamanho 4.
+No algoritmo de ordenação por seleção (\textit{Selection Sort}) cada número do vetor, da primeira à penúltima posição, é eleito e comparado com o menor número\footnote{Ou maior, dependendo da ordenação desejada.} entre aqueles que estão à direita do eleito.
+Se o menor for menor que o eleito, os dois trocam de posição.
+O Programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo \textit{Selection Sort} para um vetor de tamanho 4.
 %, e a Figura~\ref{diaSelectionSort} ilustra seu funcionamento.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Selection.}]{Code/C/Ordenacao/SelectionSort.c}\label{SelectionSort}
+\lstinputlisting[label={SelectionSort},language=C, caption={Implementação em C do algoritmo de ordenação Selection.}]{Code/C/Ordenacao/SelectionSort.c}
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=.75\textwidth]{Pictures/SelectionSort}
@@ -670,7 +751,7 @@ O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo 
 
 \subsection*{Exercícios}
 \begin{enumerate}
-	\item Atualizar a implementação do \textit{Selection Sort} para executar as seguinte tarefa:
+	\item Atualizar a implementação do \textit{Selection Sort} para executar as seguintes tarefas:
 	\begin{itemize}
 		\item executar o algoritmo com três vetores de entrada:
 		\begin{enumerate}
@@ -684,10 +765,12 @@ O  programa~\ref{SelectionSort} apresenta uma implementação em C do algoritmo 
 \end{enumerate} 
 \newpage
 \subsection*{Insertion Sort}
-O algoritmo de ordenação por inserção (\textit{Insertion Sort}), funciona como uma mão de baralho onde você ordena suas cartas começando a comparação entre as duas primeiras.
-No \textit{Insertion Sort}, é eleito o segundo elemento do vetor para iniciar a comparção. É percorrido o vetor de forma a garantir que todos os números à esquerda do eleito sejam menores que ele.
-O programa~\ref{InsertionSort} apresenta uma implementação em C do algoritmo \textit{Insertion Sort} para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Insertion Sort.}]{Code/C/Ordenacao/InsertionSort.c}\label{InsertionSort}
+O algoritmo de ordenação por inserção (\textit{Insertion Sort}) funciona como a organização de cartas de baralho na mão, em que cada nova carta é inserida na posição correta entre as que já estão ordenadas.
+No \textit{Insertion Sort}, é eleito o segundo elemento do vetor para iniciar a comparação.
+Os elementos à esquerda do eleito que forem maiores que ele são deslocados uma posição para a direita, e o eleito é inserido no espaço aberto.
+O processo se repete para cada elemento seguinte, de forma que a parte à esquerda do eleito esteja sempre ordenada.
+O Programa~\ref{InsertionSort} apresenta uma implementação em C do algoritmo \textit{Insertion Sort} para um vetor de tamanho 4.
+\lstinputlisting[label={InsertionSort},language=C, caption={Implementação em C do algoritmo de ordenação Insertion Sort.}]{Code/C/Ordenacao/InsertionSort.c}
 %\begin{figure}
 %	\centering
 %	\includegraphics[width=.75\textwidth]{Pictures/InsertionSort}
@@ -697,7 +780,7 @@ O programa~\ref{InsertionSort} apresenta uma implementação em C do algoritmo \
 
 \subsection*{Exercícios}
 \begin{enumerate}
-	\item Atualizar a implementação do \textit{Insertion Sort} para executar as seguinte tarefa:
+	\item Atualizar a implementação do \textit{Insertion Sort} para executar as seguintes tarefas:
 	\begin{itemize}
 		\item executar o algoritmo com três vetores de entrada:
 		\begin{enumerate}
@@ -711,17 +794,17 @@ O programa~\ref{InsertionSort} apresenta uma implementação em C do algoritmo \
 \end{enumerate} 
 \newpage
 \subsection*{Merge Sort}
-O algoritmo de ordenação \textit{Merge Sort} a técnica de divisão e conquista, ou seja, o problema é dividido em subproblemas menores até que a solução para o subproblema seja simples.
+O algoritmo de ordenação \textit{Merge Sort} (ordenação por intercalação) usa a técnica de divisão e conquista, ou seja, o problema é dividido em subproblemas menores até que a solução para o subproblema seja simples.
 As soluções dos subproblemas são combinadas para prover a solução do problema original.
-
-No \textit{Merge Sort}, o vetor é dividido em partes iguais recursivamente até que haja apenas um elemento. Por exemplo se um vetor tem $n$ elementos, ele é divido em $n/2$, o resultado é novamente dividido por $2$ até que o vetor não seja mais divisível.
-Os pares da última divisão são ordenados entre si assim como na volta recursiva montando o vetor original que estará então ordenado.
-O programa~\ref{MergeSort} apresenta uma implementação em C do algoritmo \textit{Merge Sort} para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Merge Sort.}]{Code/C/Ordenacao/MergeSort.c}\label{MergeSort}
+No \textit{Merge Sort}, o vetor é dividido ao meio recursivamente até que cada parte tenha apenas um elemento, que já está ordenado por definição.
+Por exemplo, se um vetor tem $n$ elementos, ele é dividido em duas partes de $n/2$ elementos, que são novamente divididas ao meio, e assim por diante.
+Na volta da recursão, cada par de partes ordenadas é intercalado (função \texttt{merge}): os menores elementos das duas partes são comparados e copiados em ordem, formando uma parte maior também ordenada, até que o vetor original esteja todo ordenado.
+O Programa~\ref{MergeSort} apresenta uma implementação em C do algoritmo \textit{Merge Sort} para um vetor de tamanho 4.
+\lstinputlisting[label={MergeSort},language=C, caption={Implementação em C do algoritmo de ordenação Merge Sort.}]{Code/C/Ordenacao/MergeSort.c}
 
 \subsection*{Exercícios}
 \begin{enumerate}
-	\item Atualizar a implementação do \textit{Merge Sort} para executar as seguinte tarefa:
+	\item Atualizar a implementação do \textit{Merge Sort} para executar as seguintes tarefas:
 	\begin{itemize}
 		\item executar o algoritmo com três vetores de entrada:
 		\begin{enumerate}
@@ -738,15 +821,17 @@ O programa~\ref{MergeSort} apresenta uma implementação em C do algoritmo \text
 \newpage
 \subsection*{Quick Sort}
 O algoritmo de ordenação \textit{Quick Sort} também utiliza a técnica de divisão e conquista.
-No \textit{Quick Sort}, o vetor é dividido em duas partes recursivamente a partir de um pivô escolhido, até que não seja possível dividir mais. 
-Os pares da última divisão são ordenados entre si assim na volta recursiva colocando todos os valores menores que o pivô no vetor à sua esquerda e todos os valores maiores que o pivô no vetor à sua direita.
-Após esse procedimento o pivô estará ordenado em sua posição com relação os demais números.
-O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \textit{Quick Sort} para um vetor de tamanho 4.
-\lstinputlisting[language=C, caption={Implementação em C do algoritmo de ordenação Quick Sort.}]{Code/C/Ordenacao/QuickSort.c}\label{QuickSort}
+No \textit{Quick Sort}, um elemento do vetor é escolhido como pivô (no Programa~\ref{QuickSort}, o primeiro elemento).
+Em seguida, o vetor é particionado: os valores menores ou iguais ao pivô são levados para a sua esquerda e os maiores para a sua direita.
+Após esse procedimento, o pivô estará em sua posição definitiva no vetor ordenado.
+O mesmo processo é aplicado recursivamente às partes à esquerda e à direita do pivô, até que cada parte tenha no máximo um elemento.
+Diferentemente do \textit{Merge Sort}, todo o trabalho é feito antes das chamadas recursivas, e não há etapa de combinação~\cite{hoare1962}.
+O Programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \textit{Quick Sort} para um vetor de tamanho 4.
+\lstinputlisting[label={QuickSort},language=C, caption={Implementação em C do algoritmo de ordenação Quick Sort.}]{Code/C/Ordenacao/QuickSort.c}
 
 \subsection*{Exercícios}
 \begin{enumerate}
-	\item Atualizar a implementação do \textit{Quick Sort} para executar as seguinte tarefa:
+	\item Atualizar a implementação do \textit{Quick Sort} para executar as seguintes tarefas:
 	\begin{itemize}
 		\item executar o algoritmo com três vetores de entrada:
 		\begin{enumerate}
@@ -762,30 +847,35 @@ O programa~\ref{QuickSort} apresenta uma implementação em C do algoritmo \text
 \newpage
 \section{Árvores}\label{arvores}
 
-O  programa~\ref{ArvoreBinaria01} apresenta uma implementação em C de uma árvore binária.
-A representação gráfica da árvore é feita usando a biblioteca \href{http://graphviz.org/}{Graphviz}~\cite{Ellson03graphvizand}.
+Uma árvore binária é uma estrutura em que cada nó tem no máximo dois filhos, chamados de filho esquerdo e filho direito.
+O nó sem pai é a raiz, e os nós sem filhos são as folhas.
+Em uma árvore binária de busca, para todo nó, os valores da subárvore esquerda são menores que o valor do nó, e os da subárvore direita são maiores~\cite{cormen2009}.
+Essa propriedade permite buscar um valor descendo pela árvore a partir da raiz, em tempo proporcional à altura da árvore.
+O Programa~\ref{ArvoreBinaria01} apresenta uma implementação em C de uma árvore binária de busca, com inserção, busca, cálculo da altura e liberação da memória.
+O percurso em ordem simétrica (esquerda, raiz, direita) mostra os valores em ordem crescente.
+O arquivo \texttt{ArvoreBinaria\_com\_impressao.c}, no mesmo diretório do repositório, gera também uma representação gráfica da árvore no formato da ferramenta \href{https://graphviz.org/}{Graphviz}~\cite{Ellson03graphvizand}.
 
-\lstinputlisting[language=C, caption={Implementação em C de lista duplamente encadeada.}]{Code/C/ArvoreBinaria/ArvoreBinaria.c}\label{ArvoreBinaria01}
+\lstinputlisting[label={ArvoreBinaria01},language=C, caption={Implementação em C de árvore binária de busca.}]{Code/C/ArvoreBinaria/ArvoreBinaria.c}
 
 \section{Tabelas Hashing}\label{hashing}
 
 \section{Grafos}\label{grafos}
 
 Grafos são estruturas de dados muito poderosas para encontrar soluções para diversos problemas.
-Exemplos disso, são os algoritmos de localização e rotas para endereços, como o aparelho de GPS de um carro, ou ainda a montagem de genomas a partir de fragmentos de DNA sequenciados.
+Exemplos disso são os algoritmos de cálculo de rotas, como os de aplicativos de navegação por GPS, ou ainda a montagem de genomas a partir de fragmentos de DNA sequenciados~\cite{pevzner2001}.
 É na verdade muito expressiva a quantidade de problemas do mundo real que podem ser computacionalmente modelados como grafos.
 
 Um grafo $G = (V,E)$ é formado por dois conjuntos $V$ e $E$, onde:
 \begin{itemize}
-	\item $V$ é um conjunto finito e não vazio de vértices de $G$ 
+	\item $V$ é um conjunto finito e não vazio de vértices de $G$;
 	\item $E$ é um conjunto finito de arestas de $G$.
 \end{itemize}
 
 Uma aresta $e~\in~E(G)$ é representada por $e=(v_1, v_2)$ ligando os vértices $v_1$ e $v_2$.
 Vejamos um exemplo. 
-Seja o conjunto $V = {a, b, c, d, e}$. 
-Seja o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. 
-Uma representação gráfica deste grafo pode ser visto na Figura~\ref{Grafos01}.
+Seja o conjunto $V = \{a, b, c, d, e\}$.
+Seja o conjunto $E = \{(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)\}$.
+Uma representação gráfica deste grafo pode ser vista na Figura~\ref{Grafos01}.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.3\textwidth]{Pictures/Grafos01}
@@ -793,11 +883,11 @@ Uma representação gráfica deste grafo pode ser visto na Figura~\ref{Grafos01}
 	\label{Grafos01}
 \end{figure}
 
-Dada uma aresta $e = (a, b)$, os vértices  $a$ e $b$ são ao mesmo tempo ``extremos''\footnote{$a$ e $b$ estão nas extremidades de $e$.} e incidentes à aresta $e$. 
+Dada uma aresta $e = (a, b)$, os vértices $a$ e $b$ são os ``extremos''\footnote{$a$ e $b$ estão nas extremidades de $e$.} da aresta $e$.
 Os vértices $a$ e $b$ são também vértices adjacentes.
-Além disso, a aresta $e$ e incidente aos vétices $a$ e $b$
+Além disso, a aresta $e$ é incidente aos vértices $a$ e $b$.
 
-Denota-se por $|V|$ e $|E|$ a cardinalidade dos conjuntos de $V(G)$ e $E(G)$. No exemplo da Figura~\ref{Grafos01}, a teríamos: $|V| = 5$ e $|E| = 7$.
+Denota-se por $|V|$ e $|E|$ a cardinalidade dos conjuntos de $V(G)$ e $E(G)$. No exemplo da Figura~\ref{Grafos01}, teríamos: $|V| = 5$ e $|E| = 7$.
 O tamanho do grafo é dado por $|V| +|E|$.
 
 
@@ -815,7 +905,7 @@ A Figura~\ref{Grafos02} mostra um exemplo de laço e arestas múltiplas.
 
 \subsection*{Subgrafo e Subgrafo Gerador}
 Um subgrafo $G' = (V', E')$ de um grafo $G = (V,E)$ é um grafo tal que $V' \subseteq V, E' \subseteq E$.
-Diz-se que um subgrafo $G' = (V', E')$ de um grafo $G = (V,E)$ é gerador, se $ V' = V$
+Diz-se que um subgrafo $G' = (V', E')$ de um grafo $G = (V,E)$ é gerador se $V' = V$.
 A Figura~\ref{Grafos03} mostra exemplos de subgrafo e subgrafo gerador.
 \begin{figure}[htbp]
 	\centering
@@ -831,18 +921,19 @@ A Figura~\ref{Grafos04} traz um exemplo para graus de vértices de um grafo.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.5\textwidth]{Pictures/Grafos04}
-	\caption[Exemplo de graus de de vértices em um grafo.]{Exemplo de graus de de vértices em um grafo.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
+	\caption[Exemplo de graus de vértices em um grafo.]{Exemplo de graus de vértices em um grafo.~\textit{Fonte: https://www.ic.unicamp.br/~zanoni/teaching/}}
 	\label{Grafos04}
 \end{figure}
-Uma interessante propriedade - \textit{Handshaking lemma} - depreeende-se de $d(v)$.
+Uma interessante propriedade, conhecida como \textit{Handshaking lemma} (lema do aperto de mãos), depreende-se de $d(v)$: como cada aresta tem dois extremos, ela contribui com duas unidades para a soma dos graus.
 A soma dos graus dos vértices é igual a duas vezes a cardinalidade do conjunto de arestas:
 
 $$ \sum_{v~\in~V} d(v) = 2|E| $$
 
 
 \subsection*{Grafo Direcionado ou Orientado}
-Um grafo $G = (V, E)$ é orientado, ou direcionado (digrafo) quando as arestas do conjunto $E$ estão dispostas em ``pares ordenados'', ou seja, existe a conotação de direção em suas extremidades.
-Por exemplo, seja a aresta $e_1 = (v_1, v_2)$. Se $e_1$ sai de $v_1$ e entra em $v_2$, temos uma direção definida de $V_1$ para $v_2$.
+Um grafo $G = (V, E)$ é orientado, ou direcionado (digrafo), quando as arestas do conjunto $E$ estão dispostas em ``pares ordenados'', ou seja, existe a conotação de direção em suas extremidades.
+Em um digrafo, o grau de entrada de um vértice é o número de arestas que chegam a ele, e o grau de saída é o número de arestas que partem dele.
+Por exemplo, seja a aresta $e_1 = (v_1, v_2)$. Se $e_1$ sai de $v_1$ e entra em $v_2$, temos uma direção definida de $v_1$ para $v_2$.
 A Figura~\ref{Grafos05} mostra um exemplo de grafo orientado.
 \begin{figure}[htbp]
 	\centering
@@ -852,18 +943,18 @@ A Figura~\ref{Grafos05} mostra um exemplo de grafo orientado.
 \end{figure}
 
 \subsection*{Representação de Grafos}
-Apesar da representação visual da informação ser uma das vantagens dos grafos, armazenar computacionalmente os grafos como figuras limita a aplicação dos algoritmos em grafos.
-Portanto, outras maneira de abstrair os grafos foram pensadas. 
+Apesar de a representação visual da informação ser uma das vantagens dos grafos, armazenar computacionalmente os grafos como figuras limita a aplicação dos algoritmos em grafos.
+Portanto, outras maneiras de abstrair os grafos foram pensadas.
 As mais largamente utilizadas são as listas e as matrizes de adjacência.
 
-Suponha que um grafo tenha $n$ vértices numerados $n_1, n_2, \dots, n_n$ de forma que eles estejam assim ordenados para fins de identificação apenas (não implica que são vétices ordenados e portanto um grafo ordenado).
-Uma matriz de adjacência é uma matriz $n x n$ onde o elemento $i, j$ é o número de arestas entre os nós $n_i$ e $n_j$.
-Tomando como exemplo o grafo da Figura~\ref{Grafos01}, a matriz de adjacência seria uma matriz $5~x~5$, já que temos nele o conjunto $V = {a, b, c, d, e}$ e o conjunto $E = {(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)}$. 
+Suponha que um grafo tenha $n$ vértices numerados $v_1, v_2, \dots, v_n$ apenas para fins de identificação (a numeração não implica nenhuma ordem entre os vértices).
+Uma matriz de adjacência é uma matriz $n \times n$ em que o elemento $(i, j)$ é o número de arestas entre os vértices $v_i$ e $v_j$.
+Tomando como exemplo o grafo da Figura~\ref{Grafos01}, a matriz de adjacência seria uma matriz $5 \times 5$, já que temos nele o conjunto $V = \{a, b, c, d, e\}$ e o conjunto $E = \{(a, b),(a, c),(b, c),(b, d),(c, d),(c, e),(d, e)\}$.
 
-Para grafos não-orientados, a matriz de adjacência é simétrica, de forma que nesses casos apenas é necessário o armazenamento dos elementos da diagonal principal e os elementos abaixo (ou acima) dela.
+Para grafos não orientados, a matriz de adjacência é simétrica, de forma que nesses casos apenas é necessário o armazenamento dos elementos da diagonal principal e dos elementos abaixo (ou acima) dela.
 Já a matriz de um grafo direcionado não será simétrica porque a existência de uma aresta de $n_i$ para $n_j$ não implica na existência de uma aresta de $n_j$ para $n_i$.
 Os valores da matriz podem ser os pesos das arestas.
-As matrizes de adjacência para o grafo da Figura~\ref{Grafos01} estão abaixo representadas nas Matrizes~\ref{Grafos_matrizes_adjacencia}.
+A Figura~\ref{Grafos_matrizes_adjacencia} mostra a matriz de adjacência do grafo da Figura~\ref{Grafos01} completa e na forma triangular, que aproveita a simetria.
 \begin{center}
 \begin{figure}
 \[
@@ -888,16 +979,16 @@ d & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{0} & ~ \\
 e & \textbf{0} & \textbf{0} & \textbf{1} & \textbf{1} & \textbf{0} \\
 \end{array}\right)
 \]
-\caption{Matrizes de adjacência para grafo não direcionado (esquerda) e para grafo direcionado (direita).}
+\caption{Matriz de adjacência do grafo não direcionado da Figura~\ref{Grafos01}: completa (esquerda) e apenas com a diagonal principal e os elementos abaixo dela (direita).}
 \label{Grafos_matrizes_adjacencia}
 \end{figure}
 \end{center}
 
 Quando um grafo tem muitos vértices, mas relativamente poucas arestas, a matriz de adjacências torna-se esparsa.
-Em casos assim, serão necessários $n^2$ dados para representar um grafo com $n$ vértices.
-Consequentemente o algoritmo para percorrer toda a amatriz precisará ``olhar'' $n^2$ elementos da matriz.
+Ainda assim, serão necessários $n^2$ dados para representar um grafo com $n$ vértices.
+Consequentemente, o algoritmo para percorrer toda a matriz precisará ``olhar'' $n^2$ elementos.
 Em casos assim, o grafo pode ser melhor representado usando uma lista de adjacências.
-Em listas de adjacência são usados ponteiros para ir de um item na lista para outro usando uma lista encadeada.
+Em uma lista de adjacências, cada vértice tem uma lista encadeada com os seus vértices adjacentes, e o espaço ocupado é proporcional a $|V| + |E|$~\cite{cormen2009}.
 Tomando o mesmo exemplo do grafo da Figura~\ref{Grafos01}, teríamos uma lista de adjacências como mostrada na Figura~\ref{Grafos_Lista_Adjacencia}.
 \usetikzlibrary{positioning}
 \tikzset{
@@ -929,63 +1020,68 @@ array element/.style = {
 \begin{figure}
 \centering
 \begin{tikzpicture}
-\foreach \index/\list in {1/{b,c,null}, 2/{a,c,d,null}, 3/{a,b,d,e,null}, 4/{b,c,e,null}, 5/{c,d,null}} {
-   \node[array element] (aux) at (0,-\index) {\index};
+\foreach \index/\vertice/\list in {1/a/{b,c,NULL}, 2/b/{a,c,d,NULL}, 3/c/{a,b,d,e,NULL}, 4/d/{b,c,e,NULL}, 5/e/{c,d,NULL}} {
+   \node[array element] (aux) at (0,-\index) {\vertice};
    \LinkedList{\list}
 }
 \end{tikzpicture}
-\caption{Exemplo de lista de adjacência.}
+\caption{Lista de adjacências do grafo da Figura~\ref{Grafos01}.}
 \label{Grafos_Lista_Adjacencia}
 \end{figure}
 
 \subsection{Grafos como objetos (Programação orientada a objetos)}
 
-A programação oerientada a objetos permite-nos abstrair em modelos chamados classes, um novo ``tipo'' de dados que possa representar uma instância de um problema do ``mundo real''. Em se tratando de grafos, os vértices, arestas e o próprio grafo podem ser objetos dessas respectivas classes.
-Uma implementação, dessa abordagem está disponível no~\href{https://github.com/giiff/livro_algoritmos_e_estruturas_de_dados/tree/master/Code/Python}{GitHub}, no mesmo repositório deste material.
+A programação orientada a objetos permite abstrair, em modelos chamados classes, um novo ``tipo'' de dados que possa representar uma instância de um problema do ``mundo real''. Em se tratando de grafos, os vértices, as arestas e o próprio grafo podem ser objetos das respectivas classes.
+Uma implementação em Python dessa abordagem, com as classes \texttt{Vertice}, \texttt{Aresta} e \texttt{Grafo} e os algoritmos de busca em profundidade, busca em largura, Prim e Dijkstra, está disponível no diretório \href{https://github.com/giiff/livro_algoritmos_e_estruturas_de_dados/tree/master/Code/Python}{\texttt{Code/Python}} do repositório deste material.
 
 \subsection{Busca em Grafos}
 \indent
 
-A busca em profundidade (\textit{Deep-First Search}) é um algoritmo para percorrer os vértices de um grafo.
+A busca em profundidade (\textit{Depth-First Search}, DFS) é um algoritmo para percorrer os vértices de um grafo.
 Dado um grafo $G = (V,E)$ e um vértice inicial $v_1$, a estratégia da busca em profundidade é buscar, sempre que possível, o mais profundo no grafo.
-Partindo de um vértice inicial $v_1$ a ideia é atravessar as arestas e outros vértices a ele conectados~\cite{ziviani2007}.
-Quando todas as arestas adjacentes a $v_1$ tiverem sido exploradas, a busca anda para trás (\textit{backtrack}) para explorar outros vértices que saem do vértice $v_1$ que ainda não tenham sido visitados.
-O processo se repete até que todos os vértices do grafo tenham sido visitados.
-Tipicamente a complexidade de tempo desse algoritmo é de $O(|V|~+~|E|)$ para percorrer o grafo inteiro~\cite{cormen2009}.
-A Figura~\ref{Grafos_DFS} mostra um exemplo ilustrado do funcionamento do algoritmo de busca em largura.
+Partindo de $v_1$, a ideia é seguir por uma aresta até um vértice ainda não visitado e, a partir dele, repetir o processo~\cite{ziviani2007}.
+Quando todas as arestas do vértice $v$ mais recentemente descoberto tiverem sido exploradas, a busca anda para trás (\textit{backtrack}) até o vértice a partir do qual $v$ foi descoberto, para explorar as arestas restantes dele~\cite{cormen2009}.
+O processo se repete até que todos os vértices alcançáveis a partir de $v_1$ tenham sido visitados.
+A busca em profundidade pode ser implementada com recursão ou com uma pilha explícita, que guarda os vértices a visitar.
+Tipicamente a complexidade de tempo desse algoritmo é de $O(|V|~+~|E|)$ para percorrer o grafo inteiro representado por listas de adjacências~\cite{cormen2009}.
+A Figura~\ref{Grafos_DFS} mostra um exemplo ilustrado do funcionamento do algoritmo de busca em profundidade com uma pilha, para o grafo direcionado com $V = \{A, B, C, D, E\}$ e $E = \{(A, B), (A, C), (A, D), (B, C), (C, E)\}$.
+Os vértices em verde já foram visitados, os amarelos estão na pilha e os vermelhos ainda não foram descobertos.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{Pictures/DFS_Diagrama.png}
-	\caption[Exemplo de busca em profundidade.]{Exemplo de busca em profundidade.}
+	\caption[Exemplo de busca em profundidade.]{Exemplo de busca em profundidade a partir do vértice $A$. Ordem de visita: $A, B, C, E, D$.}
 	\label{Grafos_DFS}
 \end{figure}
 
-A busca em largura (\textit{Breadth-First Search}) é uma estratégia que expande a fronteira de vértices descobertos e não descobertos de maneira uniforme.
+A busca em largura (\textit{Breadth-First Search}, BFS) é uma estratégia que expande a fronteira entre vértices descobertos e não descobertos de maneira uniforme: primeiro visita todos os vértices a uma aresta de distância de $v_1$, depois os que estão a duas arestas, e assim por diante~\cite{cormen2009}.
 Dado um grafo $G = (V,E)$ e um vértice $v_1$, inicialmente inclui-se o vértice $v_1$ em uma lista de vértices visitados.
-Busca-se então, todos os vértices adjacentes a $v_1$, os quais são incluídos em uma fila para ser visitados.
-Os vértices vão sendo incluídos na lista de visitados à medida que vão sendo excluídos da fila de visitação.
-O mesmo procedimento é executado sucessivamente até que todos os vértices tenham sido visitados e não haja mais nenhum na fila para visitação.
+Busca-se então todos os vértices adjacentes a $v_1$, os quais são incluídos em uma fila para serem visitados.
+Os vértices vão sendo incluídos na lista de visitados à medida que vão sendo retirados da fila, e os seus adjacentes ainda não descobertos entram no fim da fila.
+O mesmo procedimento é executado sucessivamente até que não haja mais nenhum vértice na fila.
+Em um grafo sem pesos, a busca em largura encontra o caminho com o menor número de arestas entre $v_1$ e cada vértice alcançável.
 Tipicamente a complexidade de tempo desse algoritmo também é de $O(|V| + |E|)$ para percorrer o grafo inteiro~\cite{cormen2009}.
-A Figura~\ref{Grafos_BFS} mostra um exemplo ilustrado do funcionamento do algoritmo de busca em largura.
+A Figura~\ref{Grafos_BFS} mostra um exemplo ilustrado do funcionamento do algoritmo de busca em largura para o mesmo grafo da Figura~\ref{Grafos_DFS}.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=\textwidth]{Pictures/BFS_Diagrama.png}
-	\caption[Exemplo de busca em largura.]{Exemplo de busca em largura.}
+	\caption[Exemplo de busca em largura.]{Exemplo de busca em largura a partir do vértice $A$. Ordem de visita: $A, B, C, D, E$.}
 	\label{Grafos_BFS}
 \end{figure}
 
 \subsection{Caminho de Euler}
 
-Um caminho Euleriano ou caminho de Euler, é um caminho em um grafo $G = {V,E}$, direcionado ou não, em que cada aresta só pode ser visitada uma única vez, enquanto os vértices podem ser visitados mais de uma vez.
+Um caminho euleriano, ou caminho de Euler, é um caminho em um grafo $G = (V,E)$, direcionado ou não, que percorre \textbf{cada aresta exatamente uma vez}, enquanto os vértices podem ser visitados mais de uma vez.
 Se o caminho de Euler inicia e termina em um mesmo vértice, então esse caminho é chamado de circuito ou ciclo de Euler.
-Um caminho de Euler ocorre nas seguintes circunstâncias:
+Considerando apenas os vértices com pelo menos uma aresta, e desde que eles formem um grafo conexo, as condições de existência são as seguintes~\cite{cormen2009}:
 \begin{itemize}
-	\item Se todos os vértices do grafo $G$ tem um grau par.
-	\item Se a quantidade de vértices com grau ímpar for igual a $2$.
+	\item Em um grafo \textbf{não direcionado}, existe circuito de Euler se e somente se todos os vértices têm grau par; existe caminho de Euler que não é circuito se e somente se exatamente dois vértices têm grau ímpar, e eles são o início e o fim do caminho.
+	\item Em um grafo \textbf{direcionado}, existe circuito de Euler se e somente se, em todo vértice, o grau de entrada é igual ao grau de saída; existe caminho de Euler que não é circuito se e somente se um vértice tem grau de saída igual ao de entrada mais um (o início), um vértice tem grau de entrada igual ao de saída mais um (o fim) e todos os demais têm graus de entrada e de saída iguais.
 \end{itemize}
+Diferentemente do caminho hamiltoniano, a existência de um caminho de Euler pode ser verificada, e o caminho construído, em tempo linear no número de arestas.
+Caminhos de Euler em grafos de De Bruijn são a base de métodos de montagem de genomas~\cite{pevzner2001}.
 O diagrama da Figura~\ref{Grafos_Euler} mostra um caminho de Euler para um grafo direcionado.
-Nele, cada aresta foi visitada uma única vez. 
-O caminho de Euler foi possível porque, neste caso, a quantidade de vértices com grau impar é igual a $2$, ou seja, vértices $A$ e $C$.
+Nele, cada aresta foi visitada uma única vez.
+O caminho de Euler foi possível porque o vértice $A$ tem grau de saída igual ao de entrada mais um (início do caminho), o vértice $C$ tem grau de entrada igual ao de saída mais um (fim do caminho) e os demais vértices têm graus de entrada e de saída iguais.
 \begin{figure}[htbp]
 	\centering
 	\includegraphics[width=.5\textwidth]{Pictures/Euler_Path.png}
@@ -995,8 +1091,11 @@ O caminho de Euler foi possível porque, neste caso, a quantidade de vértices c
 
 \subsection{Caminho Hamiltoniano}
 
-Um caminho Hamiltoniano é um caminho em um grafo $G = {V,E}$ direcionado ou não, em que cada vértice é visitado apenas uma vez.
-O problema de checar se um grafo contém um caminho Hamiltoniano é NP-completo, ou seja, é um problema da classe de problemas não-deternimísticos polinomiais (NP), cujas soluções não podem ser verificadas em tempo polinomial.
+Um caminho hamiltoniano é um caminho em um grafo $G = (V,E)$, direcionado ou não, que visita \textbf{cada vértice exatamente uma vez}.
+O problema de decidir se um grafo contém um caminho hamiltoniano é NP-completo~\cite{karp1972,garey1979}.
+A classe NP (tempo polinomial não determinístico) reúne os problemas de decisão cujas soluções, uma vez apresentadas, podem ser \textbf{verificadas} em tempo polinomial: dada uma sequência de vértices, é fácil conferir se ela é um caminho hamiltoniano.
+Um problema é NP-completo quando pertence a NP e todo problema de NP pode ser reduzido a ele em tempo polinomial~\cite{cook1971}.
+Não se conhece algoritmo de tempo polinomial para nenhum problema NP-completo; encontrar um, ou provar que não existe, é justamente a questão P versus NP citada no Capítulo~\ref{introducao}.
 O diagrama da Figura~\ref{Grafos_Hamiltoniano} mostra um caminho Hamiltoniano para um grafo não direcionado.
 \begin{figure}[htbp]
 	\centering
@@ -1064,7 +1163,7 @@ O diagrama da Figura~\ref{Grafos_Hamiltoniano} mostra um caminho Hamiltoniano pa
 %----------------------------------------------------------------------------------------
 %------------------------------------------------
 \chapterimage{08.jpg} % Chapter heading image
-\chapter{Apêncice}\label{apendice}
+\chapter{Apêndice}\label{apendice}
 \vspace{6em}
 \begin{flushright}
 	\textit{\textcolor{white}{}}

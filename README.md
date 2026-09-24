@@ -8,7 +8,7 @@ Sua finalidade é prover material didático orientado para o perfil de tecnólog
 
 ## Como obter os códigos deste repositório ?
 
-Os códigos, em geral, estão em C. Recentemente comçou a implementação também em Python 3.
+Os códigos, em geral, estão em C (padrão C17), em `Code/C`. Há também implementações em Python 3, em `Code/Python`.
 
 ### Primeira vez que vai baixar o repositório ?
 
@@ -43,8 +43,9 @@ sudo dnf install gcc gcc-c++
 ## Como compilar meu código fonte?
 * No terminal de seu Linux digite/cole:
 ```console
-gcc meu_programa.c -o meu_executavel
+gcc -Wall meu_programa.c -o meu_executavel
 ```
+A opção `-Wall` mostra os avisos do compilador, que ajudam a encontrar erros.
 
 ## Como executar meu programa compilado ?
 * No terminal de seu Linux digite/cole:
@@ -52,19 +53,33 @@ gcc meu_programa.c -o meu_executavel
 ./meu_executavel
 ```
 
+## Como compilar o livro e testar os exemplos?
+
+Na raiz do repositório:
+
+```console
+make livro          # gera o PDF (requer TeX Live, biber e latexmk)
+make exemplos       # compila todos os exemplos em C em build/exemplos
+make testes         # testa os exemplos em C e em Python
+```
+
+Para os testes em Python, instale as dependências com `pip install -r requirements.txt`.
+
+O plano de atualização do livro está em [PLANO_DE_ATUALIZACAO.md](PLANO_DE_ATUALIZACAO.md).
+
 # Usando o GIT: 
 
 Como gerenciar o SEU PRÓPRIO repositório?
 
 ## Como criar um repositório novo?
 
-![](https://github.com/giiff/algoritmos/blob/master/img/git01.png)
+Na página do GitHub, use o botão **New repository**, escolha um nome e confirme em **Create repository**.
 
 ## Primeira vez que vai baixar o repositório ?
 
 * No terminal de seu Linux, escolha e acesse a pasta de trabalho e digite/cole:
 ```console
-https://github.com/waldeyr/meurepositorio.git
+git clone https://github.com/waldeyr/meurepositorio.git
 ```
 
 ## Já tem o repositório na máquina e quer baixar as últimas atualizações ?
