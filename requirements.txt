@@ -1,0 +1,7 @@
+# Dependencias dos exemplos em Python
+numpy
+pandas
+pytest
+# Opcionais: visualizacao de grafos (exigem o Graphviz instalado no sistema)
+# pydot
+# pillow
